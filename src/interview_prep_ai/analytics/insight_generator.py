@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from interview_prep_ai.analytics.problem_analyzer import ProblemAnalyzer
 from interview_prep_ai.analytics.rating_analyzer import RatingAnalyzer
+from interview_prep_ai.analytics.strong_topic_analyzer import StrongTopicAnalyzer
 from interview_prep_ai.analytics.tag_analyzer import TagAnalyzer
 from interview_prep_ai.core.models.profile import UserProfile
 
@@ -15,10 +16,12 @@ class InsightGenerator:
         rating_analyzer: RatingAnalyzer | None = None,
         tag_analyzer: TagAnalyzer | None = None,
         problem_analyzer: ProblemAnalyzer | None = None,
+        strong_topic_analyzer: StrongTopicAnalyzer | None = None,
     ) -> None:
         self._rating_analyzer = rating_analyzer or RatingAnalyzer()
         self._tag_analyzer = tag_analyzer or TagAnalyzer()
         self._problem_analyzer = problem_analyzer or ProblemAnalyzer()
+        self._strong_topic_analyzer = strong_topic_analyzer or StrongTopicAnalyzer()
 
     def generate(self, profile: UserProfile, rating_history: dict) -> dict:
         problems = profile.solved_problems
@@ -32,4 +35,5 @@ class InsightGenerator:
             "total_solved": self._problem_analyzer.total_solved(problems),
             "recent_activity": self._problem_analyzer.recent_activity(problems),
             "top_tags": top_tags,
+            "strong_topics": self._strong_topic_analyzer.strong_topics(profile.tag_stats),
         }

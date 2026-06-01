@@ -47,6 +47,7 @@ class InsightsSchema(BaseModel):
     total_solved: int
     recent_activity: int
     top_tags: dict[str, int] = Field(default_factory=dict)
+    strong_topics: list[str] = Field(default_factory=list)
 
 
 class ReportResponse(BaseModel):

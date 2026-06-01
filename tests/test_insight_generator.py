@@ -28,6 +28,7 @@ def test_empty_profile(generator: InsightGenerator) -> None:
         "recent_activity": 0,
         "top_tags": {},
         "weak_topics": [],
+        "strong_topics": [],
     }
 
 
@@ -120,3 +121,21 @@ def test_weak_topics_from_tag_stats(generator: InsightGenerator) -> None:
     insights = generator.generate(profile, {"status": "OK", "result": []})
 
     assert insights["weak_topics"] == ["math", "graphs"]
+
+
+def test_strong_topics_from_tag_stats(generator: InsightGenerator) -> None:
+    profile = UserProfile(
+        username="strong_tag_user",
+        platform=Platform.CODEFORCES,
+        tag_stats=[
+            TagStat(tag="dp", solved_count=12),
+            TagStat(tag="graphs", solved_count=20),
+            TagStat(tag="greedy", solved_count=5),
+            TagStat(tag="math", solved_count=15),
+            TagStat(tag="strings", solved_count=1),
+        ],
+    )
+
+    insights = generator.generate(profile, {"status": "OK", "result": []})
+
+    assert insights["strong_topics"] == ["graphs", "math", "dp"]

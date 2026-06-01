@@ -48,6 +48,7 @@ class InsightsSchema(BaseModel):
     recent_activity: int
     top_tags: dict[str, int] = Field(default_factory=dict)
     weak_topics: list[str] = Field(default_factory=list)
+    strong_topics: list[str] = Field(default_factory=list)
 
 
 class ReportResponse(BaseModel):

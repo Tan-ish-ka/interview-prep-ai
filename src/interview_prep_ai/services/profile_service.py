@@ -11,6 +11,7 @@ from interview_prep_ai.core.enums import Platform, PlatformType
 from interview_prep_ai.core.interfaces.platform_analyzer import IPlatformAnalyzer
 from interview_prep_ai.core.models.profile import UserProfile
 from interview_prep_ai.core.models.problem import ProblemRecord
+from interview_prep_ai.core.models.tag_stat import TagStat
 from interview_prep_ai.core.platform_detector import PlatformDetector
 
 
@@ -93,8 +94,24 @@ def _build_codeforces_profile(
         current_rating=current_rating,
         max_rating=max_rating,
         solved_problems=solved_problems,
+        tag_stats=_tag_stats_from_solved_problems(solved_problems),
         rating_history=rating_history,
     )
+
+
+def _tag_stats_from_solved_problems(
+    solved_problems: list[ProblemRecord],
+) -> list[TagStat]:
+    counts: dict[str, int] = {}
+    for problem in solved_problems:
+        for tag in problem.tags:
+            normalized = tag.lower()
+            counts[normalized] = counts.get(normalized, 0) + 1
+
+    return [
+        TagStat(tag=tag, solved_count=count, attempt_count=0)
+        for tag, count in sorted(counts.items())
+    ]
 
 
 def _solved_problems_from_submissions(submissions: dict) -> list[ProblemRecord]:

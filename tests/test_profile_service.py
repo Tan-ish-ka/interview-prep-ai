@@ -4,6 +4,7 @@ import pytest
 
 from interview_prep_ai.core.enums import Platform, PlatformType
 from interview_prep_ai.core.models.profile import UserProfile
+from interview_prep_ai.core.models.tag_stat import TagStat
 from interview_prep_ai.platforms.codeforces.analyzer import CodeforcesAnalyzer
 from interview_prep_ai.services.profile_service import (
     ProfileService,
@@ -129,11 +130,65 @@ def test_user_profile_is_returned(
     assert problem.title == "Test Problem"
     assert problem.tags == ["math"]
     assert problem.solved_at is not None
-    assert profile.tag_stats == []
+    assert profile.tag_stats == [TagStat(tag="math", solved_count=1, attempt_count=0)]
     assert profile.rating_history == {
         "status": "OK",
         "result": [{"newRating": 3919}],
     }
+
+
+def test_tag_stats_built_from_solved_problem_tags(
+    mock_platform_detector: MagicMock,
+    mock_analyzer_factory: MagicMock,
+    mock_codeforces_client: MagicMock,
+    codeforces_url: str,
+) -> None:
+    mock_codeforces_client.get_user_submissions.return_value = {
+        "status": "OK",
+        "result": [
+            {
+                "verdict": "OK",
+                "creationTimeSeconds": 1_700_000_000,
+                "problem": {
+                    "contestId": 1,
+                    "index": "A",
+                    "name": "Problem A",
+                    "tags": ["dp", "graphs"],
+                },
+            },
+            {
+                "verdict": "OK",
+                "creationTimeSeconds": 1_700_000_100,
+                "problem": {
+                    "contestId": 2,
+                    "index": "B",
+                    "name": "Problem B",
+                    "tags": ["graphs", "DP"],
+                },
+            },
+            {
+                "verdict": "WRONG_ANSWER",
+                "problem": {
+                    "contestId": 3,
+                    "index": "C",
+                    "name": "Problem C",
+                    "tags": ["greedy"],
+                },
+            },
+        ],
+    }
+    service = ProfileService(
+        platform_detector=mock_platform_detector,
+        analyzer_factory=mock_analyzer_factory,
+        codeforces_client=mock_codeforces_client,
+    )
+
+    profile = service.create_profile(codeforces_url)
+
+    assert profile.tag_stats == [
+        TagStat(tag="dp", solved_count=2, attempt_count=0),
+        TagStat(tag="graphs", solved_count=2, attempt_count=0),
+    ]
 
 
 def test_unsupported_platform_raises(

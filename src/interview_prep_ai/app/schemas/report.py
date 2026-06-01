@@ -44,6 +44,8 @@ class InsightsSchema(BaseModel):
     current_rating: int | None = None
     max_rating: int | None = None
     rating_delta: int | None = None
+    recent_rating_delta: int | None = None
+    rating_trend: str = "stable"
     total_solved: int
     recent_activity: int
     top_tags: dict[str, int] = Field(default_factory=dict)

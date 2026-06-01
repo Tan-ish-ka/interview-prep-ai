@@ -7,6 +7,8 @@ from typing import Any, TypedDict
 
 class Insights(TypedDict):
     rating_delta: int | None
+    recent_rating_delta: int | None
+    rating_trend: str
     recent_activity: int
     top_tags: dict[str, int]
     total_solved: int
@@ -28,8 +30,8 @@ class RecommendationService:
                 "Build your base by solving more foundational problems before moving to harder topics."
             )
 
-        rating_delta = insights["rating_delta"]
-        if rating_delta is not None and rating_delta < 0:
+        recent_rating_delta = insights.get("recent_rating_delta")
+        if recent_rating_delta is not None and recent_rating_delta < 0:
             recommendations.append(
                 "Your rating has dipped recently — revisit core concepts and redo fundamental problems."
             )

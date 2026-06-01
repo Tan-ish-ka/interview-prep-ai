@@ -14,12 +14,16 @@ def _insights(
     recent_activity: int = 10,
     top_tags: dict[str, int] | None = None,
     total_solved: int = 100,
+    weak_topics: list[str] | None = None,
+    strong_topics: list[str] | None = None,
 ) -> dict:
     return {
         "rating_delta": rating_delta,
         "recent_activity": recent_activity,
         "top_tags": top_tags if top_tags is not None else {"dp": 5, "graphs": 3, "greedy": 2},
         "total_solved": total_solved,
+        "weak_topics": weak_topics if weak_topics is not None else [],
+        "strong_topics": strong_topics if strong_topics is not None else [],
     }
 
 
@@ -77,7 +81,43 @@ def test_multiple_recommendations(service: RecommendationService) -> None:
             "recent_activity": 2,
             "top_tags": {"math": 1},
             "total_solved": 15,
+            "weak_topics": [],
+            "strong_topics": [],
         }
     )
 
     assert len(result) == 4
+
+
+def test_weak_topic_recommendations(service: RecommendationService) -> None:
+    result = service.generate(_insights(weak_topics=["graphs", "math"]))
+
+    assert result == [
+        "Practice more graphs problems.",
+        "Practice more math problems.",
+    ]
+
+
+def test_strong_topic_recommendations(service: RecommendationService) -> None:
+    result = service.generate(_insights(strong_topics=["dp", "greedy"]))
+
+    assert result == [
+        "Leverage your strength in dp.",
+        "Leverage your strength in greedy.",
+    ]
+
+
+def test_topic_recommendations_with_existing_rules(service: RecommendationService) -> None:
+    result = service.generate(
+        _insights(
+            recent_activity=5,
+            weak_topics=["graphs"],
+            strong_topics=["dp"],
+        )
+    )
+
+    assert result == [
+        "Increase your practice consistency — aim for more regular solving sessions.",
+        "Practice more graphs problems.",
+        "Leverage your strength in dp.",
+    ]

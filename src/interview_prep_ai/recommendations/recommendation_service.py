@@ -10,6 +10,8 @@ class Insights(TypedDict):
     recent_activity: int
     top_tags: dict[str, int]
     total_solved: int
+    weak_topics: list[str]
+    strong_topics: list[str]
 
 
 class RecommendationService:
@@ -36,5 +38,11 @@ class RecommendationService:
             recommendations.append(
                 "Broaden your topic coverage — practice across more problem categories."
             )
+
+        for topic in insights.get("weak_topics") or []:
+            recommendations.append(f"Practice more {topic} problems.")
+
+        for topic in insights.get("strong_topics") or []:
+            recommendations.append(f"Leverage your strength in {topic}.")
 
         return recommendations

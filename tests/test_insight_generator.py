@@ -6,6 +6,7 @@ from interview_prep_ai.analytics.insight_generator import InsightGenerator
 from interview_prep_ai.core.enums import Platform
 from interview_prep_ai.core.models.problem import ProblemRecord
 from interview_prep_ai.core.models.profile import UserProfile
+from interview_prep_ai.core.models.tag_stat import TagStat
 
 
 @pytest.fixture
@@ -26,6 +27,7 @@ def test_empty_profile(generator: InsightGenerator) -> None:
         "total_solved": 0,
         "recent_activity": 0,
         "top_tags": {},
+        "weak_topics": [],
     }
 
 
@@ -101,3 +103,20 @@ def test_tag_ranking(generator: InsightGenerator) -> None:
         "binary search": 1,
     }
     assert len(insights["top_tags"]) == 5
+
+
+def test_weak_topics_from_tag_stats(generator: InsightGenerator) -> None:
+    profile = UserProfile(
+        username="weak_tag_user",
+        platform=Platform.CODEFORCES,
+        tag_stats=[
+            TagStat(tag="dp", solved_count=12),
+            TagStat(tag="graphs", solved_count=3),
+            TagStat(tag="greedy", solved_count=5),
+            TagStat(tag="math", solved_count=1),
+        ],
+    )
+
+    insights = generator.generate(profile, {"status": "OK", "result": []})
+
+    assert insights["weak_topics"] == ["math", "graphs"]

@@ -45,6 +45,7 @@ def service_report(profile: UserProfile) -> dict:
             "total_solved": 42,
             "recent_activity": 5,
             "top_tags": {"dp": 10},
+            "weak_topics": ["graphs", "greedy"],
         },
         "recommendations": [
             "Increase your practice consistency — aim for more regular solving sessions.",
@@ -89,6 +90,7 @@ def test_get_report_returns_200_and_json_body(
     assert body["profile"]["current_rating"] == profile.current_rating
     assert body["insights"]["current_rating"] == 3858
     assert body["insights"]["total_solved"] == 42
+    assert body["insights"]["weak_topics"] == ["graphs", "greedy"]
     assert len(body["recommendations"]) == 1
 
 

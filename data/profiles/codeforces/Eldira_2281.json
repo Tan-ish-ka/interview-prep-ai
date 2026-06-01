@@ -1,0 +1,1907 @@
+{
+  "username": "Eldira_2281",
+  "platform": "codeforces",
+  "current_rating": 1425,
+  "max_rating": 1425,
+  "solved_problems": [
+    {
+      "problem_id": "2227C",
+      "title": "Snowfall",
+      "tags": [
+        "constructive algorithms",
+        "math"
+      ],
+      "solved_at": "2026-06-01T09:35:43+00:00"
+    },
+    {
+      "problem_id": "2227B",
+      "title": "Party Monster",
+      "tags": [
+        "greedy"
+      ],
+      "solved_at": "2026-05-31T18:02:28+00:00"
+    },
+    {
+      "problem_id": "2227A",
+      "title": "Koshary",
+      "tags": [
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2026-05-31T17:41:02+00:00"
+    },
+    {
+      "problem_id": "2218F",
+      "title": "The 67th Tree Problem",
+      "tags": [
+        "constructive algorithms",
+        "implementation",
+        "trees"
+      ],
+      "solved_at": "2026-04-04T16:39:33+00:00"
+    },
+    {
+      "problem_id": "2218E",
+      "title": "The 67th XOR Problem",
+      "tags": [
+        "binary search",
+        "bitmasks",
+        "brute force"
+      ],
+      "solved_at": "2026-04-04T15:50:27+00:00"
+    },
+    {
+      "problem_id": "2218D",
+      "title": "The 67th OEIS Problem",
+      "tags": [
+        "constructive algorithms",
+        "greedy",
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2026-04-04T15:15:07+00:00"
+    },
+    {
+      "problem_id": "2218C",
+      "title": "The 67th Permutation Problem",
+      "tags": [
+        "constructive algorithms",
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2026-04-04T14:54:22+00:00"
+    },
+    {
+      "problem_id": "2218B",
+      "title": "The 67th 6-7 Integer Problem",
+      "tags": [
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2026-04-04T14:44:10+00:00"
+    },
+    {
+      "problem_id": "2218A",
+      "title": "The 67th Integer Problem",
+      "tags": [
+        "brute force",
+        "games",
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2026-04-04T14:41:51+00:00"
+    },
+    {
+      "problem_id": "2193B",
+      "title": "Reverse a Permutation",
+      "tags": [
+        "greedy"
+      ],
+      "solved_at": "2026-03-15T12:51:06+00:00"
+    },
+    {
+      "problem_id": "2193A",
+      "title": "DBMB and the Array",
+      "tags": [
+        "brute force",
+        "math"
+      ],
+      "solved_at": "2026-03-15T10:18:12+00:00"
+    },
+    {
+      "problem_id": "2185F",
+      "title": "BattleCows",
+      "tags": [
+        "data structures",
+        "divide and conquer",
+        "implementation"
+      ],
+      "solved_at": "2026-01-18T16:40:23+00:00"
+    },
+    {
+      "problem_id": "2185E",
+      "title": "The Robotic Rush",
+      "tags": [
+        "binary search",
+        "greedy",
+        "implementation",
+        "two pointers"
+      ],
+      "solved_at": "2026-01-18T15:38:08+00:00"
+    },
+    {
+      "problem_id": "2185D",
+      "title": "OutOfMemoryError",
+      "tags": [
+        "data structures",
+        "implementation",
+        "math",
+        "two pointers"
+      ],
+      "solved_at": "2026-01-18T15:10:13+00:00"
+    },
+    {
+      "problem_id": "2185C",
+      "title": "Shifted MEX",
+      "tags": [
+        "implementation",
+        "sortings"
+      ],
+      "solved_at": "2026-01-18T14:48:59+00:00"
+    },
+    {
+      "problem_id": "2185B",
+      "title": "Prefix Max",
+      "tags": [
+        "greedy"
+      ],
+      "solved_at": "2026-01-18T14:37:58+00:00"
+    },
+    {
+      "problem_id": "2185A",
+      "title": "Perfect Root",
+      "tags": [
+        "constructive algorithms",
+        "math"
+      ],
+      "solved_at": "2026-01-18T14:36:47+00:00"
+    },
+    {
+      "problem_id": "2179B",
+      "title": "Blackslex and Showering",
+      "tags": [
+        "dp",
+        "greedy",
+        "implementation"
+      ],
+      "solved_at": "2025-12-27T10:26:23+00:00"
+    },
+    {
+      "problem_id": "2179A",
+      "title": "Blackslex and Password",
+      "tags": [
+        "math",
+        "strings"
+      ],
+      "solved_at": "2025-12-27T06:42:09+00:00"
+    },
+    {
+      "problem_id": "2171D",
+      "title": "Rae Taylor and Trees (easy version)",
+      "tags": [
+        "binary search",
+        "data structures",
+        "dp",
+        "dsu",
+        "greedy",
+        "implementation",
+        "trees"
+      ],
+      "solved_at": "2025-11-20T15:43:07+00:00"
+    },
+    {
+      "problem_id": "2171C1",
+      "title": "Renako Amaori and XOR Game (easy version)",
+      "tags": [
+        "bitmasks",
+        "games",
+        "greedy"
+      ],
+      "solved_at": "2025-11-20T15:13:11+00:00"
+    },
+    {
+      "problem_id": "2171C2",
+      "title": "Renako Amaori and XOR Game (hard version)",
+      "tags": [
+        "bitmasks",
+        "games",
+        "greedy"
+      ],
+      "solved_at": "2025-11-20T15:12:39+00:00"
+    },
+    {
+      "problem_id": "2171B",
+      "title": "Yuu Koito and Minimum Absolute Sum",
+      "tags": [
+        "math"
+      ],
+      "solved_at": "2025-11-20T14:48:02+00:00"
+    },
+    {
+      "problem_id": "2171A",
+      "title": "Shizuku Hoshikawa and Farm Legs",
+      "tags": [
+        "brute force",
+        "math"
+      ],
+      "solved_at": "2025-11-20T14:39:29+00:00"
+    },
+    {
+      "problem_id": "2166C",
+      "title": "Cyclic Merging",
+      "tags": [
+        "constructive algorithms",
+        "data structures",
+        "dsu",
+        "greedy"
+      ],
+      "solved_at": "2025-11-16T16:05:28+00:00"
+    },
+    {
+      "problem_id": "2166B",
+      "title": "Tab Closing",
+      "tags": [
+        "math"
+      ],
+      "solved_at": "2025-11-16T15:05:04+00:00"
+    },
+    {
+      "problem_id": "2166A",
+      "title": "Same Difference",
+      "tags": [
+        "brute force",
+        "greedy",
+        "strings"
+      ],
+      "solved_at": "2025-11-16T14:38:58+00:00"
+    },
+    {
+      "problem_id": "2164B",
+      "title": "Even Modulo Pair",
+      "tags": [
+        "brute force",
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2025-11-06T16:47:06+00:00"
+    },
+    {
+      "problem_id": "2164A",
+      "title": "Sequence Game",
+      "tags": [
+        "brute force",
+        "sortings"
+      ],
+      "solved_at": "2025-11-06T14:40:24+00:00"
+    },
+    {
+      "problem_id": "2152A",
+      "title": "Increase or Smash",
+      "tags": [
+        "greedy",
+        "implementation"
+      ],
+      "solved_at": "2025-10-30T13:15:06+00:00"
+    },
+    {
+      "problem_id": "2167C",
+      "title": "Isamatdin and His Magic Wand!",
+      "tags": [
+        "constructive algorithms",
+        "greedy",
+        "implementation",
+        "sortings"
+      ],
+      "solved_at": "2025-10-28T15:13:07+00:00"
+    },
+    {
+      "problem_id": "2167B",
+      "title": "Your Name",
+      "tags": [
+        "sortings",
+        "strings"
+      ],
+      "solved_at": "2025-10-28T14:48:57+00:00"
+    },
+    {
+      "problem_id": "2167A",
+      "title": "Square?",
+      "tags": [
+        "math",
+        "sortings"
+      ],
+      "solved_at": "2025-10-28T14:37:55+00:00"
+    },
+    {
+      "problem_id": "2156B",
+      "title": "Strange Machine",
+      "tags": [
+        "binary search",
+        "brute force",
+        "greedy",
+        "implementation"
+      ],
+      "solved_at": "2025-10-24T18:14:25+00:00"
+    },
+    {
+      "problem_id": "2162B",
+      "title": "Beautiful String",
+      "tags": [
+        "brute force",
+        "constructive algorithms"
+      ],
+      "solved_at": "2025-10-17T15:17:16+00:00"
+    },
+    {
+      "problem_id": "2162A",
+      "title": "Beautiful Average",
+      "tags": [
+        "brute force",
+        "greedy"
+      ],
+      "solved_at": "2025-10-17T14:38:28+00:00"
+    },
+    {
+      "problem_id": "1780B",
+      "title": "GCD Partition",
+      "tags": [
+        "brute force",
+        "greedy",
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2025-10-17T11:17:24+00:00"
+    },
+    {
+      "problem_id": "1791E",
+      "title": "Negatives and Positives",
+      "tags": [
+        "dp",
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-10-17T08:54:22+00:00"
+    },
+    {
+      "problem_id": "1791G1",
+      "title": "Teleporters (Easy Version)",
+      "tags": [
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-10-16T04:55:17+00:00"
+    },
+    {
+      "problem_id": "1797B",
+      "title": "Li Hua and Pattern",
+      "tags": [
+        "constructive algorithms",
+        "greedy"
+      ],
+      "solved_at": "2025-10-15T13:23:05+00:00"
+    },
+    {
+      "problem_id": "1807G2",
+      "title": "Subsequence Addition (Hard Version)",
+      "tags": [
+        "bitmasks",
+        "dp",
+        "greedy",
+        "implementation",
+        "sortings"
+      ],
+      "solved_at": "2025-10-15T10:15:55+00:00"
+    },
+    {
+      "problem_id": "2160B",
+      "title": "Distinct Elements",
+      "tags": [
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-10-13T06:33:41+00:00"
+    },
+    {
+      "problem_id": "2160A",
+      "title": "MEX Partition",
+      "tags": [
+        "math"
+      ],
+      "solved_at": "2025-10-12T18:31:10+00:00"
+    },
+    {
+      "problem_id": "1820B",
+      "title": "JoJo's Incredible Adventures",
+      "tags": [
+        "math",
+        "strings",
+        "two pointers"
+      ],
+      "solved_at": "2025-10-11T20:28:51+00:00"
+    },
+    {
+      "problem_id": "1821B",
+      "title": "Sort the Subarray",
+      "tags": [
+        "brute force",
+        "greedy"
+      ],
+      "solved_at": "2025-10-08T20:57:35+00:00"
+    },
+    {
+      "problem_id": "1826B",
+      "title": "Lunatic Never Content",
+      "tags": [
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2025-10-08T19:54:19+00:00"
+    },
+    {
+      "problem_id": "2155A",
+      "title": "El fucho",
+      "tags": [
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2025-10-05T16:56:27+00:00"
+    },
+    {
+      "problem_id": "1832B",
+      "title": "Maximum Sum",
+      "tags": [
+        "brute force",
+        "sortings",
+        "two pointers"
+      ],
+      "solved_at": "2025-10-05T10:17:30+00:00"
+    },
+    {
+      "problem_id": "2148B",
+      "title": "Lasers",
+      "tags": [
+        "geometry"
+      ],
+      "solved_at": "2025-09-13T15:00:14+00:00"
+    },
+    {
+      "problem_id": "2148A",
+      "title": "Sublime Sequence",
+      "tags": [
+        "brute force",
+        "hashing",
+        "math"
+      ],
+      "solved_at": "2025-09-13T14:38:02+00:00"
+    },
+    {
+      "problem_id": "2132A",
+      "title": "Homework",
+      "tags": [
+        "brute force",
+        "implementation",
+        "strings"
+      ],
+      "solved_at": "2025-08-23T18:13:39+00:00"
+    },
+    {
+      "problem_id": "2131A",
+      "title": "Lever",
+      "tags": [
+        "math"
+      ],
+      "solved_at": "2025-08-13T11:22:15+00:00"
+    },
+    {
+      "problem_id": "1398D",
+      "title": "Colored Rectangles",
+      "tags": [
+        "dp",
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-08-02T22:44:27+00:00"
+    },
+    {
+      "problem_id": "2130A",
+      "title": "Submission is All You Need",
+      "tags": [
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-08-01T05:43:09+00:00"
+    },
+    {
+      "problem_id": "1842B",
+      "title": "Tenzing and Books",
+      "tags": [
+        "bitmasks",
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-07-24T20:32:14+00:00"
+    },
+    {
+      "problem_id": "1850E",
+      "title": "Cardboard for Pictures",
+      "tags": [
+        "binary search",
+        "geometry",
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2025-07-21T15:26:36+00:00"
+    },
+    {
+      "problem_id": "2122A",
+      "title": "Greedy Grid",
+      "tags": [
+        "constructive algorithms",
+        "greedy"
+      ],
+      "solved_at": "2025-07-19T15:06:49+00:00"
+    },
+    {
+      "problem_id": "1873E",
+      "title": "Building an Aquarium",
+      "tags": [
+        "binary search",
+        "sortings"
+      ],
+      "solved_at": "2025-07-19T14:16:30+00:00"
+    },
+    {
+      "problem_id": "1891B",
+      "title": "Deja Vu",
+      "tags": [
+        "brute force",
+        "math",
+        "sortings"
+      ],
+      "solved_at": "2025-07-19T05:50:39+00:00"
+    },
+    {
+      "problem_id": "2126C",
+      "title": "I Will Definitely Make It",
+      "tags": [
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-07-17T16:02:22+00:00"
+    },
+    {
+      "problem_id": "2126B",
+      "title": "No Casino in the Mountains",
+      "tags": [
+        "dp",
+        "greedy"
+      ],
+      "solved_at": "2025-07-17T15:05:30+00:00"
+    },
+    {
+      "problem_id": "2126A",
+      "title": "Only One Digit",
+      "tags": [
+        "brute force",
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2025-07-17T14:43:42+00:00"
+    },
+    {
+      "problem_id": "1899B",
+      "title": "250 Thousand Tons of TNT",
+      "tags": [
+        "brute force",
+        "implementation",
+        "number theory"
+      ],
+      "solved_at": "2025-07-16T07:45:08+00:00"
+    },
+    {
+      "problem_id": "1899C",
+      "title": "Yarik and Array",
+      "tags": [
+        "dp",
+        "greedy",
+        "two pointers"
+      ],
+      "solved_at": "2025-07-15T08:38:49+00:00"
+    },
+    {
+      "problem_id": "1917B",
+      "title": "Erase First or Second Letter",
+      "tags": [
+        "brute force",
+        "combinatorics",
+        "data structures",
+        "dp",
+        "strings"
+      ],
+      "solved_at": "2025-07-13T05:38:58+00:00"
+    },
+    {
+      "problem_id": "1999D",
+      "title": "Slavic's Exam",
+      "tags": [
+        "greedy",
+        "implementation",
+        "strings"
+      ],
+      "solved_at": "2025-07-12T18:10:45+00:00"
+    },
+    {
+      "problem_id": "2029B",
+      "title": "Replacement",
+      "tags": [
+        "constructive algorithms",
+        "games",
+        "strings"
+      ],
+      "solved_at": "2025-07-12T06:40:06+00:00"
+    },
+    {
+      "problem_id": "2094D",
+      "title": "Tung Tung Sahur",
+      "tags": [
+        "greedy",
+        "strings",
+        "two pointers"
+      ],
+      "solved_at": "2025-07-11T05:23:49+00:00"
+    },
+    {
+      "problem_id": "271A",
+      "title": "Beautiful Year",
+      "tags": [
+        "brute force"
+      ],
+      "solved_at": "2025-07-09T19:49:36+00:00"
+    },
+    {
+      "problem_id": "1362A",
+      "title": "Johnny and Ancient Computer",
+      "tags": [
+        "implementation"
+      ],
+      "solved_at": "2025-07-09T10:09:16+00:00"
+    },
+    {
+      "problem_id": "1374C",
+      "title": "Move Brackets",
+      "tags": [
+        "greedy",
+        "strings"
+      ],
+      "solved_at": "2025-07-09T07:50:37+00:00"
+    },
+    {
+      "problem_id": "1418A",
+      "title": "Buying Torches",
+      "tags": [
+        "math"
+      ],
+      "solved_at": "2025-07-08T21:13:19+00:00"
+    },
+    {
+      "problem_id": "1438B",
+      "title": "Valerii Against Everyone",
+      "tags": [
+        "constructive algorithms",
+        "data structures",
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-07-08T19:23:55+00:00"
+    },
+    {
+      "problem_id": "1506C",
+      "title": "Double-ended Strings",
+      "tags": [
+        "brute force",
+        "implementation",
+        "strings"
+      ],
+      "solved_at": "2025-07-08T12:51:13+00:00"
+    },
+    {
+      "problem_id": "1614B",
+      "title": "Divan and a New Project ",
+      "tags": [
+        "constructive algorithms",
+        "sortings"
+      ],
+      "solved_at": "2025-07-08T06:42:21+00:00"
+    },
+    {
+      "problem_id": "1620B",
+      "title": "Triangles on a Rectangle",
+      "tags": [
+        "geometry",
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-07-08T03:35:09+00:00"
+    },
+    {
+      "problem_id": "2124B",
+      "title": "Minimise Sum",
+      "tags": [
+        "greedy"
+      ],
+      "solved_at": "2025-07-07T04:04:08+00:00"
+    },
+    {
+      "problem_id": "2124A",
+      "title": "Deranged Deletions",
+      "tags": [
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-07-06T19:20:52+00:00"
+    },
+    {
+      "problem_id": "1979B",
+      "title": "XOR Sequences",
+      "tags": [
+        "bitmasks",
+        "greedy"
+      ],
+      "solved_at": "2025-07-06T11:35:44+00:00"
+    },
+    {
+      "problem_id": "2119C",
+      "title": "A Good Problem",
+      "tags": [
+        "bitmasks",
+        "constructive algorithms",
+        "math"
+      ],
+      "solved_at": "2025-07-05T18:45:00+00:00"
+    },
+    {
+      "problem_id": "2119A",
+      "title": "Add or XOR",
+      "tags": [
+        "bitmasks",
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-07-05T15:03:02+00:00"
+    },
+    {
+      "problem_id": "2020A",
+      "title": "Find Minimum Operations",
+      "tags": [
+        "bitmasks",
+        "brute force",
+        "greedy",
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2025-07-05T05:44:43+00:00"
+    },
+    {
+      "problem_id": "912B",
+      "title": "New Year's Eve",
+      "tags": [
+        "bitmasks",
+        "constructive algorithms",
+        "number theory"
+      ],
+      "solved_at": "2025-07-04T20:34:05+00:00"
+    },
+    {
+      "problem_id": "102961A",
+      "title": "Distinct Numbers",
+      "tags": [],
+      "solved_at": "2025-07-03T18:03:26+00:00"
+    },
+    {
+      "problem_id": "1300B",
+      "title": "Assigning to Classes",
+      "tags": [
+        "greedy",
+        "implementation",
+        "sortings"
+      ],
+      "solved_at": "2025-07-03T06:05:38+00:00"
+    },
+    {
+      "problem_id": "118A",
+      "title": "String Task",
+      "tags": [
+        "implementation",
+        "strings"
+      ],
+      "solved_at": "2025-07-03T03:56:04+00:00"
+    },
+    {
+      "problem_id": "1659A",
+      "title": "Red Versus Blue",
+      "tags": [
+        "constructive algorithms",
+        "greedy",
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2025-07-02T08:00:08+00:00"
+    },
+    {
+      "problem_id": "2123C",
+      "title": "Prefix Min and Suffix Max",
+      "tags": [
+        "brute force",
+        "data structures"
+      ],
+      "solved_at": "2025-07-01T19:08:07+00:00"
+    },
+    {
+      "problem_id": "2123B",
+      "title": "Tournament",
+      "tags": [
+        "greedy"
+      ],
+      "solved_at": "2025-07-01T16:05:09+00:00"
+    },
+    {
+      "problem_id": "2123A",
+      "title": "Blackboard Game",
+      "tags": [
+        "math"
+      ],
+      "solved_at": "2025-07-01T15:00:52+00:00"
+    },
+    {
+      "problem_id": "1690D",
+      "title": "Black and White Stripe",
+      "tags": [
+        "implementation",
+        "two pointers"
+      ],
+      "solved_at": "2025-07-01T11:48:17+00:00"
+    },
+    {
+      "problem_id": "1791D",
+      "title": "Distinct Split",
+      "tags": [
+        "brute force",
+        "greedy",
+        "strings"
+      ],
+      "solved_at": "2025-07-01T10:18:08+00:00"
+    },
+    {
+      "problem_id": "381A",
+      "title": "Sereja and Dima",
+      "tags": [
+        "greedy",
+        "implementation",
+        "two pointers"
+      ],
+      "solved_at": "2025-06-30T17:26:12+00:00"
+    },
+    {
+      "problem_id": "1746B",
+      "title": "Rebellion",
+      "tags": [
+        "constructive algorithms",
+        "greedy",
+        "two pointers"
+      ],
+      "solved_at": "2025-06-30T15:35:14+00:00"
+    },
+    {
+      "problem_id": "1691B",
+      "title": "Shoe Shuffling",
+      "tags": [
+        "constructive algorithms",
+        "greedy",
+        "implementation",
+        "two pointers"
+      ],
+      "solved_at": "2025-06-30T13:05:47+00:00"
+    },
+    {
+      "problem_id": "1715B",
+      "title": "Beautiful Array",
+      "tags": [
+        "constructive algorithms",
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-06-29T04:46:20+00:00"
+    },
+    {
+      "problem_id": "1725B",
+      "title": "Basketball Together",
+      "tags": [
+        "binary search",
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-06-28T04:59:01+00:00"
+    },
+    {
+      "problem_id": "1765M",
+      "title": "Minimum LCM",
+      "tags": [
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2025-06-27T16:45:50+00:00"
+    },
+    {
+      "problem_id": "1831B",
+      "title": "Array merging",
+      "tags": [
+        "constructive algorithms",
+        "greedy"
+      ],
+      "solved_at": "2025-06-27T10:37:09+00:00"
+    },
+    {
+      "problem_id": "1840C",
+      "title": "Ski Resort",
+      "tags": [
+        "combinatorics",
+        "math",
+        "two pointers"
+      ],
+      "solved_at": "2025-06-27T08:26:09+00:00"
+    },
+    {
+      "problem_id": "1385B",
+      "title": "Restore the Permutation by Merger",
+      "tags": [
+        "greedy"
+      ],
+      "solved_at": "2025-06-26T15:14:26+00:00"
+    },
+    {
+      "problem_id": "1385A",
+      "title": "Three Pairwise Maximums",
+      "tags": [
+        "math"
+      ],
+      "solved_at": "2025-06-26T14:56:08+00:00"
+    },
+    {
+      "problem_id": "1426C",
+      "title": "Increase and Copy",
+      "tags": [
+        "binary search",
+        "constructive algorithms",
+        "math"
+      ],
+      "solved_at": "2025-06-26T13:43:41+00:00"
+    },
+    {
+      "problem_id": "1426B",
+      "title": "Symmetric Matrix",
+      "tags": [
+        "implementation"
+      ],
+      "solved_at": "2025-06-26T08:19:37+00:00"
+    },
+    {
+      "problem_id": "1426A",
+      "title": "Floor Number",
+      "tags": [
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2025-06-26T07:10:28+00:00"
+    },
+    {
+      "problem_id": "670D2",
+      "title": "Magic Powder - 2",
+      "tags": [
+        "binary search",
+        "implementation"
+      ],
+      "solved_at": "2025-06-25T13:03:01+00:00"
+    },
+    {
+      "problem_id": "670D1",
+      "title": "Magic Powder - 1",
+      "tags": [
+        "binary search",
+        "brute force",
+        "implementation"
+      ],
+      "solved_at": "2025-06-25T12:47:45+00:00"
+    },
+    {
+      "problem_id": "1296D",
+      "title": "Fight with Monsters",
+      "tags": [
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-06-25T09:19:47+00:00"
+    },
+    {
+      "problem_id": "1296C",
+      "title": "Yet Another Walking Robot",
+      "tags": [
+        "data structures",
+        "implementation"
+      ],
+      "solved_at": "2025-06-25T06:40:36+00:00"
+    },
+    {
+      "problem_id": "1296B",
+      "title": "Food Buying",
+      "tags": [
+        "math"
+      ],
+      "solved_at": "2025-06-25T04:55:23+00:00"
+    },
+    {
+      "problem_id": "1296A",
+      "title": "Array with Odd Sum",
+      "tags": [
+        "math"
+      ],
+      "solved_at": "2025-06-25T04:05:37+00:00"
+    },
+    {
+      "problem_id": "959A",
+      "title": "Mahmoud and Ehab and the even-odd game",
+      "tags": [
+        "games",
+        "math"
+      ],
+      "solved_at": "2025-06-25T03:47:01+00:00"
+    },
+    {
+      "problem_id": "2112A",
+      "title": "Race",
+      "tags": [
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2025-06-23T16:38:00+00:00"
+    },
+    {
+      "problem_id": "2120B",
+      "title": "Square Pool",
+      "tags": [
+        "geometry"
+      ],
+      "solved_at": "2025-06-23T13:30:24+00:00"
+    },
+    {
+      "problem_id": "2120A",
+      "title": "Square of Rectangles",
+      "tags": [
+        "geometry",
+        "math"
+      ],
+      "solved_at": "2025-06-23T12:49:01+00:00"
+    },
+    {
+      "problem_id": "1389B",
+      "title": "Array Walk",
+      "tags": [
+        "brute force",
+        "dp",
+        "greedy"
+      ],
+      "solved_at": "2025-06-18T10:30:22+00:00"
+    },
+    {
+      "problem_id": "1389A",
+      "title": "LCM Problem",
+      "tags": [
+        "constructive algorithms",
+        "greedy",
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2025-06-18T08:26:18+00:00"
+    },
+    {
+      "problem_id": "1337A",
+      "title": "Ichihime and Triangle",
+      "tags": [
+        "constructive algorithms",
+        "math"
+      ],
+      "solved_at": "2025-06-18T07:56:21+00:00"
+    },
+    {
+      "problem_id": "2121C",
+      "title": "Those Who Are With Us",
+      "tags": [
+        "greedy",
+        "implementation"
+      ],
+      "solved_at": "2025-06-17T17:37:46+00:00"
+    },
+    {
+      "problem_id": "2121B",
+      "title": "Above the Clouds",
+      "tags": [
+        "constructive algorithms",
+        "greedy",
+        "strings"
+      ],
+      "solved_at": "2025-06-17T16:30:35+00:00"
+    },
+    {
+      "problem_id": "2121A",
+      "title": "Letter Home",
+      "tags": [
+        "brute force",
+        "math"
+      ],
+      "solved_at": "2025-06-17T15:13:13+00:00"
+    },
+    {
+      "problem_id": "2113A",
+      "title": "Shashliks",
+      "tags": [
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-06-15T13:40:31+00:00"
+    },
+    {
+      "problem_id": "2118A",
+      "title": "Equal Subsequences",
+      "tags": [
+        "constructive algorithms",
+        "greedy"
+      ],
+      "solved_at": "2025-06-12T15:21:27+00:00"
+    },
+    {
+      "problem_id": "1726A",
+      "title": "Mainak and Array",
+      "tags": [
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-06-10T12:57:44+00:00"
+    },
+    {
+      "problem_id": "1373B",
+      "title": "01 Game",
+      "tags": [
+        "games"
+      ],
+      "solved_at": "2025-06-10T10:35:45+00:00"
+    },
+    {
+      "problem_id": "1881A",
+      "title": "Don't Try to Count",
+      "tags": [
+        "brute force",
+        "strings"
+      ],
+      "solved_at": "2025-06-10T10:06:40+00:00"
+    },
+    {
+      "problem_id": "2117C",
+      "title": "Cool Partition",
+      "tags": [
+        "data structures",
+        "greedy"
+      ],
+      "solved_at": "2025-06-09T09:13:34+00:00"
+    },
+    {
+      "problem_id": "2117B",
+      "title": "Shrink",
+      "tags": [
+        "constructive algorithms"
+      ],
+      "solved_at": "2025-06-08T15:47:36+00:00"
+    },
+    {
+      "problem_id": "2117A",
+      "title": "False Alarm",
+      "tags": [
+        "greedy",
+        "implementation"
+      ],
+      "solved_at": "2025-06-08T15:13:36+00:00"
+    },
+    {
+      "problem_id": "932B",
+      "title": "Recursive Queries",
+      "tags": [
+        "binary search",
+        "data structures",
+        "dfs and similar"
+      ],
+      "solved_at": "2025-06-08T04:19:53+00:00"
+    },
+    {
+      "problem_id": "221A",
+      "title": "Little Elephant and Function",
+      "tags": [
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2025-06-07T16:29:18+00:00"
+    },
+    {
+      "problem_id": "1849B",
+      "title": "Monsters",
+      "tags": [
+        "greedy",
+        "math",
+        "sortings"
+      ],
+      "solved_at": "2025-06-06T09:50:02+00:00"
+    },
+    {
+      "problem_id": "1859B",
+      "title": "Olya and Game with Arrays",
+      "tags": [
+        "constructive algorithms",
+        "greedy",
+        "math",
+        "sortings"
+      ],
+      "solved_at": "2025-06-04T05:31:23+00:00"
+    },
+    {
+      "problem_id": "2111B",
+      "title": "Fibonacci Cubes",
+      "tags": [
+        "brute force",
+        "dp",
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2025-06-04T03:23:45+00:00"
+    },
+    {
+      "problem_id": "1876A",
+      "title": "Helmets in Night Light",
+      "tags": [
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-06-03T09:59:12+00:00"
+    },
+    {
+      "problem_id": "1913B",
+      "title": "Swap and Delete",
+      "tags": [
+        "strings"
+      ],
+      "solved_at": "2025-06-02T15:49:08+00:00"
+    },
+    {
+      "problem_id": "2072A",
+      "title": "New World, New Me, New Array",
+      "tags": [
+        "greedy",
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2025-05-04T07:45:50+00:00"
+    },
+    {
+      "problem_id": "1915D",
+      "title": "Unnatural Language Processing",
+      "tags": [
+        "greedy",
+        "implementation",
+        "strings"
+      ],
+      "solved_at": "2025-05-03T10:19:35+00:00"
+    },
+    {
+      "problem_id": "1698A",
+      "title": "XOR Mixup",
+      "tags": [
+        "bitmasks",
+        "brute force"
+      ],
+      "solved_at": "2025-05-03T09:19:35+00:00"
+    },
+    {
+      "problem_id": "1855B",
+      "title": "Longest Divisors Interval",
+      "tags": [
+        "brute force",
+        "combinatorics",
+        "greedy",
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2025-05-02T19:28:47+00:00"
+    },
+    {
+      "problem_id": "2042A",
+      "title": "Greedy Monocarp",
+      "tags": [
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-05-02T10:38:52+00:00"
+    },
+    {
+      "problem_id": "1968A",
+      "title": "Maximize?",
+      "tags": [
+        "brute force",
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2025-05-02T10:03:24+00:00"
+    },
+    {
+      "problem_id": "1624B",
+      "title": "Make AP",
+      "tags": [
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2025-04-29T13:52:41+00:00"
+    },
+    {
+      "problem_id": "1665B",
+      "title": "Array Cloning Technique",
+      "tags": [
+        "constructive algorithms",
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-04-26T10:16:21+00:00"
+    },
+    {
+      "problem_id": "1675B",
+      "title": "Make It Increasing",
+      "tags": [
+        "greedy",
+        "implementation"
+      ],
+      "solved_at": "2025-04-22T22:11:33+00:00"
+    },
+    {
+      "problem_id": "1679A",
+      "title": "AvtoBus",
+      "tags": [
+        "brute force",
+        "greedy",
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2025-04-22T05:44:39+00:00"
+    },
+    {
+      "problem_id": "1696B",
+      "title": "NIT Destroys the Universe",
+      "tags": [
+        "greedy"
+      ],
+      "solved_at": "2025-04-21T00:13:08+00:00"
+    },
+    {
+      "problem_id": "1447B",
+      "title": "Numbers Box",
+      "tags": [
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-04-18T18:51:54+00:00"
+    },
+    {
+      "problem_id": "1794B",
+      "title": "Not Dividing",
+      "tags": [
+        "constructive algorithms",
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-04-18T17:32:36+00:00"
+    },
+    {
+      "problem_id": "2094B",
+      "title": "Bobritto Bandito",
+      "tags": [
+        "brute force",
+        "constructive algorithms"
+      ],
+      "solved_at": "2025-04-14T04:49:25+00:00"
+    },
+    {
+      "problem_id": "2094A",
+      "title": "Trippi Troppi",
+      "tags": [
+        "strings"
+      ],
+      "solved_at": "2025-04-13T15:47:01+00:00"
+    },
+    {
+      "problem_id": "1807D",
+      "title": "Odd Queries",
+      "tags": [
+        "data structures",
+        "implementation"
+      ],
+      "solved_at": "2025-04-13T13:23:39+00:00"
+    },
+    {
+      "problem_id": "1828B",
+      "title": "Permutation Swap",
+      "tags": [
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2025-04-11T23:15:55+00:00"
+    },
+    {
+      "problem_id": "1837B",
+      "title": "Comparison String",
+      "tags": [
+        "greedy"
+      ],
+      "solved_at": "2025-04-11T21:27:38+00:00"
+    },
+    {
+      "problem_id": "2093C",
+      "title": "Simple Repetition",
+      "tags": [
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2025-04-08T16:45:27+00:00"
+    },
+    {
+      "problem_id": "2093A",
+      "title": "Ideal Generator",
+      "tags": [
+        "math"
+      ],
+      "solved_at": "2025-04-08T14:43:00+00:00"
+    },
+    {
+      "problem_id": "1850D",
+      "title": "Balanced Round",
+      "tags": [
+        "brute force",
+        "greedy",
+        "implementation",
+        "sortings"
+      ],
+      "solved_at": "2025-04-07T19:10:32+00:00"
+    },
+    {
+      "problem_id": "1869A",
+      "title": "Make It Zero",
+      "tags": [
+        "constructive algorithms"
+      ],
+      "solved_at": "2025-04-07T15:38:58+00:00"
+    },
+    {
+      "problem_id": "1875A",
+      "title": "Jellyfish and Undertale",
+      "tags": [
+        "brute force",
+        "greedy"
+      ],
+      "solved_at": "2025-04-07T12:33:20+00:00"
+    },
+    {
+      "problem_id": "2091B",
+      "title": "Team Training",
+      "tags": [
+        "dp",
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-03-25T16:32:10+00:00"
+    },
+    {
+      "problem_id": "1883B",
+      "title": "Chemistry",
+      "tags": [
+        "strings"
+      ],
+      "solved_at": "2025-03-23T18:10:41+00:00"
+    },
+    {
+      "problem_id": "2075A",
+      "title": "To Zero",
+      "tags": [
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-03-18T04:11:25+00:00"
+    },
+    {
+      "problem_id": "1789A",
+      "title": "Serval and Mocha's Array",
+      "tags": [
+        "brute force",
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2025-03-17T14:14:40+00:00"
+    },
+    {
+      "problem_id": "2074B",
+      "title": "The Third Side",
+      "tags": [
+        "geometry",
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-03-11T15:40:17+00:00"
+    },
+    {
+      "problem_id": "2074A",
+      "title": "Draw a Square",
+      "tags": [
+        "geometry",
+        "implementation"
+      ],
+      "solved_at": "2025-03-11T14:49:12+00:00"
+    },
+    {
+      "problem_id": "1791C",
+      "title": "Prepend and Append",
+      "tags": [
+        "implementation",
+        "two pointers"
+      ],
+      "solved_at": "2025-03-09T13:20:30+00:00"
+    },
+    {
+      "problem_id": "1805A",
+      "title": "We Need the Zero",
+      "tags": [
+        "bitmasks",
+        "brute force"
+      ],
+      "solved_at": "2025-03-09T07:35:36+00:00"
+    },
+    {
+      "problem_id": "1829B",
+      "title": "Blank Space",
+      "tags": [
+        "implementation"
+      ],
+      "solved_at": "2025-03-08T03:15:53+00:00"
+    },
+    {
+      "problem_id": "1834A",
+      "title": "Unit Array",
+      "tags": [
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-03-07T07:42:15+00:00"
+    },
+    {
+      "problem_id": "1853A",
+      "title": "Desorting",
+      "tags": [
+        "brute force",
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-03-06T08:26:56+00:00"
+    },
+    {
+      "problem_id": "1857A",
+      "title": "Array Coloring",
+      "tags": [
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-02-08T16:37:29+00:00"
+    },
+    {
+      "problem_id": "1858A",
+      "title": "Buttons",
+      "tags": [
+        "games",
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-02-06T16:44:14+00:00"
+    },
+    {
+      "problem_id": "1814A",
+      "title": "Coins",
+      "tags": [
+        "implementation",
+        "math"
+      ],
+      "solved_at": "2025-02-06T14:41:43+00:00"
+    },
+    {
+      "problem_id": "1866A",
+      "title": "Ambitious Kid",
+      "tags": [
+        "math"
+      ],
+      "solved_at": "2025-01-29T04:12:29+00:00"
+    },
+    {
+      "problem_id": "1878A",
+      "title": "How Much Does Daytona Cost?",
+      "tags": [
+        "greedy"
+      ],
+      "solved_at": "2025-01-27T04:22:21+00:00"
+    },
+    {
+      "problem_id": "2060A",
+      "title": "Fibonacciness",
+      "tags": [
+        "brute force"
+      ],
+      "solved_at": "2025-01-19T16:54:28+00:00"
+    },
+    {
+      "problem_id": "1901A",
+      "title": "Line Trip",
+      "tags": [
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2025-01-18T10:18:01+00:00"
+    },
+    {
+      "problem_id": "1903A",
+      "title": "Halloumi Boxes",
+      "tags": [
+        "brute force",
+        "greedy",
+        "sortings"
+      ],
+      "solved_at": "2025-01-11T11:38:06+00:00"
+    },
+    {
+      "problem_id": "1102A",
+      "title": "Integer Sequence Dividing",
+      "tags": [
+        "math"
+      ],
+      "solved_at": "2024-12-20T13:29:42+00:00"
+    },
+    {
+      "problem_id": "610A",
+      "title": "Pasha and Stick",
+      "tags": [
+        "combinatorics",
+        "math"
+      ],
+      "solved_at": "2024-12-19T16:40:21+00:00"
+    }
+  ],
+  "tag_stats": [],
+  "rating_history": {
+    "status": "OK",
+    "result": [
+      {
+        "contestId": 2057,
+        "contestName": "Hello 2025",
+        "handle": "Eldira_2281",
+        "rank": 15496,
+        "ratingUpdateTimeSeconds": 1736010300,
+        "oldRating": 0,
+        "newRating": 354
+      },
+      {
+        "contestId": 2060,
+        "contestName": "Codeforces Round 998 (Div. 3)",
+        "handle": "Eldira_2281",
+        "rank": 23345,
+        "ratingUpdateTimeSeconds": 1737306300,
+        "oldRating": 354,
+        "newRating": 581
+      },
+      {
+        "contestId": 2074,
+        "contestName": "Codeforces Round 1009 (Div. 3)",
+        "handle": "Eldira_2281",
+        "rank": 16118,
+        "ratingUpdateTimeSeconds": 1741712700,
+        "oldRating": 581,
+        "newRating": 762
+      },
+      {
+        "contestId": 2091,
+        "contestName": "Codeforces Round 1013 (Div. 3)",
+        "handle": "Eldira_2281",
+        "rank": 23043,
+        "ratingUpdateTimeSeconds": 1742921400,
+        "oldRating": 762,
+        "newRating": 814
+      },
+      {
+        "contestId": 2093,
+        "contestName": "Codeforces Round 1016 (Div. 3)",
+        "handle": "Eldira_2281",
+        "rank": 15651,
+        "ratingUpdateTimeSeconds": 1744131000,
+        "oldRating": 814,
+        "newRating": 878
+      },
+      {
+        "contestId": 2094,
+        "contestName": "Codeforces Round 1017 (Div. 4)",
+        "handle": "Eldira_2281",
+        "rank": 17473,
+        "ratingUpdateTimeSeconds": 1744566600,
+        "oldRating": 878,
+        "newRating": 877
+      },
+      {
+        "contestId": 2117,
+        "contestName": "Codeforces Round 1029 (Div. 3)",
+        "handle": "Eldira_2281",
+        "rank": 16246,
+        "ratingUpdateTimeSeconds": 1749401400,
+        "oldRating": 877,
+        "newRating": 847
+      },
+      {
+        "contestId": 2118,
+        "contestName": "Codeforces Round 1030 (Div. 2)",
+        "handle": "Eldira_2281",
+        "rank": 15517,
+        "ratingUpdateTimeSeconds": 1749746100,
+        "oldRating": 847,
+        "newRating": 823
+      },
+      {
+        "contestId": 2121,
+        "contestName": "Codeforces Round 1032 (Div. 3)",
+        "handle": "Eldira_2281",
+        "rank": 17137,
+        "ratingUpdateTimeSeconds": 1750179000,
+        "oldRating": 823,
+        "newRating": 812
+      },
+      {
+        "contestId": 2123,
+        "contestName": "Codeforces Round 1034 (Div. 3)",
+        "handle": "Eldira_2281",
+        "rank": 13354,
+        "ratingUpdateTimeSeconds": 1751388600,
+        "oldRating": 812,
+        "newRating": 862
+      },
+      {
+        "contestId": 2119,
+        "contestName": "Codeforces Round 1035 (Div. 2)",
+        "handle": "Eldira_2281",
+        "rank": 10949,
+        "ratingUpdateTimeSeconds": 1751733300,
+        "oldRating": 862,
+        "newRating": 895
+      },
+      {
+        "contestId": 2126,
+        "contestName": "Codeforces Round 1037 (Div. 3)",
+        "handle": "Eldira_2281",
+        "rank": 11529,
+        "ratingUpdateTimeSeconds": 1752771000,
+        "oldRating": 895,
+        "newRating": 939
+      },
+      {
+        "contestId": 2122,
+        "contestName": "Order Capital Round 1 (Codeforces Round 1038, Div. 1 + Div. 2)",
+        "handle": "Eldira_2281",
+        "rank": 10918,
+        "ratingUpdateTimeSeconds": 1752943800,
+        "oldRating": 939,
+        "newRating": 929
+      },
+      {
+        "contestId": 2148,
+        "contestName": "Codeforces Round 1050 (Div. 4)",
+        "handle": "Eldira_2281",
+        "rank": 13221,
+        "ratingUpdateTimeSeconds": 1757782200,
+        "oldRating": 929,
+        "newRating": 902
+      },
+      {
+        "contestId": 2155,
+        "contestName": "Codeforces Round 1056 (Div. 2)",
+        "handle": "Eldira_2281",
+        "rank": 10034,
+        "ratingUpdateTimeSeconds": 1759689300,
+        "oldRating": 902,
+        "newRating": 890
+      },
+      {
+        "contestId": 2162,
+        "contestName": "Codeforces Round 1059 (Div. 3)",
+        "handle": "Eldira_2281",
+        "rank": 11779,
+        "ratingUpdateTimeSeconds": 1760719800,
+        "oldRating": 890,
+        "newRating": 923
+      },
+      {
+        "contestId": 2156,
+        "contestName": "Codeforces Round 1061 (Div. 2)",
+        "handle": "Eldira_2281",
+        "rank": 15479,
+        "ratingUpdateTimeSeconds": 1761323700,
+        "oldRating": 923,
+        "newRating": 821
+      },
+      {
+        "contestId": 2167,
+        "contestName": "Codeforces Round 1062 (Div. 4)",
+        "handle": "Eldira_2281",
+        "rank": 14977,
+        "ratingUpdateTimeSeconds": 1761670200,
+        "oldRating": 821,
+        "newRating": 849
+      },
+      {
+        "contestId": 2164,
+        "contestName": "Codeforces Global Round 30 (Div. 1 + Div. 2)",
+        "handle": "Eldira_2281",
+        "rank": 8390,
+        "ratingUpdateTimeSeconds": 1762450500,
+        "oldRating": 849,
+        "newRating": 902
+      },
+      {
+        "contestId": 2166,
+        "contestName": "Codeforces Round 1064 (Div. 2)",
+        "handle": "Eldira_2281",
+        "rank": 3359,
+        "ratingUpdateTimeSeconds": 1763310900,
+        "oldRating": 902,
+        "newRating": 1056
+      },
+      {
+        "contestId": 2171,
+        "contestName": "Codeforces Round 1065 (Div. 3)",
+        "handle": "Eldira_2281",
+        "rank": 1469,
+        "ratingUpdateTimeSeconds": 1763658300,
+        "oldRating": 1056,
+        "newRating": 1214
+      },
+      {
+        "contestId": 2185,
+        "contestName": "Codeforces Round 1074 (Div. 4)",
+        "handle": "Eldira_2281",
+        "rank": 392,
+        "ratingUpdateTimeSeconds": 1768755000,
+        "oldRating": 1214,
+        "newRating": 1382
+      },
+      {
+        "contestId": 2218,
+        "contestName": "Codeforces Round 1090 (Div. 4)",
+        "handle": "Eldira_2281",
+        "rank": 1283,
+        "ratingUpdateTimeSeconds": 1775321400,
+        "oldRating": 1382,
+        "newRating": 1425
+      }
+    ]
+  }
+}

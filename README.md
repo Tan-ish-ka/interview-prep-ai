@@ -127,6 +127,34 @@ cd interview-prep-ai
 pip install -e ".[dev]"
 ```
 
+## Frontend dashboard
+
+A React dashboard lives in `frontend/`. It calls `GET /report` and displays the full report with a dark glassmorphism UI.
+
+**Requirements:** Node.js 18+
+
+```bash
+# Terminal 1 — API
+uvicorn interview_prep_ai.app.main:app --reload
+
+# Terminal 2 — dashboard (proxies /report to port 8000)
+cd frontend
+npm install
+npm run dev
+```
+
+Open `http://127.0.0.1:5173`. Vite proxies API requests to the backend during development.
+
+Production build:
+
+```bash
+cd frontend
+npm run build
+npm run preview
+```
+
+Set `VITE_API_BASE` (e.g. `http://127.0.0.1:8000`) if the API is on another origin.
+
 ## Running FastAPI locally
 
 From the project root (where `pyproject.toml` lives):

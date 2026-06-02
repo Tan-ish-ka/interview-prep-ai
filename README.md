@@ -142,6 +142,44 @@ Then open:
 
 Profiles are cached under `data/profiles/<platform>/<username>.json`. Delete a cache file to force a fresh fetch from Codeforces.
 
+## Docker
+
+**Requirements:** Docker and Docker Compose
+
+Build and start the API on port **8000**:
+
+```bash
+docker compose up --build
+```
+
+Run in the background:
+
+```bash
+docker compose up --build -d
+```
+
+Then open:
+
+- API: `http://127.0.0.1:8000/report?url=https://codeforces.com/profile/<handle>`
+- Swagger UI: `http://127.0.0.1:8000/docs`
+
+Profile cache is persisted via a volume mount (`./data/profiles` on the host → `/app/data/profiles` in the container).
+
+Stop the stack:
+
+```bash
+docker compose down
+```
+
+Build the image without Compose:
+
+```bash
+docker build -t interview-prep-ai .
+docker run --rm -p 8000:8000 -v "%cd%/data/profiles:/app/data/profiles" interview-prep-ai
+```
+
+On Linux or macOS, replace `%cd%` with `$(pwd)`.
+
 ## Running tests
 
 ```bash
@@ -165,6 +203,8 @@ python -m pytest -v
 | **pytest** | Unit and integration tests |
 | **httpx** | Test client for API tests (dev dependency) |
 | **setuptools** | Packaging (`src/` layout) |
+| **Docker** | Containerized API deployment |
+| **uvicorn** | ASGI server for FastAPI (Docker / local run) |
 
 ## Future improvements
 
@@ -173,7 +213,6 @@ python -m pytest -v
 - Populate `attempt_count` in tag statistics from submission history.
 - Additional platforms and unified tag normalization across sites.
 - Authentication and rate limiting for the public API.
-- Docker Compose setup for local development.
 - Frontend dashboard for visualizing reports and trends.
 
 ## License

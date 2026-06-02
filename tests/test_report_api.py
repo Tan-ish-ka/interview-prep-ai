@@ -44,6 +44,11 @@ def service_report(profile: UserProfile) -> dict:
             "rating_delta": 58,
             "recent_rating_delta": 61,
             "rating_trend": "improving",
+            "contest_stats": {
+                "total_contests": 120,
+                "contests_last_30_days": 3,
+                "average_rating_change": 12.5,
+            },
             "total_solved": 42,
             "recent_activity": 5,
             "top_tags": {"dp": 10},
@@ -95,6 +100,11 @@ def test_get_report_returns_200_and_json_body(
     assert body["insights"]["total_solved"] == 42
     assert body["insights"]["recent_rating_delta"] == 61
     assert body["insights"]["rating_trend"] == "improving"
+    assert body["insights"]["contest_stats"] == {
+        "total_contests": 120,
+        "contests_last_30_days": 3,
+        "average_rating_change": 12.5,
+    }
     assert body["insights"]["weak_topics"] == ["graphs", "greedy"]
     assert body["insights"]["strong_topics"] == ["dp", "graphs", "greedy"]
     assert len(body["recommendations"]) == 1

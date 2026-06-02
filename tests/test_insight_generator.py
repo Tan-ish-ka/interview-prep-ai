@@ -26,6 +26,11 @@ def test_empty_profile(generator: InsightGenerator) -> None:
         "rating_delta": None,
         "recent_rating_delta": None,
         "rating_trend": "stable",
+        "contest_stats": {
+            "total_contests": 0,
+            "contests_last_30_days": 0,
+            "average_rating_change": None,
+        },
         "total_solved": 0,
         "recent_activity": 0,
         "top_tags": {},
@@ -80,6 +85,37 @@ def test_rating_history_present(generator: InsightGenerator) -> None:
     assert insights["rating_delta"] == 200
     assert insights["recent_rating_delta"] == 150
     assert insights["rating_trend"] == "improving"
+
+
+def test_contest_stats_from_rating_history(generator: InsightGenerator) -> None:
+    now = datetime.now(timezone.utc)
+    recent_timestamp = int((now - timedelta(days=7)).timestamp())
+    profile = UserProfile(username="contest_user", platform=Platform.CODEFORCES)
+    rating_history = {
+        "status": "OK",
+        "result": [
+            {
+                "contestId": 1,
+                "oldRating": 1500,
+                "newRating": 1600,
+                "ratingUpdateTimeSeconds": recent_timestamp,
+            },
+            {
+                "contestId": 2,
+                "oldRating": 1600,
+                "newRating": 1550,
+                "ratingUpdateTimeSeconds": recent_timestamp,
+            },
+        ],
+    }
+
+    insights = generator.generate(profile, rating_history)
+
+    assert insights["contest_stats"] == {
+        "total_contests": 2,
+        "contests_last_30_days": 2,
+        "average_rating_change": 25.0,
+    }
 
 
 def test_rating_trend_declining(generator: InsightGenerator) -> None:

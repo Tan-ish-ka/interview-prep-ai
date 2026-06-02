@@ -40,12 +40,19 @@ class ProfileSchema(BaseModel):
     rating_history: dict[str, Any] = Field(default_factory=dict)
 
 
+class ContestStatsSchema(BaseModel):
+    total_contests: int = 0
+    contests_last_30_days: int = 0
+    average_rating_change: float | None = None
+
+
 class InsightsSchema(BaseModel):
     current_rating: int | None = None
     max_rating: int | None = None
     rating_delta: int | None = None
     recent_rating_delta: int | None = None
     rating_trend: str = "stable"
+    contest_stats: ContestStatsSchema = Field(default_factory=ContestStatsSchema)
     total_solved: int
     recent_activity: int
     top_tags: dict[str, int] = Field(default_factory=dict)

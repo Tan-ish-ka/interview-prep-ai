@@ -18,6 +18,8 @@ def _insights(
     total_solved: int = 100,
     weak_topics: list[str] | None = None,
     strong_topics: list[str] | None = None,
+    contest_stats: dict | None = None,
+    activity_stats: dict | None = None,
 ) -> dict:
     return {
         "rating_delta": rating_delta,
@@ -28,6 +30,20 @@ def _insights(
         "total_solved": total_solved,
         "weak_topics": weak_topics if weak_topics is not None else [],
         "strong_topics": strong_topics if strong_topics is not None else [],
+        "contest_stats": contest_stats
+        if contest_stats is not None
+        else {
+            "total_contests": 10,
+            "contests_last_30_days": 2,
+            "average_rating_change": 10.0,
+        },
+        "activity_stats": activity_stats
+        if activity_stats is not None
+        else {
+            "problems_last_30_days": 10,
+            "problems_last_90_days": 40,
+            "average_problems_per_week": 5.0,
+        },
     }
 
 
@@ -101,10 +117,20 @@ def test_multiple_recommendations(service: RecommendationService) -> None:
             "total_solved": 15,
             "weak_topics": [],
             "strong_topics": [],
+            "contest_stats": {
+                "total_contests": 10,
+                "contests_last_30_days": 2,
+                "average_rating_change": 5.0,
+            },
+            "activity_stats": {
+                "problems_last_30_days": 10,
+                "problems_last_90_days": 40,
+                "average_problems_per_week": 5.0,
+            },
         }
     )
 
-    assert len(result) == 4
+    assert len(result) == 5
 
 
 def test_weak_topic_recommendations(service: RecommendationService) -> None:
@@ -122,6 +148,68 @@ def test_strong_topic_recommendations(service: RecommendationService) -> None:
     assert result == [
         "Leverage your strength in dp.",
         "Leverage your strength in greedy.",
+    ]
+
+
+def test_low_contest_participation_recommendation(
+    service: RecommendationService,
+) -> None:
+    result = service.generate(
+        _insights(contest_stats={"total_contests": 5, "contests_last_30_days": 1})
+    )
+
+    assert result == [
+        "Participate in contests more frequently to improve consistency."
+    ]
+
+
+def test_low_weekly_problem_volume_recommendation(
+    service: RecommendationService,
+) -> None:
+    result = service.generate(
+        _insights(
+            activity_stats={
+                "problems_last_30_days": 2,
+                "problems_last_90_days": 10,
+                "average_problems_per_week": 4.5,
+            }
+        )
+    )
+
+    assert result == ["Increase your weekly problem-solving volume."]
+
+
+def test_declining_rating_trend_recommendation(service: RecommendationService) -> None:
+    result = service.generate(_insights(rating_trend="declining"))
+
+    assert result == [
+        "Review recent contest mistakes before your next competition."
+    ]
+
+
+def test_smart_recommendations_with_existing_rules(service: RecommendationService) -> None:
+    result = service.generate(
+        _insights(
+            recent_activity=5,
+            rating_trend="declining",
+            contest_stats={"total_contests": 3, "contests_last_30_days": 0},
+            activity_stats={
+                "problems_last_30_days": 1,
+                "problems_last_90_days": 8,
+                "average_problems_per_week": 2.0,
+            },
+            weak_topics=["graphs"],
+            strong_topics=["dp"],
+        )
+    )
+
+    assert result == [
+        "Increase your practice consistency — aim for more regular solving sessions.",
+        "Practice more graphs problems.",
+        "Leverage your strength in dp.",
+        "Participate in contests more frequently to improve consistency.",
+        "Increase your weekly problem-solving volume.",
+        "Review recent contest mistakes before your next competition.",
     ]
 
 

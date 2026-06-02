@@ -5,6 +5,18 @@ from __future__ import annotations
 from typing import Any, TypedDict
 
 
+class ContestStats(TypedDict):
+    total_contests: int
+    contests_last_30_days: int
+    average_rating_change: float | None
+
+
+class ActivityStats(TypedDict):
+    problems_last_30_days: int
+    problems_last_90_days: int
+    average_problems_per_week: float
+
+
 class Insights(TypedDict):
     rating_delta: int | None
     recent_rating_delta: int | None
@@ -14,6 +26,8 @@ class Insights(TypedDict):
     total_solved: int
     weak_topics: list[str]
     strong_topics: list[str]
+    contest_stats: ContestStats
+    activity_stats: ActivityStats
 
 
 class RecommendationService:
@@ -47,4 +61,28 @@ class RecommendationService:
         for topic in insights.get("strong_topics") or []:
             recommendations.append(f"Leverage your strength in {topic}.")
 
+        recommendations.extend(_smart_recommendations(insights))
+
         return recommendations
+
+
+def _smart_recommendations(insights: Insights | dict[str, Any]) -> list[str]:
+    """Additional recommendations from contest, activity, and rating-trend insights."""
+    recommendations: list[str] = []
+
+    contest_stats = insights.get("contest_stats") or {}
+    if contest_stats.get("contests_last_30_days", 0) < 2:
+        recommendations.append(
+            "Participate in contests more frequently to improve consistency."
+        )
+
+    activity_stats = insights.get("activity_stats") or {}
+    if activity_stats.get("average_problems_per_week", 0) < 5:
+        recommendations.append("Increase your weekly problem-solving volume.")
+
+    if insights.get("rating_trend") == "declining":
+        recommendations.append(
+            "Review recent contest mistakes before your next competition."
+        )
+
+    return recommendations

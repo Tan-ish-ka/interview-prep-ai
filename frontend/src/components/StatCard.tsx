@@ -1,32 +1,51 @@
 import type { LucideIcon } from "lucide-react";
+import { AnimatedCounter } from "./AnimatedCounter";
+import { GlassCard } from "./GlassCard";
 
 interface StatCardProps {
   icon: LucideIcon;
   label: string;
-  value: string;
+  value: number | string;
+  numericValue?: number;
+  decimals?: number;
   hint?: string;
   accent?: "default" | "success" | "warning" | "danger";
+  delay?: number;
 }
 
-const accentColors = {
-  default: "var(--accent-end)",
-  success: "var(--success)",
-  warning: "var(--warning)",
-  danger: "var(--danger)",
+const accentMap = {
+  default: "#67e8f9",
+  success: "#34d399",
+  warning: "#fbbf24",
+  danger: "#f87171",
 };
 
-export function StatCard({ icon: Icon, label, value, hint, accent = "default" }: StatCardProps) {
+export function StatCard({
+  icon: Icon,
+  label,
+  value,
+  numericValue,
+  decimals = 0,
+  hint,
+  accent = "default",
+  delay = 0,
+}: StatCardProps) {
+  const color = accentMap[accent];
+
   return (
-    <div className="glass-card stat-card">
-      <div
-        className="stat-card__icon"
-        style={{ color: accentColors[accent], background: `${accentColors[accent]}18` }}
-      >
-        <Icon size={20} strokeWidth={2} />
+    <GlassCard className="stat-card" delay={delay}>
+      <div className="stat-card__icon" style={{ color, background: `${color}18` }}>
+        <Icon size={18} strokeWidth={2} />
       </div>
       <div className="stat-card__label">{label}</div>
-      <div className="stat-card__value">{value}</div>
+      <div className="stat-card__value">
+        {numericValue !== undefined ? (
+          <AnimatedCounter value={numericValue} decimals={decimals} />
+        ) : (
+          value
+        )}
+      </div>
       {hint ? <div className="stat-card__hint">{hint}</div> : null}
-    </div>
+    </GlassCard>
   );
 }

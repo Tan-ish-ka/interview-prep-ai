@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { ShieldAlert, ShieldCheck } from "lucide-react";
+import { GlassCard } from "./GlassCard";
 
 interface TopicSectionProps {
   weakTopics: string[];
@@ -7,44 +9,62 @@ interface TopicSectionProps {
 
 export function TopicSection({ weakTopics, strongTopics }: TopicSectionProps) {
   return (
-    <div className="dashboard-grid dashboard-grid--two">
-      <section className="glass-card section-card">
+    <div className="topics-grid">
+      <GlassCard className="section-card">
         <div className="section-card__header">
           <ShieldAlert size={22} />
-          <h2>Weak topics</h2>
+          <div>
+            <h2>Weak topics</h2>
+            <p className="section-card__desc">Fewer than 5 solves — prioritize these</p>
+          </div>
         </div>
-        <p className="section-card__desc">Topics with fewer than 5 solved problems — focus areas.</p>
         <div className="topic-list">
           {weakTopics.length === 0 ? (
-            <span className="empty-chip">No weak topics identified</span>
+            <span className="empty-chip">No weak topics — great coverage</span>
           ) : (
-            weakTopics.map((tag) => (
-              <span key={tag} className="topic-pill topic-pill--weak">
+            weakTopics.map((tag, i) => (
+              <motion.span
+                key={tag}
+                className="topic-pill topic-pill--weak"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.04 }}
+                whileHover={{ scale: 1.05 }}
+              >
                 {tag}
-              </span>
+              </motion.span>
             ))
           )}
         </div>
-      </section>
+      </GlassCard>
 
-      <section className="glass-card section-card">
+      <GlassCard className="section-card" delay={0.06}>
         <div className="section-card__header">
           <ShieldCheck size={22} />
-          <h2>Strong topics</h2>
+          <div>
+            <h2>Strong topics</h2>
+            <p className="section-card__desc">Top 3 by solved count</p>
+          </div>
         </div>
-        <p className="section-card__desc">Top 3 topics by solved count — your strengths.</p>
         <div className="topic-list">
           {strongTopics.length === 0 ? (
-            <span className="empty-chip">No strong topics yet</span>
+            <span className="empty-chip">Build depth to unlock strengths</span>
           ) : (
-            strongTopics.map((tag) => (
-              <span key={tag} className="topic-pill topic-pill--strong">
+            strongTopics.map((tag, i) => (
+              <motion.span
+                key={tag}
+                className="topic-pill topic-pill--strong"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.04 }}
+                whileHover={{ scale: 1.05 }}
+              >
                 {tag}
-              </span>
+              </motion.span>
             ))
           )}
         </div>
-      </section>
+      </GlassCard>
     </div>
   );
 }

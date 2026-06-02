@@ -1,10 +1,14 @@
+import { motion } from "framer-motion";
+
 export function Footer() {
   return (
-    <footer className="footer">
-      <p>
-        Interview Prep AI — powered by your competitive programming profile. Data is fetched from
-        platform APIs and cached locally on the server.
-      </p>
-    </footer>
+    <motion.footer
+      className="footer"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.5 }}
+    >
+      <p>Interview Prep AI — analytics for competitive programming interview prep.</p>
+    </motion.footer>
   );
 }

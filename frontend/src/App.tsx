@@ -1,12 +1,16 @@
+import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { fetchReport } from "./api/report";
 import type { ReportResponse } from "./types/report";
+import { Background } from "./components/Background";
+import { CommandBar } from "./components/CommandBar";
 import { Dashboard } from "./components/Dashboard";
+import { EmptyState } from "./components/EmptyState";
 import { ErrorState } from "./components/ErrorState";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { LoadingState } from "./components/LoadingState";
-import { UrlForm } from "./components/UrlForm";
+import { SkeletonDashboard } from "./components/SkeletonDashboard";
 import "./App.css";
 
 export default function App() {
@@ -30,14 +34,45 @@ export default function App() {
     }
   };
 
+  const showEmpty = !loading && !error && !report;
+
   return (
-    <div className="app-shell">
-      <Hero />
-      <UrlForm url={url} loading={loading} onUrlChange={setUrl} onSubmit={handleGenerate} />
-      {loading ? <LoadingState /> : null}
-      {error && !loading ? <ErrorState message={error} /> : null}
-      {report && !loading ? <Dashboard report={report} /> : null}
-      <Footer />
-    </div>
+    <>
+      <Background />
+      <div className="app-layout">
+        <div className="app-shell">
+          <Hero />
+
+          <div className="sticky-command">
+            <CommandBar
+              url={url}
+              loading={loading}
+              onUrlChange={setUrl}
+              onSubmit={handleGenerate}
+            />
+          </div>
+
+          <AnimatePresence mode="popLayout">
+            {loading ? <LoadingState key="loading" /> : null}
+          </AnimatePresence>
+
+          <AnimatePresence mode="wait">
+            {loading ? <SkeletonDashboard key="skeleton" /> : null}
+          </AnimatePresence>
+
+          {error && !loading ? <ErrorState message={error} /> : null}
+
+          <AnimatePresence mode="wait">
+            {report && !loading ? (
+              <Dashboard key="dashboard" report={report} />
+            ) : showEmpty ? (
+              <EmptyState key="empty" />
+            ) : null}
+          </AnimatePresence>
+
+          <Footer />
+        </div>
+      </div>
+    </>
   );
 }

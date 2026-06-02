@@ -49,6 +49,11 @@ def service_report(profile: UserProfile) -> dict:
                 "contests_last_30_days": 3,
                 "average_rating_change": 12.5,
             },
+            "activity_stats": {
+                "problems_last_30_days": 8,
+                "problems_last_90_days": 20,
+                "average_problems_per_week": 1.56,
+            },
             "total_solved": 42,
             "recent_activity": 5,
             "top_tags": {"dp": 10},
@@ -104,6 +109,11 @@ def test_get_report_returns_200_and_json_body(
         "total_contests": 120,
         "contests_last_30_days": 3,
         "average_rating_change": 12.5,
+    }
+    assert body["insights"]["activity_stats"] == {
+        "problems_last_30_days": 8,
+        "problems_last_90_days": 20,
+        "average_problems_per_week": 1.56,
     }
     assert body["insights"]["weak_topics"] == ["graphs", "greedy"]
     assert body["insights"]["strong_topics"] == ["dp", "graphs", "greedy"]

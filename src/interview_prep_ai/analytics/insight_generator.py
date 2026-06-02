@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from interview_prep_ai.analytics.activity_analyzer import ActivityAnalyzer
 from interview_prep_ai.analytics.contest_analyzer import ContestAnalyzer
 from interview_prep_ai.analytics.problem_analyzer import ProblemAnalyzer
 from interview_prep_ai.analytics.rating_analyzer import RatingAnalyzer
@@ -19,6 +20,7 @@ class InsightGenerator:
         rating_analyzer: RatingAnalyzer | None = None,
         rating_trend_analyzer: RatingTrendAnalyzer | None = None,
         contest_analyzer: ContestAnalyzer | None = None,
+        activity_analyzer: ActivityAnalyzer | None = None,
         tag_analyzer: TagAnalyzer | None = None,
         problem_analyzer: ProblemAnalyzer | None = None,
         weak_topic_analyzer: WeakTopicAnalyzer | None = None,
@@ -27,6 +29,7 @@ class InsightGenerator:
         self._rating_analyzer = rating_analyzer or RatingAnalyzer()
         self._rating_trend_analyzer = rating_trend_analyzer or RatingTrendAnalyzer()
         self._contest_analyzer = contest_analyzer or ContestAnalyzer()
+        self._activity_analyzer = activity_analyzer or ActivityAnalyzer()
         self._tag_analyzer = tag_analyzer or TagAnalyzer()
         self._problem_analyzer = problem_analyzer or ProblemAnalyzer()
         self._weak_topic_analyzer = weak_topic_analyzer or WeakTopicAnalyzer()
@@ -46,6 +49,7 @@ class InsightGenerator:
             ),
             "rating_trend": self._rating_trend_analyzer.rating_trend(rating_history),
             "contest_stats": self._contest_analyzer.contest_stats(rating_history),
+            "activity_stats": self._activity_analyzer.activity_stats(problems),
             "total_solved": self._problem_analyzer.total_solved(problems),
             "recent_activity": self._problem_analyzer.recent_activity(problems),
             "top_tags": top_tags,

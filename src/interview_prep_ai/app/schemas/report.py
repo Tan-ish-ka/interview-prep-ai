@@ -46,6 +46,12 @@ class ContestStatsSchema(BaseModel):
     average_rating_change: float | None = None
 
 
+class ActivityStatsSchema(BaseModel):
+    problems_last_30_days: int = 0
+    problems_last_90_days: int = 0
+    average_problems_per_week: float = 0.0
+
+
 class InsightsSchema(BaseModel):
     current_rating: int | None = None
     max_rating: int | None = None
@@ -53,6 +59,7 @@ class InsightsSchema(BaseModel):
     recent_rating_delta: int | None = None
     rating_trend: str = "stable"
     contest_stats: ContestStatsSchema = Field(default_factory=ContestStatsSchema)
+    activity_stats: ActivityStatsSchema = Field(default_factory=ActivityStatsSchema)
     total_solved: int
     recent_activity: int
     top_tags: dict[str, int] = Field(default_factory=dict)

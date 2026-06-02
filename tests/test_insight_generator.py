@@ -31,6 +31,11 @@ def test_empty_profile(generator: InsightGenerator) -> None:
             "contests_last_30_days": 0,
             "average_rating_change": None,
         },
+        "activity_stats": {
+            "problems_last_30_days": 0,
+            "problems_last_90_days": 0,
+            "average_problems_per_week": 0.0,
+        },
         "total_solved": 0,
         "recent_activity": 0,
         "top_tags": {},
@@ -85,6 +90,39 @@ def test_rating_history_present(generator: InsightGenerator) -> None:
     assert insights["rating_delta"] == 200
     assert insights["recent_rating_delta"] == 150
     assert insights["rating_trend"] == "improving"
+
+
+def test_activity_stats_from_solved_problems(generator: InsightGenerator) -> None:
+    now = datetime.now(timezone.utc)
+    profile = UserProfile(
+        username="activity_user",
+        platform=Platform.CODEFORCES,
+        solved_problems=[
+            ProblemRecord(
+                problem_id="1",
+                title="Recent",
+                solved_at=now - timedelta(days=4),
+            ),
+            ProblemRecord(
+                problem_id="2",
+                title="Quarter",
+                solved_at=now - timedelta(days=60),
+            ),
+            ProblemRecord(
+                problem_id="3",
+                title="Old",
+                solved_at=now - timedelta(days=200),
+            ),
+        ],
+    )
+
+    insights = generator.generate(profile, {"status": "OK", "result": []})
+
+    assert insights["activity_stats"] == {
+        "problems_last_30_days": 1,
+        "problems_last_90_days": 2,
+        "average_problems_per_week": 2 / (90 / 7),
+    }
 
 
 def test_contest_stats_from_rating_history(generator: InsightGenerator) -> None:

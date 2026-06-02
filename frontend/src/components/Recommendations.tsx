@@ -1,54 +1,59 @@
 import { motion } from "framer-motion";
-import { AlertTriangle, Info, Lightbulb, Sparkles } from "lucide-react";
+import { ListChecks, Sparkles } from "lucide-react";
+import { fallbackPriority, inferRecommendationPriority } from "../lib/recommendationPriority";
 import { GlassCard } from "./GlassCard";
 
 interface RecommendationsProps {
   items: string[];
+  delay?: number;
 }
 
-function priorityFor(index: number, total: number): "high" | "medium" | "low" {
-  if (index === 0) return "high";
-  if (index < Math.ceil(total / 2)) return "medium";
-  return "low";
-}
-
-const priorityConfig = {
-  high: { label: "Priority", icon: AlertTriangle, className: "rec-priority--high" },
-  medium: { label: "Focus", icon: Lightbulb, className: "rec-priority--medium" },
-  low: { label: "Tip", icon: Info, className: "rec-priority--low" },
-};
-
-export function Recommendations({ items }: RecommendationsProps) {
+export function Recommendations({ items, delay = 0 }: RecommendationsProps) {
   return (
-    <GlassCard className="section-card">
+    <GlassCard className="section-card section-card--recs" delay={delay}>
       <div className="section-card__header">
-        <Sparkles size={22} />
+        <ListChecks size={22} />
         <div>
           <h2>Recommendations</h2>
-          <p className="section-card__desc">Personalized next steps from your report</p>
+          <p className="section-card__desc">Prioritized actions from your latest report</p>
         </div>
+        {items.length > 0 ? (
+          <span className="section-card__count">{items.length} items</span>
+        ) : null}
       </div>
 
       {items.length === 0 ? (
         <p className="empty-chip">You&apos;re in great shape — no actions suggested right now.</p>
       ) : (
-        <ul className="recommendation-list">
+        <ul className="recommendation-grid">
           {items.map((text, index) => {
-            const priority = priorityFor(index, items.length);
-            const { label, icon: Icon, className } = priorityConfig[priority];
+            const inferred = inferRecommendationPriority(text);
+            const meta =
+              inferred.priority !== "low" || index < 2
+                ? inferred
+                : fallbackPriority(index, items.length);
+            const Icon = meta.icon;
+
             return (
               <motion.li
-                key={`${index}-${text.slice(0, 20)}`}
-                initial={{ opacity: 0, x: -12 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ x: 4 }}
+                key={`${index}-${text.slice(0, 24)}`}
+                className={`rec-card ${meta.className}`}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: delay + index * 0.05, duration: 0.35 }}
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
               >
-                <span className={`rec-priority ${className}`}>
-                  <Icon size={12} />
-                  {label}
-                </span>
-                <p>{text}</p>
+                <div className="rec-card__top">
+                  <span className={`rec-card__badge rec-card__badge--${meta.priority}`}>
+                    <Icon size={14} strokeWidth={2.25} />
+                    {meta.label}
+                  </span>
+                  <span className="rec-card__index">#{index + 1}</span>
+                </div>
+                <p className="rec-card__text">{text}</p>
+                <div className="rec-card__accent" aria-hidden>
+                  <Sparkles size={12} />
+                </div>
               </motion.li>
             );
           })}

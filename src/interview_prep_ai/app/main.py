@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 from interview_prep_ai.api.codeforces_client import CodeforcesAPIError, CodeforcesClientError
 from interview_prep_ai.app.routes import report
@@ -57,6 +58,15 @@ def create_app() -> FastAPI:
         title="Interview Prep AI",
         description="Generate interview preparation reports from competitive programming profiles.",
         version="0.1.0",
+    )
+
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],  # temporary for testing
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
     )
     register_exception_handlers(app)
     app.include_router(report.router)

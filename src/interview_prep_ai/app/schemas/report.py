@@ -52,6 +52,25 @@ class ActivityStatsSchema(BaseModel):
     average_problems_per_week: float = 0.0
 
 
+class InterviewFocusAreaSchema(BaseModel):
+    area: str
+    status: str
+    solved_count: int = 0
+
+
+class RoadmapItemSchema(BaseModel):
+    priority: int
+    category: str
+    title: str
+    description: str
+
+
+class InterviewPreparationSchema(BaseModel):
+    interview_readiness_level: str
+    interview_focus_areas: list[InterviewFocusAreaSchema] = Field(default_factory=list)
+    roadmap: list[RoadmapItemSchema] = Field(default_factory=list)
+
+
 class InsightsSchema(BaseModel):
     current_rating: int | None = None
     max_rating: int | None = None
@@ -73,6 +92,7 @@ class ReportResponse(BaseModel):
     profile: ProfileSchema
     insights: InsightsSchema
     recommendations: list[str]
+    interview_preparation: InterviewPreparationSchema
 
 
 def report_response_from_dict(report: dict[str, Any]) -> ReportResponse:
@@ -82,4 +102,7 @@ def report_response_from_dict(report: dict[str, Any]) -> ReportResponse:
         profile=ProfileSchema.model_validate(profile),
         insights=InsightsSchema.model_validate(report["insights"]),
         recommendations=list(report["recommendations"]),
+        interview_preparation=InterviewPreparationSchema.model_validate(
+            report["interview_preparation"]
+        ),
     )

@@ -59,10 +59,26 @@ def service_report(profile: UserProfile) -> dict:
             "top_tags": {"dp": 10},
             "weak_topics": ["graphs", "greedy"],
             "strong_topics": ["dp", "graphs", "greedy"],
+            "skill_score": 85,
+            "momentum_score": 45,
         },
         "recommendations": [
             "Increase your practice consistency — aim for more regular solving sessions.",
         ],
+        "interview_preparation": {
+            "interview_readiness_level": "Interview Ready",
+            "interview_focus_areas": [
+                {"area": "Dynamic Programming", "status": "strong", "solved_count": 10},
+            ],
+            "roadmap": [
+                {
+                    "priority": 1,
+                    "category": "weak_topic_practice",
+                    "title": "Strengthen weak interview topics",
+                    "description": "Prioritize company-style problems in: Graphs.",
+                },
+            ],
+        },
     }
 
 
@@ -118,6 +134,8 @@ def test_get_report_returns_200_and_json_body(
     assert body["insights"]["weak_topics"] == ["graphs", "greedy"]
     assert body["insights"]["strong_topics"] == ["dp", "graphs", "greedy"]
     assert len(body["recommendations"]) == 1
+    assert body["interview_preparation"]["interview_readiness_level"] == "Interview Ready"
+    assert len(body["interview_preparation"]["roadmap"]) == 1
 
 
 def test_get_report_missing_url_returns_422(client: TestClient) -> None:

@@ -2,6 +2,26 @@ export interface ReportResponse {
   profile: Profile;
   insights: Insights;
   recommendations: string[];
+  interview_preparation: InterviewPreparation;
+}
+
+export interface InterviewPreparation {
+  interview_readiness_level: string;
+  interview_focus_areas: InterviewFocusArea[];
+  roadmap: RoadmapItem[];
+}
+
+export interface InterviewFocusArea {
+  area: string;
+  status: "weak" | "strong" | "neutral" | "needs_practice";
+  solved_count: number;
+}
+
+export interface RoadmapItem {
+  priority: number;
+  category: string;
+  title: string;
+  description: string;
 }
 
 export interface Profile {

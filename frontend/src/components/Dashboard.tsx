@@ -6,6 +6,7 @@ import { AiSummaryCard } from "./AiSummaryCard";
 import { ContestAnalytics } from "./ContestAnalytics";
 import { InsightHeader } from "./InsightHeader";
 import { RatingAnalytics } from "./RatingAnalytics";
+import { InterviewPreparationCard } from "./InterviewPreparationCard";
 import { Recommendations } from "./Recommendations";
 import { TopicSection } from "./TopicSection";
 
@@ -14,7 +15,7 @@ interface DashboardProps {
 }
 
 export function Dashboard({ report }: DashboardProps) {
-  const { profile, insights, recommendations } = report;
+  const { profile, insights, recommendations, interview_preparation } = report;
 
   return (
     <motion.div
@@ -43,6 +44,7 @@ export function Dashboard({ report }: DashboardProps) {
         weakTopics={insights.weak_topics}
         strongTopics={insights.strong_topics}
       />
+      <InterviewPreparationCard preparation={interview_preparation} delay={0.18} />
       <Recommendations items={recommendations} delay={0.2} />
     </motion.div>
   );

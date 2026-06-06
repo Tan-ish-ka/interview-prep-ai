@@ -70,15 +70,42 @@ def mock_recommendation_service(recommendations: list[str]) -> MagicMock:
 
 
 @pytest.fixture
+def interview_preparation() -> dict:
+    return {
+        "interview_readiness_level": "Interview Ready",
+        "interview_focus_areas": [
+            {"area": "Dynamic Programming", "status": "strong", "solved_count": 10},
+        ],
+        "roadmap": [
+            {
+                "priority": 1,
+                "category": "mock_interview",
+                "title": "Schedule mock interview rounds",
+                "description": "Run 2 mock interviews per week.",
+            },
+        ],
+    }
+
+
+@pytest.fixture
+def mock_interview_prep_engine(interview_preparation: dict) -> MagicMock:
+    engine = MagicMock()
+    engine.generate.return_value = interview_preparation
+    return engine
+
+
+@pytest.fixture
 def interview_prep_service(
     mock_profile_manager: MagicMock,
     mock_insight_generator: MagicMock,
     mock_recommendation_service: MagicMock,
+    mock_interview_prep_engine: MagicMock,
 ) -> InterviewPrepService:
     return InterviewPrepService(
         profile_manager=mock_profile_manager,
         insight_generator=mock_insight_generator,
         recommendation_service=mock_recommendation_service,
+        interview_prep_engine=mock_interview_prep_engine,
     )
 
 
@@ -117,11 +144,23 @@ def test_recommendation_service_called(
     mock_recommendation_service.generate.assert_called_once_with(insights)
 
 
+def test_interview_prep_engine_called(
+    interview_prep_service: InterviewPrepService,
+    mock_interview_prep_engine: MagicMock,
+    insights: dict,
+    url: str,
+) -> None:
+    interview_prep_service.generate_report(url)
+
+    mock_interview_prep_engine.generate.assert_called_once_with(insights)
+
+
 def test_returned_report_contains_expected_keys(
     interview_prep_service: InterviewPrepService,
     profile: UserProfile,
     insights: dict,
     recommendations: list[str],
+    interview_preparation: dict,
     url: str,
 ) -> None:
     report = interview_prep_service.generate_report(url)
@@ -129,3 +168,4 @@ def test_returned_report_contains_expected_keys(
     assert report["profile"] is profile
     assert report["insights"] is insights
     assert report["recommendations"] is recommendations
+    assert report["interview_preparation"] is interview_preparation

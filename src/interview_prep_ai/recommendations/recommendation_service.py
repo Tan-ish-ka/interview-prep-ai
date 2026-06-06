@@ -55,11 +55,17 @@ class RecommendationService:
                 "Broaden your topic coverage — practice across more problem categories."
             )
 
-        for topic in insights.get("weak_topics") or []:
-            recommendations.append(f"Practice more {topic} problems.")
+        weak_topics = insights.get("weak_topics") or []
+        if weak_topics:
+            recommendations.append(
+                f"Focus on improving weak areas: {', '.join(weak_topics[:3])}."
+            )
 
-        for topic in insights.get("strong_topics") or []:
-            recommendations.append(f"Leverage your strength in {topic}.")
+        strong_topics = insights.get("strong_topics") or []
+        if strong_topics:
+            recommendations.append(
+                f"Leverage your strengths in: {', '.join(strong_topics[:3])}."
+            )
 
         recommendations.extend(_smart_recommendations(insights))
 
@@ -71,18 +77,44 @@ def _smart_recommendations(insights: Insights | dict[str, Any]) -> list[str]:
     recommendations: list[str] = []
 
     contest_stats = insights.get("contest_stats") or {}
-    if contest_stats.get("contests_last_30_days", 0) < 2:
+    activity_stats = insights.get("activity_stats") or {}
+
+    contest_count = contest_stats.get("contests_last_30_days", 0)
+
+    if contest_count == 0:
+        recommendations.append(
+            "No contests detected in the last 30 days — schedule regular contest participation."
+        )
+    elif contest_count < 2:
         recommendations.append(
             "Participate in contests more frequently to improve consistency."
         )
 
-    activity_stats = insights.get("activity_stats") or {}
     if activity_stats.get("average_problems_per_week", 0) < 5:
-        recommendations.append("Increase your weekly problem-solving volume.")
+        recommendations.append(
+            "Increase your weekly problem-solving volume."
+        )
 
-    if insights.get("rating_trend") == "declining":
+    rating_trend = insights.get("rating_trend")
+
+    if rating_trend == "declining":
         recommendations.append(
             "Review recent contest mistakes before your next competition."
+        )
+
+        if activity_stats.get("average_problems_per_week", 0) < 5:
+            recommendations.append(
+                "Your rating is declining and practice volume is low — prioritize consistent daily problem solving."
+            )
+
+        if contest_count == 0:
+            recommendations.append(
+                "Your rating is declining and contest participation is low — join contests regularly to regain momentum."
+            )
+
+    elif rating_trend == "improving":
+        recommendations.append(
+            "Your rating trend is positive — continue your current preparation strategy."
         )
 
     return recommendations

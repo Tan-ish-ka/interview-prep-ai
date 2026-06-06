@@ -78,6 +78,14 @@ def service_report(profile: UserProfile) -> dict:
                     "description": "Prioritize company-style problems in: Graphs.",
                 },
             ],
+            "company_readiness": [
+                {
+                    "company": "Amazon",
+                    "score": 74,
+                    "level": "Ready",
+                    "reason": "Strong fit in Dynamic Programming with solid overall coverage.",
+                },
+            ],
         },
     }
 
@@ -136,6 +144,7 @@ def test_get_report_returns_200_and_json_body(
     assert len(body["recommendations"]) == 1
     assert body["interview_preparation"]["interview_readiness_level"] == "Interview Ready"
     assert len(body["interview_preparation"]["roadmap"]) == 1
+    assert body["interview_preparation"]["company_readiness"][0]["company"] == "Amazon"
 
 
 def test_get_report_missing_url_returns_422(client: TestClient) -> None:

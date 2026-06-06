@@ -9,6 +9,14 @@ export interface InterviewPreparation {
   interview_readiness_level: string;
   interview_focus_areas: InterviewFocusArea[];
   roadmap: RoadmapItem[];
+  company_readiness: CompanyReadiness[];
+}
+
+export interface CompanyReadiness {
+  company: string;
+  score: number;
+  level: string;
+  reason: string;
 }
 
 export interface InterviewFocusArea {

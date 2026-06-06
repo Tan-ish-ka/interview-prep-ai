@@ -6,6 +6,7 @@ import { AiSummaryCard } from "./AiSummaryCard";
 import { ContestAnalytics } from "./ContestAnalytics";
 import { InsightHeader } from "./InsightHeader";
 import { RatingAnalytics } from "./RatingAnalytics";
+import { CompanyReadinessCard } from "./CompanyReadinessCard";
 import { InterviewPreparationCard } from "./InterviewPreparationCard";
 import { Recommendations } from "./Recommendations";
 import { TopicSection } from "./TopicSection";
@@ -45,6 +46,10 @@ export function Dashboard({ report }: DashboardProps) {
         strongTopics={insights.strong_topics}
       />
       <InterviewPreparationCard preparation={interview_preparation} delay={0.18} />
+      <CompanyReadinessCard
+        companies={interview_preparation.company_readiness}
+        delay={0.19}
+      />
       <Recommendations items={recommendations} delay={0.2} />
     </motion.div>
   );

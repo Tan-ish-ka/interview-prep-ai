@@ -113,6 +113,16 @@ def test_roadmap_includes_mock_interview_prep() -> None:
     assert "difficulty_progression" in categories
 
 
+def test_engine_includes_company_readiness() -> None:
+    engine = InterviewPrepEngine()
+    result = engine.generate(_tourist_insights())
+
+    assert "company_readiness" in result
+    assert 5 <= len(result["company_readiness"]) <= 10
+    top = result["company_readiness"][0]
+    assert {"company", "score", "level", "reason"} <= set(top.keys())
+
+
 def test_readiness_is_separate_from_raw_scores() -> None:
     insights = _tourist_insights()
     focus_areas = map_interview_focus_areas(insights)

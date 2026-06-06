@@ -84,6 +84,14 @@ def interview_preparation() -> dict:
                 "description": "Run 2 mock interviews per week.",
             },
         ],
+        "company_readiness": [
+            {
+                "company": "Google",
+                "score": 68,
+                "level": "Nearly Ready",
+                "reason": "Focus next on Graphs for this company's interview track.",
+            },
+        ],
     }
 
 

@@ -65,10 +65,18 @@ class RoadmapItemSchema(BaseModel):
     description: str
 
 
+class CompanyReadinessSchema(BaseModel):
+    company: str
+    score: int
+    level: str
+    reason: str
+
+
 class InterviewPreparationSchema(BaseModel):
     interview_readiness_level: str
     interview_focus_areas: list[InterviewFocusAreaSchema] = Field(default_factory=list)
     roadmap: list[RoadmapItemSchema] = Field(default_factory=list)
+    company_readiness: list[CompanyReadinessSchema] = Field(default_factory=list)
 
 
 class InsightsSchema(BaseModel):

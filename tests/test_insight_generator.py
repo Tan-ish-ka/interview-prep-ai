@@ -41,6 +41,8 @@ def test_empty_profile(generator: InsightGenerator) -> None:
         "top_tags": {},
         "weak_topics": [],
         "strong_topics": [],
+        "skill_score": 8,
+        "momentum_score": 20,
     }
 
 

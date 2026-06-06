@@ -1,4 +1,4 @@
-import { insightLabel, computeInsightScore } from "./insightScore";
+import { momentumLabel, skillLabel } from "./insightScore";
 import type { Insights, Profile } from "../types/report";
 
 export interface AiSummaryResult {
@@ -12,12 +12,12 @@ export function buildAiSummary(
   insights: Insights,
   recommendationCount: number,
 ): AiSummaryResult {
-  const score = computeInsightScore(insights);
-  const label = insightLabel(score);
+  const skill = skillLabel(insights.skill_score);
+  const momentum = momentumLabel(insights.momentum_score);
   const rating = insights.current_rating ?? "unrated";
   const trend = insights.rating_trend;
 
-  const headline = `${label} — ${trend} trajectory`;
+  const headline = `${skill} · ${momentum}`;
 
   const narrativeParts: string[] = [
     `@${profile.username} on ${profile.platform} carries a ${trend} rating trend`,

@@ -7,6 +7,10 @@ from interview_prep_ai.analytics.contest_analyzer import ContestAnalyzer
 from interview_prep_ai.analytics.problem_analyzer import ProblemAnalyzer
 from interview_prep_ai.analytics.rating_analyzer import RatingAnalyzer
 from interview_prep_ai.analytics.rating_trend_analyzer import RatingTrendAnalyzer
+from interview_prep_ai.analytics.insight_scorer import (
+    compute_momentum_score,
+    compute_skill_score,
+)
 from interview_prep_ai.analytics.strong_topic_analyzer import StrongTopicAnalyzer
 from interview_prep_ai.analytics.tag_analyzer import TagAnalyzer
 from interview_prep_ai.analytics.weak_topic_analyzer import WeakTopicAnalyzer
@@ -46,7 +50,7 @@ class InsightGenerator:
             exclude=set(strong_topics),
         )
 
-        return {
+        insights = {
             "current_rating": self._rating_analyzer.current_rating(rating_history),
             "max_rating": self._rating_analyzer.max_rating(rating_history),
             "rating_delta": self._rating_analyzer.rating_delta(rating_history),
@@ -62,3 +66,6 @@ class InsightGenerator:
             "weak_topics": weak_topics,
             "strong_topics": strong_topics,
         }
+        insights["skill_score"] = compute_skill_score(insights)
+        insights["momentum_score"] = compute_momentum_score(insights)
+        return insights

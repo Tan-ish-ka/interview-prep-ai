@@ -33,6 +33,8 @@ export interface Insights {
   top_tags: Record<string, number>;
   weak_topics: string[];
   strong_topics: string[];
+  skill_score: number;
+  momentum_score: number;
 }
 
 export interface ContestStats {

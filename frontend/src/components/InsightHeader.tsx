@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { Gauge, User } from "lucide-react";
-import { computeInsightScore, insightLabel } from "../lib/insightScore";
+import { Gauge, TrendingUp, User } from "lucide-react";
+import { momentumLabel, skillLabel } from "../lib/insightScore";
 import type { Insights, Profile } from "../types/report";
 import { AnimatedCounter } from "./AnimatedCounter";
 import { GlassCard } from "./GlassCard";
@@ -12,9 +12,8 @@ interface InsightHeaderProps {
 }
 
 export function InsightHeader({ profile, insights }: InsightHeaderProps) {
-  const score = computeInsightScore(insights);
-  const label = insightLabel(score);
-  const progress = score;
+  const skillScore = insights.skill_score;
+  const momentumScore = insights.momentum_score;
 
   return (
     <GlassCard className="insight-header" hover={false}>
@@ -35,19 +34,24 @@ export function InsightHeader({ profile, insights }: InsightHeaderProps) {
           </div>
         </div>
 
-        <motion.div
-          className="insight-score"
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.2, type: "spring" }}
-        >
-          <div className="insight-score__ring" style={{ "--progress": `${progress}%` } as React.CSSProperties}>
-            <Gauge size={22} className="insight-score__icon" />
-            <AnimatedCounter value={score} />
-          </div>
-          <span className="insight-score__label">{label}</span>
-          <span className="insight-score__caption">Insight score</span>
-        </motion.div>
+        <div className="insight-header__scores">
+          <ScoreRing
+            score={skillScore}
+            label={skillLabel(skillScore)}
+            caption="Skill score"
+            icon={<Gauge size={22} className="insight-score__icon" />}
+            accent="indigo"
+            delay={0.2}
+          />
+          <ScoreRing
+            score={momentumScore}
+            label={momentumLabel(momentumScore)}
+            caption="Momentum score"
+            icon={<TrendingUp size={22} className="insight-score__icon" />}
+            accent="cyan"
+            delay={0.3}
+          />
+        </div>
       </div>
 
       <div className="insight-header__metrics">
@@ -60,6 +64,41 @@ export function InsightHeader({ profile, insights }: InsightHeaderProps) {
         />
       </div>
     </GlassCard>
+  );
+}
+
+function ScoreRing({
+  score,
+  label,
+  caption,
+  icon,
+  accent,
+  delay,
+}: {
+  score: number;
+  label: string;
+  caption: string;
+  icon: React.ReactNode;
+  accent: "indigo" | "cyan";
+  delay: number;
+}) {
+  return (
+    <motion.div
+      className={`insight-score insight-score--${accent}`}
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay, type: "spring" }}
+    >
+      <div
+        className="insight-score__ring"
+        style={{ "--progress": `${score}%` } as React.CSSProperties}
+      >
+        {icon}
+        <AnimatedCounter value={score} />
+      </div>
+      <span className="insight-score__label">{label}</span>
+      <span className="insight-score__caption">{caption}</span>
+    </motion.div>
   );
 }
 

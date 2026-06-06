@@ -526,12 +526,33 @@
   color: var(--text-muted);
 }
 
+.insight-header__scores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
 .insight-score {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  min-width: 120px;
+  min-width: 110px;
+}
+
+.insight-score--cyan .insight-score__ring {
+  background: conic-gradient(
+    from 180deg,
+    #22d3ee 0%,
+    #34d399 calc(var(--progress) * 1%),
+    rgba(255, 255, 255, 0.06) calc(var(--progress) * 1%)
+  );
+  box-shadow: 0 0 40px rgba(34, 211, 238, 0.25);
+}
+
+.insight-score--cyan .insight-score__label {
+  color: #67e8f9;
 }
 
 .insight-score__ring {

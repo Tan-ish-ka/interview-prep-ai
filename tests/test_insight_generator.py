@@ -233,3 +233,24 @@ def test_strong_topics_from_tag_stats(generator: InsightGenerator) -> None:
     insights = generator.generate(profile, {"status": "OK", "result": []})
 
     assert insights["strong_topics"] == ["graphs", "math", "dp"]
+    assert insights["weak_topics"] == ["strings", "greedy"]
+
+
+def test_strong_and_weak_topics_never_overlap(generator: InsightGenerator) -> None:
+    profile = UserProfile(
+        username="overlap_user",
+        platform=Platform.CODEFORCES,
+        tag_stats=[
+            TagStat(tag="high", solved_count=32),
+            TagStat(tag="mid", solved_count=21),
+            TagStat(tag="border", solved_count=10),
+        ],
+    )
+
+    insights = generator.generate(profile, {"status": "OK", "result": []})
+
+    strong = set(insights["strong_topics"])
+    weak = set(insights["weak_topics"])
+    assert strong == {"high", "mid", "border"}
+    assert weak == set()
+    assert strong.isdisjoint(weak)

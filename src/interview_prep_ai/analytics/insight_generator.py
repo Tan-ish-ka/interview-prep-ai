@@ -40,6 +40,12 @@ class InsightGenerator:
         tag_frequency = self._tag_analyzer.tag_frequency(problems)
         top_tags = dict(list(tag_frequency.items())[:5])
 
+        strong_topics = self._strong_topic_analyzer.strong_topics(profile.tag_stats)
+        weak_topics = self._weak_topic_analyzer.weak_topics(
+            profile.tag_stats,
+            exclude=set(strong_topics),
+        )
+
         return {
             "current_rating": self._rating_analyzer.current_rating(rating_history),
             "max_rating": self._rating_analyzer.max_rating(rating_history),
@@ -53,6 +59,6 @@ class InsightGenerator:
             "total_solved": self._problem_analyzer.total_solved(problems),
             "recent_activity": self._problem_analyzer.recent_activity(problems),
             "top_tags": top_tags,
-            "weak_topics": self._weak_topic_analyzer.weak_topics(profile.tag_stats),
-            "strong_topics": self._strong_topic_analyzer.strong_topics(profile.tag_stats),
+            "weak_topics": weak_topics,
+            "strong_topics": strong_topics,
         }

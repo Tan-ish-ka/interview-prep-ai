@@ -137,8 +137,7 @@ def test_weak_topic_recommendations(service: RecommendationService) -> None:
     result = service.generate(_insights(weak_topics=["graphs", "math"]))
 
     assert result == [
-        "Practice more graphs problems.",
-        "Practice more math problems.",
+        "Focus on improving weak areas: graphs, math.",
     ]
 
 
@@ -146,8 +145,7 @@ def test_strong_topic_recommendations(service: RecommendationService) -> None:
     result = service.generate(_insights(strong_topics=["dp", "greedy"]))
 
     assert result == [
-        "Leverage your strength in dp.",
-        "Leverage your strength in greedy.",
+        "Leverage your strengths in: dp, greedy.",
     ]
 
 
@@ -205,11 +203,13 @@ def test_smart_recommendations_with_existing_rules(service: RecommendationServic
 
     assert result == [
         "Increase your practice consistency — aim for more regular solving sessions.",
-        "Practice more graphs problems.",
-        "Leverage your strength in dp.",
-        "Participate in contests more frequently to improve consistency.",
+        "Focus on improving weak areas: graphs.",
+        "Leverage your strengths in: dp.",
+        "No contests detected in the last 30 days — schedule regular contest participation.",
         "Increase your weekly problem-solving volume.",
         "Review recent contest mistakes before your next competition.",
+        "Your rating is declining and practice volume is low — prioritize consistent daily problem solving.",
+        "Your rating is declining and contest participation is low — join contests regularly to regain momentum.",
     ]
 
 
@@ -224,6 +224,6 @@ def test_topic_recommendations_with_existing_rules(service: RecommendationServic
 
     assert result == [
         "Increase your practice consistency — aim for more regular solving sessions.",
-        "Practice more graphs problems.",
-        "Leverage your strength in dp.",
+        "Focus on improving weak areas: graphs.",
+        "Leverage your strengths in: dp.",
     ]

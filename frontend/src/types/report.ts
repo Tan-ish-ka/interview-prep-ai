@@ -60,6 +60,7 @@ export interface Insights {
   contest_stats: ContestStats;
   activity_stats: ActivityStats;
   total_solved: number;
+  solved_count_definition: string;
   recent_activity: number;
   top_tags: Record<string, number>;
   weak_topics: string[];

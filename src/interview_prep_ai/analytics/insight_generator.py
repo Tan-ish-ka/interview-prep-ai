@@ -18,6 +18,9 @@ from interview_prep_ai.analytics.strong_topic_analyzer import StrongTopicAnalyze
 from interview_prep_ai.analytics.tag_analyzer import TagAnalyzer
 from interview_prep_ai.analytics.weak_topic_analyzer import WeakTopicAnalyzer
 from interview_prep_ai.core.models.profile import UserProfile
+from interview_prep_ai.platforms.codeforces.solved_problems import (
+    SOLVED_COUNT_DEFINITION,
+)
 
 
 class InsightGenerator:
@@ -64,6 +67,7 @@ class InsightGenerator:
             "contest_stats": self._contest_analyzer.contest_stats(rating_history),
             "activity_stats": self._activity_analyzer.activity_stats(problems),
             "total_solved": self._problem_analyzer.total_solved(problems),
+            "solved_count_definition": SOLVED_COUNT_DEFINITION,
             "recent_activity": self._problem_analyzer.recent_activity(problems),
             "top_tags": top_tags,
             "weak_topics": weak_topics,

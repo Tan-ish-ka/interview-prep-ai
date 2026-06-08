@@ -106,6 +106,9 @@ class InsightsSchema(BaseModel):
     contest_stats: ContestStatsSchema = Field(default_factory=ContestStatsSchema)
     activity_stats: ActivityStatsSchema = Field(default_factory=ActivityStatsSchema)
     total_solved: int
+    solved_count_definition: str = (
+        "Unique problems with at least one Accepted submission."
+    )
     recent_activity: int
     top_tags: dict[str, int] = Field(default_factory=dict)
     weak_topics: list[str] = Field(default_factory=list)

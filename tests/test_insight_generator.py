@@ -3,6 +3,9 @@ from datetime import datetime, timedelta, timezone
 import pytest
 
 from interview_prep_ai.analytics.insight_generator import InsightGenerator
+from interview_prep_ai.platforms.codeforces.solved_problems import (
+    SOLVED_COUNT_DEFINITION,
+)
 from interview_prep_ai.analytics.potential_efficiency_analyzer import (
     compute_potential_efficiency,
 )
@@ -40,6 +43,7 @@ def test_empty_profile(generator: InsightGenerator) -> None:
             "average_problems_per_week": 0.0,
         },
         "total_solved": 0,
+        "solved_count_definition": SOLVED_COUNT_DEFINITION,
         "recent_activity": 0,
         "top_tags": {},
         "weak_topics": [],

@@ -11,6 +11,9 @@ from interview_prep_ai.analytics.insight_scorer import (
     compute_momentum_score,
     compute_skill_score,
 )
+from interview_prep_ai.analytics.potential_efficiency_analyzer import (
+    compute_potential_efficiency,
+)
 from interview_prep_ai.analytics.strong_topic_analyzer import StrongTopicAnalyzer
 from interview_prep_ai.analytics.tag_analyzer import TagAnalyzer
 from interview_prep_ai.analytics.weak_topic_analyzer import WeakTopicAnalyzer
@@ -68,4 +71,5 @@ class InsightGenerator:
         }
         insights["skill_score"] = compute_skill_score(insights)
         insights["momentum_score"] = compute_momentum_score(insights)
+        insights["potential_efficiency"] = compute_potential_efficiency(insights)
         return insights

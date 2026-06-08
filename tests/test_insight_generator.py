@@ -3,6 +3,9 @@ from datetime import datetime, timedelta, timezone
 import pytest
 
 from interview_prep_ai.analytics.insight_generator import InsightGenerator
+from interview_prep_ai.analytics.potential_efficiency_analyzer import (
+    compute_potential_efficiency,
+)
 from interview_prep_ai.core.enums import Platform
 from interview_prep_ai.core.models.problem import ProblemRecord
 from interview_prep_ai.core.models.profile import UserProfile
@@ -20,7 +23,7 @@ def test_empty_profile(generator: InsightGenerator) -> None:
 
     insights = generator.generate(profile, rating_history)
 
-    assert insights == {
+    base_insights = {
         "current_rating": None,
         "max_rating": None,
         "rating_delta": None,
@@ -44,6 +47,8 @@ def test_empty_profile(generator: InsightGenerator) -> None:
         "skill_score": 8,
         "momentum_score": 20,
     }
+    base_insights["potential_efficiency"] = compute_potential_efficiency(base_insights)
+    assert insights == base_insights
 
 
 def test_profile_with_solved_problems(generator: InsightGenerator) -> None:

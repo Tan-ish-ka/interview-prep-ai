@@ -66,6 +66,22 @@ export interface Insights {
   strong_topics: string[];
   skill_score: number;
   momentum_score: number;
+  potential_efficiency: PotentialEfficiency;
+}
+
+export interface PotentialEfficiency {
+  efficiency_score: number;
+  efficiency_trend: string;
+  efficiency_summary: string;
+  growth_potential: string;
+  growth_reason: string;
+  guidance: StudyGuidance;
+}
+
+export interface StudyGuidance {
+  why_this_score: string;
+  what_to_improve_next: string;
+  confidence_builders: string;
 }
 
 export interface ContestStats {

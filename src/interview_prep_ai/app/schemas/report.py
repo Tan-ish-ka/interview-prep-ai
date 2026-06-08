@@ -82,6 +82,21 @@ class InterviewPreparationSchema(BaseModel):
     company_readiness: list[CompanyReadinessSchema] = Field(default_factory=list)
 
 
+class StudyGuidanceSchema(BaseModel):
+    why_this_score: str = ""
+    what_to_improve_next: str = ""
+    confidence_builders: str = ""
+
+
+class PotentialEfficiencySchema(BaseModel):
+    efficiency_score: int = 0
+    efficiency_trend: str = "stable"
+    efficiency_summary: str = ""
+    growth_potential: str = "Moderate potential"
+    growth_reason: str = ""
+    guidance: StudyGuidanceSchema = Field(default_factory=StudyGuidanceSchema)
+
+
 class InsightsSchema(BaseModel):
     current_rating: int | None = None
     max_rating: int | None = None
@@ -97,6 +112,9 @@ class InsightsSchema(BaseModel):
     strong_topics: list[str] = Field(default_factory=list)
     skill_score: int = 0
     momentum_score: int = 0
+    potential_efficiency: PotentialEfficiencySchema = Field(
+        default_factory=PotentialEfficiencySchema
+    )
 
 
 class ReportResponse(BaseModel):

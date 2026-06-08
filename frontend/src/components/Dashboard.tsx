@@ -8,6 +8,7 @@ import { InsightHeader } from "./InsightHeader";
 import { RatingAnalytics } from "./RatingAnalytics";
 import { CompanyReadinessCard } from "./CompanyReadinessCard";
 import { InterviewPreparationCard } from "./InterviewPreparationCard";
+import { PotentialEfficiencyCard } from "./PotentialEfficiencyCard";
 import { Recommendations } from "./Recommendations";
 import { TopicSection } from "./TopicSection";
 
@@ -41,6 +42,7 @@ export function Dashboard({ report }: DashboardProps) {
           delay={0.16}
         />
       </div>
+      <PotentialEfficiencyCard data={insights.potential_efficiency} delay={0.17} />
       <TopicSection
         weakTopics={insights.weak_topics}
         strongTopics={insights.strong_topics}

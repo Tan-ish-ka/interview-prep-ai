@@ -124,6 +124,7 @@ def test_user_profile_is_returned(
     assert profile.platform == Platform.CODEFORCES
     assert profile.current_rating == 3858
     assert profile.max_rating == 3919
+    assert profile.total_solved == 1
     assert len(profile.solved_problems) == 1
     problem = profile.solved_problems[0]
     assert problem.problem_id == "1A"

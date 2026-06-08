@@ -15,6 +15,7 @@ class UserProfile:
     platform: Platform
     current_rating: int | None = None
     max_rating: int | None = None
+    total_solved: int = 0
     solved_problems: list[ProblemRecord] = field(default_factory=list)
     tag_stats: list[TagStat] = field(default_factory=list)
     rating_history: dict = field(default_factory=_empty_rating_history)

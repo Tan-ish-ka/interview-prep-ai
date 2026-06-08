@@ -33,8 +33,28 @@ class CodeforcesClient:
     def get_user_rating_history(self, handle: str) -> dict:
         return self._request("user.rating", {"handle": handle})
 
-    def get_user_submissions(self, handle: str) -> dict:
-        return self._request("user.status", {"handle": handle})
+    def get_user_submissions(self, handle: str, *, page_size: int = 10_000) -> dict:
+        """Fetch all submissions, paginating user.status when needed."""
+        all_results: list[dict] = []
+        from_index = 1
+
+        while True:
+            payload = self._request(
+                "user.status",
+                {
+                    "handle": handle,
+                    "from": str(from_index),
+                    "count": str(page_size),
+                },
+            )
+            batch = payload.get("result") or []
+            all_results.extend(batch)
+
+            if len(batch) < page_size:
+                break
+            from_index += page_size
+
+        return {"status": "OK", "result": all_results}
 
     def _request(self, method: str, params: dict[str, str]) -> dict:
         url = f"{self._base_url}/{method}"

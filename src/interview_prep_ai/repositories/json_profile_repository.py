@@ -40,6 +40,7 @@ def _profile_to_dict(profile: UserProfile) -> dict:
         "platform": profile.platform.value,
         "current_rating": profile.current_rating,
         "max_rating": profile.max_rating,
+        "total_solved": profile.total_solved,
         "solved_problems": [
             {
                 "problem_id": problem.problem_id,
@@ -64,12 +65,7 @@ def _profile_to_dict(profile: UserProfile) -> dict:
 
 
 def _profile_from_dict(data: dict) -> UserProfile:
-    return UserProfile(
-        username=data["username"],
-        platform=Platform(data["platform"]),
-        current_rating=data.get("current_rating"),
-        max_rating=data.get("max_rating"),
-        solved_problems=[
+    solved_problems = [
             ProblemRecord(
                 problem_id=problem["problem_id"],
                 title=problem["title"],
@@ -81,7 +77,14 @@ def _profile_from_dict(data: dict) -> UserProfile:
                 ),
             )
             for problem in data.get("solved_problems") or []
-        ],
+    ]
+    return UserProfile(
+        username=data["username"],
+        platform=Platform(data["platform"]),
+        current_rating=data.get("current_rating"),
+        max_rating=data.get("max_rating"),
+        total_solved=data.get("total_solved", len(solved_problems)),
+        solved_problems=solved_problems,
         tag_stats=[
             TagStat(
                 tag=stat["tag"],

@@ -27,6 +27,7 @@ def sample_profile() -> UserProfile:
         platform=Platform.CODEFORCES,
         current_rating=3858,
         max_rating=3919,
+        total_solved=1,
         solved_problems=[
             ProblemRecord(
                 problem_id="1A",

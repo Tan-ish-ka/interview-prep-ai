@@ -27,8 +27,11 @@ export function InsightHeader({ profile, insights }: InsightHeaderProps) {
             <h2 className="insight-header__name">@{profile.username}</h2>
             <div className="insight-header__meta">
               <TrendChip trend={insights.rating_trend} />
-              <span className="meta-pill">
-                {insights.total_solved} solved
+              <span
+                className="meta-pill meta-pill--solved"
+                title={insights.solved_count_definition}
+              >
+                {insights.total_solved} unique solved
               </span>
             </div>
           </div>

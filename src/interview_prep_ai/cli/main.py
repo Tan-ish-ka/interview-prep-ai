@@ -34,7 +34,7 @@ def format_profile_summary(profile: UserProfile) -> str:
             f"Platform: {profile.platform.value}",
             f"Current Rating: {current_rating}",
             f"Max Rating: {max_rating}",
-            f"Solved Problems: {len(profile.solved_problems)}",
+            f"Solved Problems: {profile.total_solved or len(profile.solved_problems)}",
         ]
     )
 

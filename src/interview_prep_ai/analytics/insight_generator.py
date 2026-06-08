@@ -66,7 +66,7 @@ class InsightGenerator:
             "rating_trend": self._rating_trend_analyzer.rating_trend(rating_history),
             "contest_stats": self._contest_analyzer.contest_stats(rating_history),
             "activity_stats": self._activity_analyzer.activity_stats(problems),
-            "total_solved": self._problem_analyzer.total_solved(problems),
+            "total_solved": _resolved_total_solved(profile, problems),
             "solved_count_definition": SOLVED_COUNT_DEFINITION,
             "recent_activity": self._problem_analyzer.recent_activity(problems),
             "top_tags": top_tags,
@@ -77,3 +77,10 @@ class InsightGenerator:
         insights["momentum_score"] = compute_momentum_score(insights)
         insights["potential_efficiency"] = compute_potential_efficiency(insights)
         return insights
+
+
+def _resolved_total_solved(profile: UserProfile, problems: list) -> int:
+    """Use profile.total_solved when set; keep in sync with solved_problems length."""
+    if profile.total_solved > 0:
+        return profile.total_solved
+    return len(problems)

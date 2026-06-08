@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 from urllib.parse import urlparse
 
 from interview_prep_ai.api.codeforces_client import CodeforcesClient
@@ -10,9 +9,12 @@ from interview_prep_ai.core.analyzer_factory import AnalyzerFactory
 from interview_prep_ai.core.enums import Platform, PlatformType
 from interview_prep_ai.core.interfaces.platform_analyzer import IPlatformAnalyzer
 from interview_prep_ai.core.models.profile import UserProfile
-from interview_prep_ai.core.models.problem import ProblemRecord
 from interview_prep_ai.core.models.tag_stat import TagStat
 from interview_prep_ai.core.platform_detector import PlatformDetector
+from interview_prep_ai.platforms.codeforces.solved_problems import (
+    count_unique_solved_submissions,
+    solved_problems_from_submissions,
+)
 
 
 class UnsupportedPlatformError(Exception):
@@ -86,13 +88,16 @@ def _build_codeforces_profile(
         if history:
             max_rating = max(entry.get("newRating", 0) for entry in history)
 
-    solved_problems = _solved_problems_from_submissions(submissions)
+    submission_rows = submissions.get("result") or []
+    solved_problems = solved_problems_from_submissions(submission_rows)
+    total_solved = count_unique_solved_submissions(submission_rows)
 
     return UserProfile(
         username=user.get("handle", handle),
         platform=Platform.CODEFORCES,
         current_rating=current_rating,
         max_rating=max_rating,
+        total_solved=total_solved,
         solved_problems=solved_problems,
         tag_stats=_tag_stats_from_solved_problems(solved_problems),
         rating_history=rating_history,
@@ -100,7 +105,7 @@ def _build_codeforces_profile(
 
 
 def _tag_stats_from_solved_problems(
-    solved_problems: list[ProblemRecord],
+    solved_problems: list,
 ) -> list[TagStat]:
     counts: dict[str, int] = {}
     for problem in solved_problems:
@@ -114,42 +119,3 @@ def _tag_stats_from_solved_problems(
     ]
 
 
-def _solved_problems_from_submissions(submissions: dict) -> list[ProblemRecord]:
-    seen: set[str] = set()
-    records: list[ProblemRecord] = []
-
-    for submission in submissions.get("result") or []:
-        if submission.get("verdict") != "OK":
-            continue
-
-        problem = submission.get("problem") or {}
-        problem_id = _problem_id(problem)
-        if problem_id in seen:
-            continue
-        seen.add(problem_id)
-
-        creation_seconds = submission.get("creationTimeSeconds")
-        solved_at = (
-            datetime.fromtimestamp(creation_seconds, tz=timezone.utc)
-            if creation_seconds is not None
-            else None
-        )
-
-        records.append(
-            ProblemRecord(
-                problem_id=problem_id,
-                title=problem.get("name", problem_id),
-                tags=list(problem.get("tags") or []),
-                solved_at=solved_at,
-            )
-        )
-
-    return records
-
-
-def _problem_id(problem: dict) -> str:
-    contest_id = problem.get("contestId")
-    index = problem.get("index")
-    if contest_id is not None and index is not None:
-        return f"{contest_id}{index}"
-    return str(problem.get("name", "unknown"))

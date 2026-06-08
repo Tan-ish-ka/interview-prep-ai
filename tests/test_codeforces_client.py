@@ -76,9 +76,26 @@ def test_get_user_submissions_success(
     assert result == payload
     mock_get.assert_called_once_with(
         f"{BASE_URL}/user.status",
-        params={"handle": "tourist"},
+        params={"handle": "tourist", "from": "1", "count": "10000"},
         timeout=30.0,
     )
+
+
+@patch("interview_prep_ai.api.codeforces_client.requests.Session.get")
+def test_get_user_submissions_paginates(
+    mock_get: MagicMock, client: CodeforcesClient
+) -> None:
+    first_page = {"status": "OK", "result": [{"id": i} for i in range(3)]}
+    second_page = {"status": "OK", "result": [{"id": 99}]}
+    mock_get.side_effect = [
+        _mock_response(json_data=first_page),
+        _mock_response(json_data=second_page),
+    ]
+
+    result = client.get_user_submissions("tourist", page_size=3)
+
+    assert result["result"] == first_page["result"] + second_page["result"]
+    assert mock_get.call_count == 2
 
 
 @patch("interview_prep_ai.api.codeforces_client.requests.Session.get")

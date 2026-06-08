@@ -40,6 +40,7 @@ export interface Profile {
   platform: string;
   current_rating: number | null;
   max_rating: number | null;
+  total_solved: number;
   solved_problems: unknown[];
   tag_stats: TagStat[];
   rating_history: Record<string, unknown>;

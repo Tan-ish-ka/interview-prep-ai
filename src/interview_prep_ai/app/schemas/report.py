@@ -35,6 +35,7 @@ class ProfileSchema(BaseModel):
     platform: Platform
     current_rating: int | None = None
     max_rating: int | None = None
+    total_solved: int = 0
     solved_problems: list[ProblemRecordSchema] = Field(default_factory=list)
     tag_stats: list[TagStatSchema] = Field(default_factory=list)
     rating_history: dict[str, Any] = Field(default_factory=dict)
@@ -107,7 +108,8 @@ class InsightsSchema(BaseModel):
     activity_stats: ActivityStatsSchema = Field(default_factory=ActivityStatsSchema)
     total_solved: int
     solved_count_definition: str = (
-        "Unique problems with at least one Accepted submission."
+        "Unique Codeforces programming problems with at least one Accepted (OK) "
+        "submission, counted from your full submission history via the Codeforces API."
     )
     recent_activity: int
     top_tags: dict[str, int] = Field(default_factory=dict)

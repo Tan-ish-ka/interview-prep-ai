@@ -67,9 +67,12 @@ class RoadmapItemSchema(BaseModel):
 
 class CompanyReadinessSchema(BaseModel):
     company: str
+    category: str
     score: int
     level: str
     reason: str
+    strong_topics: list[str] = Field(default_factory=list)
+    missing_topics: list[str] = Field(default_factory=list)
 
 
 class InterviewPreparationSchema(BaseModel):

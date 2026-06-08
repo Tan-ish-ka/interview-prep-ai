@@ -87,9 +87,12 @@ def interview_preparation() -> dict:
         "company_readiness": [
             {
                 "company": "Google",
+                "category": "Big Tech",
                 "score": 68,
                 "level": "Nearly Ready",
                 "reason": "Focus next on Graphs for this company's interview track.",
+                "strong_topics": ["Graphs", "DP"],
+                "missing_topics": ["Math", "Trees"],
             },
         ],
     }

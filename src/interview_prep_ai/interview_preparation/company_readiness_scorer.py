@@ -26,6 +26,16 @@ _COMPANY_LEVEL_THRESHOLDS: tuple[tuple[int, str], ...] = (
     (0, "Early Stage"),
 )
 
+_TOPIC_SHORT_NAMES: dict[str, str] = {
+    "Arrays / Strings": "Arrays",
+    "Dynamic Programming": "DP",
+    "Stacks / Queues": "Stacks",
+    "Linked Lists": "Linked Lists",
+    "Binary Search": "Binary Search",
+    "Sliding Window": "Sliding Window",
+    "Bit Manipulation": "Bit Manipulation",
+}
+
 
 def score_company_readiness(
     insights: dict[str, Any],
@@ -33,7 +43,7 @@ def score_company_readiness(
     interview_readiness_level: str,
     area_profile: dict[str, dict[str, Any]] | None = None,
     tracks: tuple[CompanyTrack, ...] | None = None,
-    limit: int = 10,
+    limit: int | None = None,
 ) -> list[dict[str, Any]]:
     """Return company readiness rows sorted by score descending."""
     profile = area_profile or build_company_area_profile(insights)
@@ -42,17 +52,28 @@ def score_company_readiness(
     rows: list[dict[str, Any]] = []
     for track in company_tracks:
         score = _company_score(track, profile, insights, interview_readiness_level)
+        strengths = _top_weighted_strengths(track, profile)[:3]
+        missing = _top_weighted_gaps(track, profile)[:3]
         rows.append(
             {
                 "company": track.name,
+                "category": track.category,
                 "score": score,
                 "level": _company_level(score),
                 "reason": _company_reason(track, profile, insights, score),
+                "strong_topics": [_topic_short_name(topic) for topic in strengths],
+                "missing_topics": [_topic_short_name(topic) for topic in missing],
             }
         )
 
     rows.sort(key=lambda row: (-row["score"], row["company"]))
+    if limit is None:
+        return rows
     return rows[:limit]
+
+
+def _topic_short_name(area: str) -> str:
+    return _TOPIC_SHORT_NAMES.get(area, area)
 
 
 def _company_score(

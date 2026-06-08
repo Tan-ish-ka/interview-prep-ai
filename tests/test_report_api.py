@@ -81,9 +81,12 @@ def service_report(profile: UserProfile) -> dict:
             "company_readiness": [
                 {
                     "company": "Amazon",
+                    "category": "Big Tech",
                     "score": 74,
                     "level": "Ready",
                     "reason": "Strong fit in Dynamic Programming with solid overall coverage.",
+                    "strong_topics": ["DP", "Arrays"],
+                    "missing_topics": ["Trees"],
                 },
             ],
         },

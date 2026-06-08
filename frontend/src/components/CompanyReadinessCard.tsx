@@ -1,6 +1,8 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
 import { Building2 } from "lucide-react";
 import type { CompanyReadiness } from "../types/report";
+import { CompanyBrowserModal } from "./CompanyBrowserModal";
+import { CompanyReadinessItem } from "./CompanyReadinessItem";
 import { GlassCard } from "./GlassCard";
 
 interface CompanyReadinessCardProps {
@@ -8,75 +10,62 @@ interface CompanyReadinessCardProps {
   delay?: number;
 }
 
-const LEVEL_CLASS: Record<string, string> = {
-  Ready: "company-level--ready",
-  "Nearly Ready": "company-level--nearly",
-  Developing: "company-level--developing",
-  "Early Stage": "company-level--early",
-};
+const DASHBOARD_PREVIEW_COUNT = 5;
 
 export function CompanyReadinessCard({
   companies,
   delay = 0.19,
 }: CompanyReadinessCardProps) {
-  const topCompanies = companies.slice(0, 10);
+  const [browserOpen, setBrowserOpen] = useState(false);
+  const topCompanies = companies.slice(0, DASHBOARD_PREVIEW_COUNT);
 
   return (
-    <GlassCard className="section-card section-card--companies" delay={delay}>
-      <div className="section-card__header">
-        <Building2 size={22} />
-        <div>
-          <h2>Company Readiness</h2>
-          <p className="section-card__desc">
-            Track-specific fit scores — separate from skill and momentum
-          </p>
+    <>
+      <GlassCard className="section-card section-card--companies" delay={delay}>
+        <div className="section-card__header">
+          <Building2 size={22} />
+          <div>
+            <h2>Company Readiness</h2>
+            <p className="section-card__desc">
+              Top recommended tracks — separate from skill and momentum scores
+            </p>
+          </div>
+          {companies.length > 0 ? (
+            <span className="section-card__count">{companies.length} tracks</span>
+          ) : null}
         </div>
-        {topCompanies.length > 0 ? (
-          <span className="section-card__count">{topCompanies.length} tracks</span>
-        ) : null}
-      </div>
 
-      {topCompanies.length === 0 ? (
-        <p className="empty-chip">Not enough topic data to estimate company readiness yet.</p>
-      ) : (
-        <ul className="company-readiness-list">
-          {topCompanies.map((item, index) => (
-            <motion.li
-              key={item.company}
-              className="company-readiness-item"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: delay + index * 0.04 }}
-            >
-              <div className="company-readiness-item__header">
-                <div>
-                  <p className="company-readiness-item__name">{item.company}</p>
-                  <span
-                    className={`company-level-badge ${
-                      LEVEL_CLASS[item.level] ?? "company-level--developing"
-                    }`}
-                  >
-                    {item.level}
-                  </span>
-                </div>
-                <div className="company-readiness-item__score">
-                  <span className="company-readiness-item__score-value">{item.score}</span>
-                  <span className="company-readiness-item__score-label">fit</span>
-                </div>
-              </div>
-              <p className="company-readiness-item__reason">{item.reason}</p>
-              <div className="company-readiness-item__bar" aria-hidden>
-                <motion.div
-                  className="company-readiness-item__bar-fill"
-                  initial={{ width: 0 }}
-                  animate={{ width: `${item.score}%` }}
-                  transition={{ duration: 0.7, delay: delay + index * 0.05 }}
-                />
-              </div>
-            </motion.li>
-          ))}
-        </ul>
-      )}
-    </GlassCard>
+        {topCompanies.length === 0 ? (
+          <p className="empty-chip">Not enough topic data to estimate company readiness yet.</p>
+        ) : (
+          <ul className="company-readiness-list company-readiness-list--dashboard">
+            {topCompanies.map((item, index) => (
+              <CompanyReadinessItem
+                key={item.company}
+                item={item}
+                index={index}
+                delay={delay}
+              />
+            ))}
+          </ul>
+        )}
+
+        {companies.length > DASHBOARD_PREVIEW_COUNT ? (
+          <button
+            type="button"
+            className="company-browser-trigger"
+            onClick={() => setBrowserOpen(true)}
+          >
+            View All Companies
+          </button>
+        ) : null}
+      </GlassCard>
+
+      <CompanyBrowserModal
+        companies={companies}
+        isOpen={browserOpen}
+        onClose={() => setBrowserOpen(false)}
+      />
+    </>
   );
 }

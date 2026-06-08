@@ -69,8 +69,12 @@ def test_area_score_reflects_status() -> None:
 
 def test_topic_weighting_changes_company_score() -> None:
     profile = build_company_area_profile(_tourist_insights())
-    dp_heavy = CompanyTrack("DP Heavy", {"Dynamic Programming": 2.0, "Greedy": 0.2})
-    greedy_heavy = CompanyTrack("Greedy Heavy", {"Greedy": 2.0, "Dynamic Programming": 0.2})
+    dp_heavy = CompanyTrack(
+        "DP Heavy", "Big Tech", {"Dynamic Programming": 2.0, "Greedy": 0.2}
+    )
+    greedy_heavy = CompanyTrack(
+        "Greedy Heavy", "Big Tech", {"Greedy": 2.0, "Dynamic Programming": 0.2}
+    )
 
     dp_score = score_company_readiness(
         _tourist_insights(),
@@ -100,6 +104,9 @@ def test_tourist_has_high_company_scores_despite_low_momentum() -> None:
     assert rows[0]["score"] >= 70
     assert _tourist_insights()["skill_score"] > _tourist_insights()["momentum_score"]
     assert all("reason" in row for row in rows)
+    assert all("strong_topics" in row for row in rows)
+    assert all("missing_topics" in row for row in rows)
+    assert all("category" in row for row in rows)
 
 
 def test_active_beginner_scores_lower_than_tourist() -> None:
@@ -139,11 +146,35 @@ def test_company_scores_are_separate_from_skill_and_momentum_fields() -> None:
 
 
 def test_configurable_company_tracks_include_broad_set() -> None:
-    names = {track.name for track in get_company_tracks()}
+    tracks = get_company_tracks()
+    names = {track.name for track in tracks}
     expected = {
-        "Google", "Amazon", "Microsoft", "Meta", "Apple", "Netflix", "Uber",
-        "Adobe", "Salesforce", "Oracle", "LinkedIn", "Atlassian", "Airbnb",
-        "Stripe", "Databricks", "Snowflake", "NVIDIA", "Intuit", "Bloomberg",
-        "Goldman Sachs", "JPMorgan", "Citadel",
+        "Google", "Meta", "Amazon", "Microsoft", "Apple", "Netflix", "Uber",
+        "Airbnb", "LinkedIn", "Dropbox", "Atlassian", "Adobe", "Salesforce",
+        "ServiceNow", "Snowflake", "Databricks", "Stripe", "Shopify", "Notion",
+        "Jane Street", "Citadel", "Hudson River Trading", "Two Sigma", "DE Shaw",
+        "Goldman Sachs", "JPMorgan", "Flipkart", "Meesho", "Razorpay", "CRED",
+        "Swiggy", "Zomato", "Groww", "PhonePe",
     }
-    assert expected.issubset(names)
+    assert expected == names
+    assert len(tracks) == 34
+
+
+def test_score_company_readiness_returns_all_companies_by_default() -> None:
+    rows = score_company_readiness(
+        _tourist_insights(),
+        interview_readiness_level="Interview Ready",
+    )
+    assert len(rows) == 34
+
+
+def test_company_row_includes_topic_lists() -> None:
+    rows = score_company_readiness(
+        _tourist_insights(),
+        interview_readiness_level="Interview Ready",
+        limit=1,
+    )
+    row = rows[0]
+    assert isinstance(row["strong_topics"], list)
+    assert isinstance(row["missing_topics"], list)
+    assert "DP" in row["strong_topics"] or "Graphs" in row["strong_topics"]

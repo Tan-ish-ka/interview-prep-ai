@@ -14,9 +14,12 @@ export interface InterviewPreparation {
 
 export interface CompanyReadiness {
   company: string;
+  category: string;
   score: number;
   level: string;
   reason: string;
+  strong_topics: string[];
+  missing_topics: string[];
 }
 
 export interface InterviewFocusArea {

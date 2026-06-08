@@ -118,9 +118,17 @@ def test_engine_includes_company_readiness() -> None:
     result = engine.generate(_tourist_insights())
 
     assert "company_readiness" in result
-    assert 5 <= len(result["company_readiness"]) <= 10
+    assert len(result["company_readiness"]) >= 30
     top = result["company_readiness"][0]
-    assert {"company", "score", "level", "reason"} <= set(top.keys())
+    assert {
+        "company",
+        "category",
+        "score",
+        "level",
+        "reason",
+        "strong_topics",
+        "missing_topics",
+    } <= set(top.keys())
 
 
 def test_readiness_is_separate_from_raw_scores() -> None:

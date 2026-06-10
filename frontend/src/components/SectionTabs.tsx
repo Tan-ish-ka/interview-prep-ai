@@ -9,7 +9,7 @@ interface SectionTabsProps {
 
 const TABS: { id: DashboardTab; label: string }[] = [
   { id: "overview", label: "Overview" },
-  { id: "topics", label: "Topics" },
+  { id: "topics", label: "Compare" },
   { id: "recommendations", label: "Recommendations" },
 ];
 

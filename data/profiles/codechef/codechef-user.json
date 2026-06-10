@@ -1,0 +1,1400 @@
+{
+  "username": "codechef-user",
+  "platform": "codechef",
+  "current_rating": 1800,
+  "max_rating": 2000,
+  "total_solved": 150,
+  "solved_problems": [
+    {
+      "problem_id": "codechef-0",
+      "title": "CodeChef Problem 0",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-1",
+      "title": "CodeChef Problem 1",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-2",
+      "title": "CodeChef Problem 2",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-3",
+      "title": "CodeChef Problem 3",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-4",
+      "title": "CodeChef Problem 4",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-5",
+      "title": "CodeChef Problem 5",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-6",
+      "title": "CodeChef Problem 6",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-7",
+      "title": "CodeChef Problem 7",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-8",
+      "title": "CodeChef Problem 8",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-9",
+      "title": "CodeChef Problem 9",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-10",
+      "title": "CodeChef Problem 10",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-11",
+      "title": "CodeChef Problem 11",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-12",
+      "title": "CodeChef Problem 12",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-13",
+      "title": "CodeChef Problem 13",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-14",
+      "title": "CodeChef Problem 14",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-15",
+      "title": "CodeChef Problem 15",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-16",
+      "title": "CodeChef Problem 16",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-17",
+      "title": "CodeChef Problem 17",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-18",
+      "title": "CodeChef Problem 18",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-19",
+      "title": "CodeChef Problem 19",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-20",
+      "title": "CodeChef Problem 20",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-21",
+      "title": "CodeChef Problem 21",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-22",
+      "title": "CodeChef Problem 22",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-23",
+      "title": "CodeChef Problem 23",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-24",
+      "title": "CodeChef Problem 24",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-25",
+      "title": "CodeChef Problem 25",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-26",
+      "title": "CodeChef Problem 26",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-27",
+      "title": "CodeChef Problem 27",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-28",
+      "title": "CodeChef Problem 28",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-29",
+      "title": "CodeChef Problem 29",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-30",
+      "title": "CodeChef Problem 30",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-31",
+      "title": "CodeChef Problem 31",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-32",
+      "title": "CodeChef Problem 32",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-33",
+      "title": "CodeChef Problem 33",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-34",
+      "title": "CodeChef Problem 34",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-35",
+      "title": "CodeChef Problem 35",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-36",
+      "title": "CodeChef Problem 36",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-37",
+      "title": "CodeChef Problem 37",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-38",
+      "title": "CodeChef Problem 38",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-39",
+      "title": "CodeChef Problem 39",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-40",
+      "title": "CodeChef Problem 40",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-41",
+      "title": "CodeChef Problem 41",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-42",
+      "title": "CodeChef Problem 42",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-43",
+      "title": "CodeChef Problem 43",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-44",
+      "title": "CodeChef Problem 44",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-45",
+      "title": "CodeChef Problem 45",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-46",
+      "title": "CodeChef Problem 46",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-47",
+      "title": "CodeChef Problem 47",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-48",
+      "title": "CodeChef Problem 48",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-49",
+      "title": "CodeChef Problem 49",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-50",
+      "title": "CodeChef Problem 50",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-51",
+      "title": "CodeChef Problem 51",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-52",
+      "title": "CodeChef Problem 52",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-53",
+      "title": "CodeChef Problem 53",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-54",
+      "title": "CodeChef Problem 54",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-55",
+      "title": "CodeChef Problem 55",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-56",
+      "title": "CodeChef Problem 56",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-57",
+      "title": "CodeChef Problem 57",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-58",
+      "title": "CodeChef Problem 58",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-59",
+      "title": "CodeChef Problem 59",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-60",
+      "title": "CodeChef Problem 60",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-61",
+      "title": "CodeChef Problem 61",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-62",
+      "title": "CodeChef Problem 62",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-63",
+      "title": "CodeChef Problem 63",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-64",
+      "title": "CodeChef Problem 64",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-65",
+      "title": "CodeChef Problem 65",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-66",
+      "title": "CodeChef Problem 66",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-67",
+      "title": "CodeChef Problem 67",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-68",
+      "title": "CodeChef Problem 68",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-69",
+      "title": "CodeChef Problem 69",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-70",
+      "title": "CodeChef Problem 70",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-71",
+      "title": "CodeChef Problem 71",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-72",
+      "title": "CodeChef Problem 72",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-73",
+      "title": "CodeChef Problem 73",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-74",
+      "title": "CodeChef Problem 74",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-75",
+      "title": "CodeChef Problem 75",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-76",
+      "title": "CodeChef Problem 76",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-77",
+      "title": "CodeChef Problem 77",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-78",
+      "title": "CodeChef Problem 78",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-79",
+      "title": "CodeChef Problem 79",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-80",
+      "title": "CodeChef Problem 80",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-81",
+      "title": "CodeChef Problem 81",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-82",
+      "title": "CodeChef Problem 82",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-83",
+      "title": "CodeChef Problem 83",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-84",
+      "title": "CodeChef Problem 84",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-85",
+      "title": "CodeChef Problem 85",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-86",
+      "title": "CodeChef Problem 86",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-87",
+      "title": "CodeChef Problem 87",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-88",
+      "title": "CodeChef Problem 88",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-89",
+      "title": "CodeChef Problem 89",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-90",
+      "title": "CodeChef Problem 90",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-91",
+      "title": "CodeChef Problem 91",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-92",
+      "title": "CodeChef Problem 92",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-93",
+      "title": "CodeChef Problem 93",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-94",
+      "title": "CodeChef Problem 94",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-95",
+      "title": "CodeChef Problem 95",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-96",
+      "title": "CodeChef Problem 96",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-97",
+      "title": "CodeChef Problem 97",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-98",
+      "title": "CodeChef Problem 98",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-99",
+      "title": "CodeChef Problem 99",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-100",
+      "title": "CodeChef Problem 100",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-101",
+      "title": "CodeChef Problem 101",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-102",
+      "title": "CodeChef Problem 102",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.615223"
+    },
+    {
+      "problem_id": "codechef-103",
+      "title": "CodeChef Problem 103",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-104",
+      "title": "CodeChef Problem 104",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-105",
+      "title": "CodeChef Problem 105",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-106",
+      "title": "CodeChef Problem 106",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-107",
+      "title": "CodeChef Problem 107",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-108",
+      "title": "CodeChef Problem 108",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-109",
+      "title": "CodeChef Problem 109",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-110",
+      "title": "CodeChef Problem 110",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-111",
+      "title": "CodeChef Problem 111",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-112",
+      "title": "CodeChef Problem 112",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-113",
+      "title": "CodeChef Problem 113",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-114",
+      "title": "CodeChef Problem 114",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-115",
+      "title": "CodeChef Problem 115",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-116",
+      "title": "CodeChef Problem 116",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-117",
+      "title": "CodeChef Problem 117",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-118",
+      "title": "CodeChef Problem 118",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-119",
+      "title": "CodeChef Problem 119",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-120",
+      "title": "CodeChef Problem 120",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-121",
+      "title": "CodeChef Problem 121",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-122",
+      "title": "CodeChef Problem 122",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-123",
+      "title": "CodeChef Problem 123",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-124",
+      "title": "CodeChef Problem 124",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-125",
+      "title": "CodeChef Problem 125",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-126",
+      "title": "CodeChef Problem 126",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-127",
+      "title": "CodeChef Problem 127",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-128",
+      "title": "CodeChef Problem 128",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-129",
+      "title": "CodeChef Problem 129",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-130",
+      "title": "CodeChef Problem 130",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-131",
+      "title": "CodeChef Problem 131",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-132",
+      "title": "CodeChef Problem 132",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-133",
+      "title": "CodeChef Problem 133",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-134",
+      "title": "CodeChef Problem 134",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-135",
+      "title": "CodeChef Problem 135",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-136",
+      "title": "CodeChef Problem 136",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-137",
+      "title": "CodeChef Problem 137",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-138",
+      "title": "CodeChef Problem 138",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-139",
+      "title": "CodeChef Problem 139",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-140",
+      "title": "CodeChef Problem 140",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-141",
+      "title": "CodeChef Problem 141",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-142",
+      "title": "CodeChef Problem 142",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-143",
+      "title": "CodeChef Problem 143",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-144",
+      "title": "CodeChef Problem 144",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-145",
+      "title": "CodeChef Problem 145",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-146",
+      "title": "CodeChef Problem 146",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-147",
+      "title": "CodeChef Problem 147",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-148",
+      "title": "CodeChef Problem 148",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    },
+    {
+      "problem_id": "codechef-149",
+      "title": "CodeChef Problem 149",
+      "tags": [
+        "math",
+        "ad-hoc"
+      ],
+      "solved_at": "2026-06-10T00:43:01.616240"
+    }
+  ],
+  "tag_stats": [
+    {
+      "tag": "math",
+      "solved_count": 8,
+      "attempt_count": 0
+    },
+    {
+      "tag": "ad-hoc",
+      "solved_count": 12,
+      "attempt_count": 0
+    },
+    {
+      "tag": "dynamic programming",
+      "solved_count": 16,
+      "attempt_count": 0
+    },
+    {
+      "tag": "graphs",
+      "solved_count": 20,
+      "attempt_count": 0
+    },
+    {
+      "tag": "greedy",
+      "solved_count": 24,
+      "attempt_count": 0
+    },
+    {
+      "tag": "data structures",
+      "solved_count": 28,
+      "attempt_count": 0
+    },
+    {
+      "tag": "strings",
+      "solved_count": 32,
+      "attempt_count": 0
+    }
+  ],
+  "rating_history": {
+    "status": "OK",
+    "result": []
+  }
+}

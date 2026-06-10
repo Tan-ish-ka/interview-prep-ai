@@ -414,6 +414,13 @@
   gap: 1.25rem;
 }
 
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-top: 0.5rem;
+}
+
 .section-tabs {
   display: flex;
   gap: 0.35rem;

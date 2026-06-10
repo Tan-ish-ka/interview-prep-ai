@@ -5,7 +5,7 @@ import { GlassCard } from "./GlassCard";
 interface StatCardProps {
   icon: LucideIcon;
   label: string;
-  value: number | string;
+  value?: number | string;
   numericValue?: number;
   decimals?: number;
   hint?: string;

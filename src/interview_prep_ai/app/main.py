@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import traceback
+
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -50,6 +52,22 @@ def register_exception_handlers(app: FastAPI) -> None:
         return JSONResponse(
             status_code=502,
             content={"detail": str(exc)},
+        )
+        
+    @app.exception_handler(Exception)
+    async def generic_exception_handler(
+        _request: Request,
+        exc: Exception,
+    ) -> JSONResponse:
+        print("=== UNHANDLED EXCEPTION ===")
+        print(f"Type: {type(exc).__name__}")
+        print(f"Message: {exc}")
+        print("Stack trace:")
+        traceback.print_exc()
+        print("==========================")
+        return JSONResponse(
+            status_code=500,
+            content={"detail": "Internal server error", "type": type(exc).__name__, "message": str(exc)},
         )
 
 def create_app() -> FastAPI:

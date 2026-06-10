@@ -46,20 +46,7 @@ class ProfileService:
             raise UnsupportedPlatformError(f"Unsupported platform for URL: {url}")
 
         analyzer = self._analyzer_factory.get_analyzer(platform)
-
-        if platform == PlatformType.CODEFORCES:
-            return self._create_codeforces_profile(url, analyzer)
-
         return analyzer.analyze(url)
-
-    def _create_codeforces_profile(
-        self, url: str, _analyzer: IPlatformAnalyzer
-    ) -> UserProfile:
-        handle = _extract_codeforces_handle(url)
-        user_info = self._codeforces_client.get_user_info(handle)
-        rating_history = self._codeforces_client.get_user_rating_history(handle)
-        submissions = self._codeforces_client.get_user_submissions(handle)
-        return _build_codeforces_profile(handle, user_info, rating_history, submissions)
 
 
 def _extract_codeforces_handle(url: str) -> str:

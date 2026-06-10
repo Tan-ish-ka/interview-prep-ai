@@ -5,6 +5,7 @@ import { GlassCard } from "./GlassCard";
 interface TopicSectionProps {
   weakTopics: string[];
   strongTopics: string[];
+  delay?: number;
 }
 
 function TopicPills({
@@ -43,10 +44,10 @@ function TopicPills({
   );
 }
 
-export function TopicSection({ weakTopics, strongTopics }: TopicSectionProps) {
+export function TopicSection({ weakTopics, strongTopics, delay = 0 }: TopicSectionProps) {
   return (
     <div className="topics-grid">
-      <GlassCard className="section-card section-card--topics" delay={0.18}>
+      <GlassCard className="section-card section-card--topics" delay={delay}>
         <div className="section-card__header">
           <ShieldAlert size={22} />
           <div>
@@ -58,7 +59,7 @@ export function TopicSection({ weakTopics, strongTopics }: TopicSectionProps) {
         <TopicPills topics={weakTopics} variant="weak" />
       </GlassCard>
 
-      <GlassCard className="section-card section-card--topics" delay={0.2}>
+      <GlassCard className="section-card section-card--topics" delay={delay + 0.02}>
         <div className="section-card__header">
           <ShieldCheck size={22} />
           <div>

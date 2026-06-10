@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export type DashboardTab = "overview" | "topics" | "recommendations";
+export type DashboardTab = "overview" | "analytics" | "interview-prep" | "companies" | "compare" | "platforms";
 
 interface SectionTabsProps {
   active: DashboardTab;
@@ -9,8 +9,11 @@ interface SectionTabsProps {
 
 const TABS: { id: DashboardTab; label: string }[] = [
   { id: "overview", label: "Overview" },
-  { id: "topics", label: "Topics" },
-  { id: "recommendations", label: "Recommendations" },
+  { id: "analytics", label: "Analytics" },
+  { id: "interview-prep", label: "Interview Prep" },
+  { id: "companies", label: "Companies" },
+  { id: "compare", label: "Compare" },
+  { id: "platforms", label: "Platforms" },
 ];
 
 export function SectionTabs({ active, onChange }: SectionTabsProps) {

@@ -70,6 +70,7 @@ class InsightGenerator:
             "solved_count_definition": SOLVED_COUNT_DEFINITION,
             "recent_activity": self._problem_analyzer.recent_activity(problems),
             "top_tags": top_tags,
+            "tag_frequency": tag_frequency, 
             "weak_topics": weak_topics,
             "strong_topics": strong_topics,
         }

@@ -68,7 +68,11 @@ def cp_tag_to_company_focus(tag: str) -> str | None:
 
 def build_company_area_profile(insights: dict[str, Any]) -> dict[str, dict[str, Any]]:
     """Return per-dimension status and solved counts for company scoring."""
-    top_tags: dict[str, int] = insights.get("top_tags") or {}
+    tag_frequency: dict[str, int] = (
+    insights.get("tag_frequency")
+    or insights.get("top_tags")
+    or {}
+       )
     weak_topics = set(insights.get("weak_topics") or [])
     strong_topics = set(insights.get("strong_topics") or [])
 
@@ -76,7 +80,8 @@ def build_company_area_profile(insights: dict[str, Any]) -> dict[str, dict[str, 
     is_weak: dict[str, bool] = {area: False for area in COMPANY_FOCUS_AREAS}
     is_strong: dict[str, bool] = {area: False for area in COMPANY_FOCUS_AREAS}
 
-    for tag, count in top_tags.items():
+    for tag, count in tag_frequency.items():
+    
         focus = cp_tag_to_company_focus(tag)
         if focus is None:
             continue

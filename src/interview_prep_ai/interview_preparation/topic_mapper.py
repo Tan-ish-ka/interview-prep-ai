@@ -57,7 +57,11 @@ def cp_tag_to_focus_area(tag: str) -> str | None:
 
 def map_interview_focus_areas(insights: dict[str, Any]) -> list[dict[str, Any]]:
     """Build interview focus areas with status from insights tag data."""
-    top_tags: dict[str, int] = insights.get("top_tags") or {}
+    tag_frequency: dict[str, int] = (
+    insights.get("tag_frequency")
+    or insights.get("top_tags")
+    or {}
+            )
     weak_topics = set(insights.get("weak_topics") or [])
     strong_topics = set(insights.get("strong_topics") or [])
 
@@ -65,24 +69,17 @@ def map_interview_focus_areas(insights: dict[str, Any]) -> list[dict[str, Any]]:
     area_weak: dict[str, bool] = {area: False for area in INTERVIEW_FOCUS_AREAS}
     area_strong: dict[str, bool] = {area: False for area in INTERVIEW_FOCUS_AREAS}
 
-    for tag, count in top_tags.items():
+    for tag, count in tag_frequency.items():
         focus = cp_tag_to_focus_area(tag)
         if focus is None:
             continue
+
         area_counts[focus] += count
+
         if tag in weak_topics:
             area_weak[focus] = True
+
         if tag in strong_topics:
-            area_strong[focus] = True
-
-    for tag in weak_topics:
-        focus = cp_tag_to_focus_area(tag)
-        if focus:
-            area_weak[focus] = True
-
-    for tag in strong_topics:
-        focus = cp_tag_to_focus_area(tag)
-        if focus:
             area_strong[focus] = True
 
     focus_areas: list[dict[str, Any]] = []

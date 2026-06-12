@@ -25,7 +25,7 @@ class InterviewPrepService:
         self._interview_prep_engine = interview_prep_engine or InterviewPrepEngine()
 
     def generate_report(self, url: str) -> dict[str, Any]:
-        profile = self._profile_manager.get_profile(url)
+        profile = self._profile_manager.get_profile(url, refresh=True)
         insights = self._insight_generator.generate(profile, profile.rating_history)
         recommendations = self._recommendation_service.generate(insights)
         interview_preparation = self._interview_prep_engine.generate(insights)

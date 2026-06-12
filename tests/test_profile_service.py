@@ -92,12 +92,14 @@ def test_platform_detector_is_called(
 def test_analyzer_factory_is_called(
     service: ProfileService,
     mock_analyzer_factory: MagicMock,
+    mock_codeforces_client: MagicMock,
     codeforces_url: str,
 ) -> None:
     service.create_profile(codeforces_url)
 
     mock_analyzer_factory.get_analyzer.assert_called_once_with(
-        PlatformType.CODEFORCES
+        PlatformType.CODEFORCES,
+        codeforces_client=mock_codeforces_client,
     )
 
 
@@ -131,7 +133,7 @@ def test_user_profile_is_returned(
     assert problem.title == "Test Problem"
     assert problem.tags == ["math"]
     assert problem.solved_at is not None
-    assert profile.tag_stats == [TagStat(tag="math", solved_count=1, attempt_count=0)]
+    assert profile.tag_stats == [TagStat(tag="Math", solved_count=1, attempt_count=0)]
     assert profile.rating_history == {
         "status": "OK",
         "result": [{"newRating": 3919}],
@@ -187,8 +189,8 @@ def test_tag_stats_built_from_solved_problem_tags(
     profile = service.create_profile(codeforces_url)
 
     assert profile.tag_stats == [
-        TagStat(tag="dp", solved_count=2, attempt_count=0),
-        TagStat(tag="graphs", solved_count=2, attempt_count=0),
+        TagStat(tag="Dynamic Programming", solved_count=2, attempt_count=0),
+        TagStat(tag="Graphs", solved_count=2, attempt_count=0),
     ]
 
 

@@ -1,9 +1,173 @@
 {
   "username": "Rehan7",
   "platform": "codeforces",
-  "current_rating": 1558,
+  "current_rating": 1625,
   "max_rating": 1639,
+  "total_solved": 690,
   "solved_problems": [
+    {
+      "problem_id": "2233C",
+      "title": "Cost of a Bracket Sequence",
+      "tags": [
+        "brute force",
+        "dp",
+        "greedy"
+      ],
+      "solved_at": "2026-06-09T15:38:29+00:00"
+    },
+    {
+      "problem_id": "2233B",
+      "title": "Different Distances",
+      "tags": [
+        "constructive algorithms"
+      ],
+      "solved_at": "2026-06-09T14:55:58+00:00"
+    },
+    {
+      "problem_id": "2233A",
+      "title": "AI Project Development",
+      "tags": [
+        "brute force",
+        "math"
+      ],
+      "solved_at": "2026-06-09T14:44:55+00:00"
+    },
+    {
+      "problem_id": "1538D",
+      "title": "Another Problem About Dividing Numbers",
+      "tags": [
+        "constructive algorithms",
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2026-06-08T22:10:13+00:00"
+    },
+    {
+      "problem_id": "1554B",
+      "title": "Cobb",
+      "tags": [
+        "bitmasks",
+        "brute force",
+        "greedy",
+        "math"
+      ],
+      "solved_at": "2026-06-08T19:20:08+00:00"
+    },
+    {
+      "problem_id": "1562D1",
+      "title": "Two Hundred Twenty One (easy version)",
+      "tags": [
+        "data structures",
+        "dp",
+        "math"
+      ],
+      "solved_at": "2026-06-08T09:01:13+00:00"
+    },
+    {
+      "problem_id": "2234F",
+      "title": "Vessels, Heights and Two Versions (Hard Version)",
+      "tags": [
+        "data structures",
+        "dfs and similar",
+        "dsu",
+        "greedy",
+        "implementation",
+        "two pointers"
+      ],
+      "solved_at": "2026-06-07T16:46:49+00:00"
+    },
+    {
+      "problem_id": "2234D",
+      "title": "XOR, Expression and Two Binary Numbers",
+      "tags": [
+        "bitmasks",
+        "divide and conquer",
+        "dp",
+        "math",
+        "number theory"
+      ],
+      "solved_at": "2026-06-07T15:55:55+00:00"
+    },
+    {
+      "problem_id": "2234C",
+      "title": "Vessels, Heights and Two Versions (Easy Version)",
+      "tags": [
+        "dfs and similar",
+        "dsu",
+        "greedy",
+        "implementation",
+        "two pointers"
+      ],
+      "solved_at": "2026-06-07T15:20:53+00:00"
+    },
+    {
+      "problem_id": "2234B",
+      "title": "Palindrome, Twelve and Two Terms",
+      "tags": [
+        "brute force",
+        "constructive algorithms",
+        "math"
+      ],
+      "solved_at": "2026-06-07T14:52:17+00:00"
+    },
+    {
+      "problem_id": "2234A",
+      "title": "Euclid, Sequence and Two Numbers",
+      "tags": [
+        "math",
+        "number theory",
+        "sortings"
+      ],
+      "solved_at": "2026-06-07T14:41:46+00:00"
+    },
+    {
+      "problem_id": "1583C",
+      "title": "Omkar and Determination",
+      "tags": [
+        "data structures",
+        "dp"
+      ],
+      "solved_at": "2026-06-07T06:02:38+00:00"
+    },
+    {
+      "problem_id": "1611E1",
+      "title": "Escape The Maze (easy version)",
+      "tags": [
+        "dfs and similar",
+        "greedy",
+        "shortest paths",
+        "trees",
+        "two pointers"
+      ],
+      "solved_at": "2026-06-06T19:52:23+00:00"
+    },
+    {
+      "problem_id": "1619E",
+      "title": "MEX and Increments",
+      "tags": [
+        "constructive algorithms",
+        "data structures",
+        "dp",
+        "greedy",
+        "implementation",
+        "math",
+        "sortings"
+      ],
+      "solved_at": "2026-06-06T19:19:31+00:00"
+    },
+    {
+      "problem_id": "1608C",
+      "title": "Game Master",
+      "tags": [
+        "data structures",
+        "dfs and similar",
+        "dp",
+        "graphs",
+        "greedy",
+        "two pointers"
+      ],
+      "solved_at": "2026-06-06T16:53:11+00:00"
+    },
     {
       "problem_id": "1901D",
       "title": "Yet Another Monster Fight",
@@ -6864,173 +7028,88 @@
   ],
   "tag_stats": [
     {
-      "tag": "*special",
+      "tag": "*Special",
       "solved_count": 2,
       "attempt_count": 0
     },
     {
-      "tag": "binary search",
-      "solved_count": 92,
+      "tag": "Arrays / Strings",
+      "solved_count": 91,
       "attempt_count": 0
     },
     {
-      "tag": "bitmasks",
-      "solved_count": 54,
+      "tag": "Binary Search",
+      "solved_count": 95,
       "attempt_count": 0
     },
     {
-      "tag": "brute force",
-      "solved_count": 154,
+      "tag": "Bit Manipulation",
+      "solved_count": 56,
       "attempt_count": 0
     },
     {
-      "tag": "chinese remainder theorem",
+      "tag": "Communication",
       "solved_count": 1,
       "attempt_count": 0
     },
     {
-      "tag": "combinatorics",
-      "solved_count": 50,
+      "tag": "Constructive Algorithms",
+      "solved_count": 314,
       "attempt_count": 0
     },
     {
-      "tag": "communication",
-      "solved_count": 1,
+      "tag": "Data Structures",
+      "solved_count": 115,
       "attempt_count": 0
     },
     {
-      "tag": "constructive algorithms",
-      "solved_count": 152,
-      "attempt_count": 0
-    },
-    {
-      "tag": "data structures",
-      "solved_count": 99,
-      "attempt_count": 0
-    },
-    {
-      "tag": "dfs and similar",
-      "solved_count": 68,
-      "attempt_count": 0
-    },
-    {
-      "tag": "divide and conquer",
-      "solved_count": 10,
-      "attempt_count": 0
-    },
-    {
-      "tag": "dp",
-      "solved_count": 166,
-      "attempt_count": 0
-    },
-    {
-      "tag": "dsu",
-      "solved_count": 19,
-      "attempt_count": 0
-    },
-    {
-      "tag": "flows",
-      "solved_count": 2,
-      "attempt_count": 0
-    },
-    {
-      "tag": "games",
-      "solved_count": 30,
-      "attempt_count": 0
-    },
-    {
-      "tag": "geometry",
-      "solved_count": 16,
-      "attempt_count": 0
-    },
-    {
-      "tag": "graph matchings",
-      "solved_count": 8,
-      "attempt_count": 0
-    },
-    {
-      "tag": "graphs",
-      "solved_count": 65,
-      "attempt_count": 0
-    },
-    {
-      "tag": "greedy",
-      "solved_count": 310,
-      "attempt_count": 0
-    },
-    {
-      "tag": "hashing",
+      "tag": "Divide And Conquer",
       "solved_count": 11,
       "attempt_count": 0
     },
     {
-      "tag": "implementation",
-      "solved_count": 143,
+      "tag": "Dynamic Programming",
+      "solved_count": 172,
       "attempt_count": 0
     },
     {
-      "tag": "interactive",
-      "solved_count": 24,
+      "tag": "Graphs",
+      "solved_count": 169,
       "attempt_count": 0
     },
     {
-      "tag": "math",
-      "solved_count": 274,
+      "tag": "Greedy",
+      "solved_count": 317,
       "attempt_count": 0
     },
     {
-      "tag": "matrices",
-      "solved_count": 5,
+      "tag": "Implementation",
+      "solved_count": 146,
       "attempt_count": 0
     },
     {
-      "tag": "meet-in-the-middle",
-      "solved_count": 1,
+      "tag": "Math",
+      "solved_count": 452,
       "attempt_count": 0
     },
     {
-      "tag": "number theory",
-      "solved_count": 101,
+      "tag": "Shortest Paths",
+      "solved_count": 20,
       "attempt_count": 0
     },
     {
-      "tag": "probabilities",
-      "solved_count": 8,
-      "attempt_count": 0
-    },
-    {
-      "tag": "schedules",
-      "solved_count": 2,
-      "attempt_count": 0
-    },
-    {
-      "tag": "shortest paths",
-      "solved_count": 19,
-      "attempt_count": 0
-    },
-    {
-      "tag": "sortings",
-      "solved_count": 89,
-      "attempt_count": 0
-    },
-    {
-      "tag": "strings",
+      "tag": "Strings",
       "solved_count": 46,
       "attempt_count": 0
     },
     {
-      "tag": "ternary search",
-      "solved_count": 3,
+      "tag": "Trees",
+      "solved_count": 49,
       "attempt_count": 0
     },
     {
-      "tag": "trees",
-      "solved_count": 48,
-      "attempt_count": 0
-    },
-    {
-      "tag": "two pointers",
-      "solved_count": 59,
+      "tag": "Two Pointers",
+      "solved_count": 63,
       "attempt_count": 0
     }
   ],
@@ -7378,6 +7457,24 @@
         "ratingUpdateTimeSeconds": 1778056500,
         "oldRating": 1611,
         "newRating": 1558
+      },
+      {
+        "contestId": 2234,
+        "contestName": "Codeforces Round 1102 (Div. 2)",
+        "handle": "Rehan7",
+        "rank": 848,
+        "ratingUpdateTimeSeconds": 1780851000,
+        "oldRating": 1558,
+        "newRating": 1634
+      },
+      {
+        "contestId": 2233,
+        "contestName": "Educational Codeforces Round 191 (Rated for Div. 2)",
+        "handle": "Rehan7",
+        "rank": 2185,
+        "ratingUpdateTimeSeconds": 1781022900,
+        "oldRating": 1634,
+        "newRating": 1625
       }
     ]
   }

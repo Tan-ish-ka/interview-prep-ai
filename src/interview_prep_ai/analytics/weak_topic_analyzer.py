@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from interview_prep_ai.analytics.topic_normalizer import normalize_tag
 from interview_prep_ai.core.models.tag_stat import TagStat
 
 _WEAK_RATIO = 0.5
@@ -21,12 +22,22 @@ class WeakTopicAnalyzer:
             return []
 
         excluded = exclude or set()
-        average_solves = sum(stat.solved_count for stat in tag_stats) / len(tag_stats)
+        normalized_stats: list[TagStat] = []
+        for stat in tag_stats:
+            normalized = normalize_tag(stat.tag)
+            if not normalized:
+                continue
+            normalized_stats.append(TagStat(tag=normalized, solved_count=stat.solved_count))
+
+        if not normalized_stats:
+            return []
+
+        average_solves = sum(stat.solved_count for stat in normalized_stats) / len(normalized_stats)
         threshold = max(_MIN_WEAK_THRESHOLD, average_solves * _WEAK_RATIO)
 
         weak = [
             stat
-            for stat in tag_stats
+            for stat in normalized_stats
             if stat.solved_count > 0
             and stat.solved_count < threshold
             and stat.tag not in excluded

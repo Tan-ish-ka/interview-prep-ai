@@ -15,6 +15,7 @@ from interview_prep_ai.platforms.codeforces.solved_problems import (
     count_unique_solved_submissions,
     solved_problems_from_submissions,
 )
+from interview_prep_ai.analytics.topic_normalizer import normalize_tag_stats
 
 
 class UnsupportedPlatformError(Exception):
@@ -45,7 +46,12 @@ class ProfileService:
         if platform == PlatformType.UNKNOWN:
             raise UnsupportedPlatformError(f"Unsupported platform for URL: {url}")
 
-        analyzer = self._analyzer_factory.get_analyzer(platform)
+        analyzer = self._analyzer_factory.get_analyzer(
+            platform,
+            codeforces_client=self._codeforces_client,
+        )
+        if hasattr(analyzer, "_codeforces_client"):
+            analyzer._codeforces_client = self._codeforces_client
         return analyzer.analyze(url)
 
 
@@ -86,7 +92,7 @@ def _build_codeforces_profile(
         max_rating=max_rating,
         total_solved=total_solved,
         solved_problems=solved_problems,
-        tag_stats=_tag_stats_from_solved_problems(solved_problems),
+        tag_stats=normalize_tag_stats(_tag_stats_from_solved_problems(solved_problems)),
         rating_history=rating_history,
     )
 
@@ -97,8 +103,8 @@ def _tag_stats_from_solved_problems(
     counts: dict[str, int] = {}
     for problem in solved_problems:
         for tag in problem.tags:
-            normalized = tag.lower()
-            counts[normalized] = counts.get(normalized, 0) + 1
+            key = tag.lower().strip()
+            counts[key] = counts.get(key, 0) + 1
 
     return [
         TagStat(tag=tag, solved_count=count, attempt_count=0)

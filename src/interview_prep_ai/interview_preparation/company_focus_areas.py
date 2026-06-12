@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from interview_prep_ai.analytics.topic_normalizer import normalize_topics
 from typing import Any
 
 COMPANY_FOCUS_AREAS: tuple[str, ...] = (
@@ -73,8 +74,8 @@ def build_company_area_profile(insights: dict[str, Any]) -> dict[str, dict[str, 
     or insights.get("top_tags")
     or {}
        )
-    weak_topics = set(insights.get("weak_topics") or [])
-    strong_topics = set(insights.get("strong_topics") or [])
+    weak_topics = set(normalize_topics(insights.get("weak_topics") or []))
+    strong_topics = set(normalize_topics(insights.get("strong_topics") or []))
 
     counts: dict[str, int] = {area: 0 for area in COMPANY_FOCUS_AREAS}
     is_weak: dict[str, bool] = {area: False for area in COMPANY_FOCUS_AREAS}

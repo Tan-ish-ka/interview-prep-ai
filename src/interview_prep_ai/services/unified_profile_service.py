@@ -77,7 +77,8 @@ class UnifiedProfileService:
             first_platform = next(iter(processed_platforms.values()))
             skill_score = first_platform.insights.get("skill_score", 0)
             momentum_score = first_platform.insights.get("momentum_score", 0)
-            interview_readiness = first_platform.profile.username  # Temporary, will use real interview prep
+            interview_preparation = self._interview_engine.generate(first_platform.insights)
+            interview_readiness = interview_preparation.get("interview_readiness_level", "Developing")
             growth_potential = first_platform.insights.get("potential_efficiency", {}).get("growth_potential", "")
             strong_topics = first_platform.insights.get("strong_topics", [])
             weak_topics = first_platform.insights.get("weak_topics", [])

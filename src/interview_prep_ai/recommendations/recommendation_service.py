@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from interview_prep_ai.analytics.topic_normalizer import normalize_topics
 from typing import Any, TypedDict
 
 
@@ -55,13 +56,13 @@ class RecommendationService:
                 "Broaden your topic coverage — practice across more problem categories."
             )
 
-        weak_topics = insights.get("weak_topics") or []
+        weak_topics = normalize_topics(insights.get("weak_topics") or [])
         if weak_topics:
             recommendations.append(
                 f"Focus on improving weak areas: {', '.join(weak_topics[:3])}."
             )
 
-        strong_topics = insights.get("strong_topics") or []
+        strong_topics = normalize_topics(insights.get("strong_topics") or [])
         if strong_topics:
             recommendations.append(
                 f"Leverage your strengths in: {', '.join(strong_topics[:3])}."

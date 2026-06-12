@@ -32,7 +32,7 @@ class ProfileManager:
         self._profile_repository = profile_repository
         self._platform_detector = platform_detector
 
-    def get_profile(self, url: str) -> UserProfile:
+    def get_profile(self, url: str, *, refresh: bool = False) -> UserProfile:
         platform_type = self._platform_detector.detect(url)
         if platform_type == PlatformType.UNKNOWN:
             raise UnsupportedPlatformError(f"Unsupported platform for URL: {url}")
@@ -40,9 +40,10 @@ class ProfileManager:
         platform = _PLATFORM_BY_TYPE[platform_type]
         username = _extract_username(url, platform_type)
 
-        cached = self._profile_repository.load(username, platform)
-        if cached is not None:
-            return cached
+        if not refresh:
+            cached = self._profile_repository.load(username, platform)
+            if cached is not None:
+                return cached
 
         profile = self._profile_service.create_profile(url)
         self._profile_repository.save(profile)

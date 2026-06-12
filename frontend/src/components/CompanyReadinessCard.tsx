@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Building2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { Building2, ChevronRight } from "lucide-react";
 import type { CompanyReadiness } from "../types/report";
 import { CompanyBrowserModal } from "./CompanyBrowserModal";
 import { CompanyReadinessItem } from "./CompanyReadinessItem";
@@ -21,22 +22,41 @@ export function CompanyReadinessCard({
 
   return (
     <>
-      <GlassCard className="section-card section-card--companies" delay={delay}>
+      <GlassCard className="section-card section-card--companies" delay={delay} accent="cyan">
         <div className="section-card__header">
-          <Building2 size={22} />
-          <div>
-            <h2>Company Readiness</h2>
+          <motion.div
+            whileHover={{ scale: 1.1, rotate: -5 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            <Building2 size={24} />
+          </motion.div>
+          <div className="flex-1">
+            <h2 className="section-card__title">Company Readiness</h2>
             <p className="section-card__desc">
               Top recommended tracks — separate from skill and momentum scores
             </p>
           </div>
           {companies.length > 0 ? (
-            <span className="section-card__count">{companies.length} tracks</span>
+            <motion.span
+              className="section-card__count"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: delay + 0.1, type: "spring", stiffness: 400 }}
+            >
+              {companies.length}
+            </motion.span>
           ) : null}
         </div>
 
         {topCompanies.length === 0 ? (
-          <p className="empty-chip">Not enough topic data to estimate company readiness yet.</p>
+          <motion.p
+            className="empty-chip"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: delay + 0.1 }}
+          >
+            Not enough topic data to estimate company readiness yet.
+          </motion.p>
         ) : (
           <ul className="company-readiness-list company-readiness-list--dashboard">
             {topCompanies.map((item, index) => (
@@ -51,13 +71,16 @@ export function CompanyReadinessCard({
         )}
 
         {companies.length > DASHBOARD_PREVIEW_COUNT ? (
-          <button
+          <motion.button
             type="button"
             className="company-browser-trigger"
             onClick={() => setBrowserOpen(true)}
+            whileHover={{ x: 4 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             View All Companies
-          </button>
+            <ChevronRight size={18} />
+          </motion.button>
         ) : null}
       </GlassCard>
 

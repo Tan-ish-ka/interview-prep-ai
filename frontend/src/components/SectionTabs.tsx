@@ -32,7 +32,7 @@ export function SectionTabs({ active, onChange }: SectionTabsProps) {
             <motion.span
               layoutId="tab-pill"
               className="section-tabs__indicator"
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              transition={{ type: "spring", stiffness: 380, damping: 32 }}
             />
           ) : null}
           <span className="section-tabs__label">{tab.label}</span>

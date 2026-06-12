@@ -2,51 +2,78 @@
 
 from __future__ import annotations
 
+from interview_prep_ai.analytics.topic_normalizer import normalize_topics
 from typing import Any
 
 INTERVIEW_FOCUS_AREAS: tuple[str, ...] = (
-    "Arrays / Strings",
-    "Linked Lists",
-    "Stacks / Queues",
-    "Binary Search",
-    "Trees",
-    "Graphs",
     "Dynamic Programming",
+    "Graphs",
     "Greedy",
+    "Binary Search",
     "Math",
-    "Bit Manipulation",
+    "Bitmasks",
+    "Data Structures",
+    "Strings",
+    "Implementation",
+    "Constructive Algorithms",
 )
 
+# Mapping from Codeforces/CP tags (normalized) to canonical interview focus areas.
 _CP_TAG_TO_FOCUS: dict[str, str] = {
-    "arrays": "Arrays / Strings",
-    "strings": "Arrays / Strings",
-    "implementation": "Arrays / Strings",
-    "two pointers": "Arrays / Strings",
-    "sortings": "Arrays / Strings",
-    "linked lists": "Linked Lists",
-    "data structures": "Stacks / Queues",
-    "queues": "Stacks / Queues",
-    "deque": "Stacks / Queues",
-    "binary search": "Binary Search",
-    "trees": "Trees",
-    "dfs and similar": "Trees",
-    "dsu": "Trees",
+    # Dynamic Programming
+    "dp": "Dynamic Programming",
+    "dynamic programming": "Dynamic Programming",
+    "probabilities": "Dynamic Programming",
+
+    # Graphs
     "graphs": "Graphs",
     "shortest paths": "Graphs",
     "flows": "Graphs",
     "graph matchings": "Graphs",
-    "schedules": "Graphs",
-    "dp": "Dynamic Programming",
-    "probabilities": "Dynamic Programming",
+    "dfs and similar": "Graphs",
+    "bfs": "Graphs",
+    "dijkstra": "Graphs",
+    "topological sort": "Graphs",
+
+    # Greedy and constructive
     "greedy": "Greedy",
-    "constructive algorithms": "Greedy",
+    "constructive algorithms": "Constructive Algorithms",
+    "brute force": "Constructive Algorithms",
+
+    # Binary search
+    "binary search": "Binary Search",
+    "ternary search": "Binary Search",
+
+    # Math
     "math": "Math",
     "number theory": "Math",
     "combinatorics": "Math",
     "geometry": "Math",
     "matrices": "Math",
-    "bitmasks": "Bit Manipulation",
-    "bit manipulation": "Bit Manipulation",
+
+    # Bitmasks
+    "bitmasks": "Bitmasks",
+    "bit manipulation": "Bitmasks",
+
+    # Data structures (generic)
+    "data structures": "Data Structures",
+    "stl": "Data Structures",
+    "sets": "Data Structures",
+    "maps": "Data Structures",
+    "hashing": "Data Structures",
+    "hash table": "Data Structures",
+    "heap": "Data Structures",
+    "heaps": "Data Structures",
+    "priority queue": "Data Structures",
+
+    # Strings and implementation
+    "strings": "Strings",
+    "string": "Strings",
+    "kmp": "Strings",
+    "z-function": "Strings",
+    "suffix array": "Strings",
+    "implementation": "Implementation",
+    "interactive": "Implementation",
 }
 
 
@@ -62,8 +89,8 @@ def map_interview_focus_areas(insights: dict[str, Any]) -> list[dict[str, Any]]:
     or insights.get("top_tags")
     or {}
             )
-    weak_topics = set(insights.get("weak_topics") or [])
-    strong_topics = set(insights.get("strong_topics") or [])
+    weak_topics = set(normalize_topics(insights.get("weak_topics") or []))
+    strong_topics = set(normalize_topics(insights.get("strong_topics") or []))
 
     area_counts: dict[str, int] = {area: 0 for area in INTERVIEW_FOCUS_AREAS}
     area_weak: dict[str, bool] = {area: False for area in INTERVIEW_FOCUS_AREAS}

@@ -190,7 +190,7 @@ function CompareTab({ currentHandle }: { currentHandle: string }) {
         </p>
       </motion.div>
 
-      <GlassCard delay={0.05} className="p-0 overflow-hidden">
+      <GlassCard delay={0.05} className="p-0 overflow-hidden" accent="cyan">
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-0">
           <div className="p-6 md:p-8 bg-gradient-to-br from-cyan-500/5 to-transparent border-r border-white/5">
             <div className="flex items-start justify-between mb-6">
@@ -259,23 +259,25 @@ function CompareTab({ currentHandle }: { currentHandle: string }) {
                     className="mb-4"
                   />
 
-                  <button
-                    onClick={handleCompare}
-                    disabled={loading || !otherHandle.trim()}
-                    className="w-full btn-primary flex items-center justify-center gap-2"
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 className="w-5 h-5 spin" />
-                        Comparing...
-                      </>
-                    ) : (
-                      <>
-                        <Sparkles className="w-5 h-5" />
-                        Compare Now
-                      </>
-                    )}
-                  </button>
+                    <motion.button
+                      onClick={handleCompare}
+                      disabled={loading || !otherHandle.trim()}
+                      className="w-full btn-primary flex items-center justify-center gap-2"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.985 }}
+                    >
+                      {loading ? (
+                        <>
+                          <Loader2 className="w-5 h-5 spin" />
+                          Comparing...
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="w-5 h-5" />
+                          Compare Now
+                        </>
+                      )}
+                    </motion.button>
                   {error && <div className="mt-3 text-sm text-red-400">{error}</div>}
                 </div>
               </div>
@@ -344,7 +346,7 @@ function CompareTab({ currentHandle }: { currentHandle: string }) {
                   1
                 );
                 return (
-                  <GlassCard key={key} delay={0.08 + idx * 0.03} className="p-5">
+                  <GlassCard key={key} delay={0.08 + idx * 0.03} className="p-5" accent="cyan">
                     <div className="flex items-center gap-2 mb-4">
                       <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-400/10">
                         <Icon className="w-5 h-5 text-cyan-400" />
@@ -387,7 +389,7 @@ function CompareTab({ currentHandle }: { currentHandle: string }) {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-              <GlassCard delay={0.15} className="lg:col-span-2 p-6">
+              <GlassCard delay={0.15} className="lg:col-span-2 p-6" accent="purple">
                 <h3 className="text-xl font-bold text-white mb-5 flex items-center gap-2">
                   <Layers className="w-5 h-5 text-purple-400" />
                   Topic Strength Comparison
@@ -426,7 +428,7 @@ function CompareTab({ currentHandle }: { currentHandle: string }) {
                 </div>
               </GlassCard>
 
-              <GlassCard delay={0.18} className="p-6">
+              <GlassCard delay={0.18} className="p-6" accent="purple">
                 <h3 className="text-xl font-bold text-white mb-5 flex items-center gap-2">
                   <Brain className="w-5 h-5 text-yellow-400" />
                   Comparison Summary
@@ -472,7 +474,7 @@ function CompareTab({ currentHandle }: { currentHandle: string }) {
               </GlassCard>
             </div>
 
-            <GlassCard delay={0.22} className="p-6">
+            <GlassCard delay={0.22} className="p-6" accent="cyan">
               <h3 className="text-xl font-bold text-white mb-5 flex items-center gap-2">
                 <BarChart3 className="w-5 h-5 text-cyan-400" />
                 Detailed Breakdown
@@ -527,7 +529,7 @@ function CompareTab({ currentHandle }: { currentHandle: string }) {
             </GlassCard>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <GlassCard delay={0.25} className="p-6">
+              <GlassCard delay={0.25} className="p-6" accent="green">
                 <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-green-400" />
                   Your Strong Topics
@@ -552,7 +554,7 @@ function CompareTab({ currentHandle }: { currentHandle: string }) {
                 </div>
               </GlassCard>
 
-              <GlassCard delay={0.28} className="p-6">
+              <GlassCard delay={0.28} className="p-6" accent="orange">
                 <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                   <Target className="w-5 h-5 text-orange-400" />
                   Areas to Improve
@@ -577,7 +579,7 @@ function CompareTab({ currentHandle }: { currentHandle: string }) {
                 </div>
               </GlassCard>
 
-              <GlassCard delay={0.31} className="p-6 bg-gradient-to-br from-indigo-900/20 to-purple-900/20 border border-indigo-400/20">
+              <GlassCard delay={0.31} className="p-6 bg-gradient-to-br from-indigo-900/20 to-purple-900/20 border border-indigo-400/20" accent="purple">
                 <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                   <Brain className="w-5 h-5 text-indigo-400" />
                   Recommendations
@@ -652,7 +654,7 @@ function PlatformsTab({ currentHandle }: { currentHandle: string }) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <GlassCard className="p-8 border-t-4 border-t-cyan-500/40">
+          <GlassCard className="p-8 border-t-4 border-t-cyan-500/40" accent="cyan">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 flex items-center justify-center">
                 <Code2 className="w-7 h-7 text-cyan-400" />
@@ -667,7 +669,7 @@ function PlatformsTab({ currentHandle }: { currentHandle: string }) {
             </div>
           </GlassCard>
 
-          <GlassCard className="p-8 border-t-4 border-t-orange-500/40">
+          <GlassCard className="p-8 border-t-4 border-t-orange-500/40" accent="orange">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-400/30 flex items-center justify-center">
                 <Terminal className="w-7 h-7 text-orange-400" />
@@ -684,7 +686,7 @@ function PlatformsTab({ currentHandle }: { currentHandle: string }) {
             </div>
           </GlassCard>
 
-          <GlassCard className="p-8 border-t-4 border-t-amber-500/40">
+          <GlassCard className="p-8 border-t-4 border-t-amber-500/40" accent="orange">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500/20 to-yellow-500/20 border border-amber-400/30 flex items-center justify-center">
                 <TrophyIcon className="w-7 h-7 text-amber-400" />
@@ -703,10 +705,12 @@ function PlatformsTab({ currentHandle }: { currentHandle: string }) {
         </div>
 
         <div className="text-center">
-          <button
+          <motion.button
             onClick={handleAnalyze}
             disabled={loading}
             className="btn-primary px-12 py-4 text-xl flex items-center gap-3 mx-auto"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.985 }}
           >
             {loading ? (
               <>
@@ -719,7 +723,7 @@ function PlatformsTab({ currentHandle }: { currentHandle: string }) {
                 Analyze Platforms
               </>
             )}
-          </button>
+          </motion.button>
           {error && <div className="mt-4 text-red-400">{error}</div>}
         </div>
       </motion.div>
@@ -856,8 +860,9 @@ function PlatformsTab({ currentHandle }: { currentHandle: string }) {
                 };
                 const config = platformConfigs[platform] || platformConfigs.codeforces;
                 const Icon = config.icon;
+                const glassAccent = platform === "codeforces" ? "cyan" : platform === "leetcode" ? "orange" : "orange";
                 return (
-                  <GlassCard key={platform} delay={0.25 + idx * 0.05} className="p-8">
+                  <GlassCard key={platform} delay={0.25 + idx * 0.05} className="p-8" accent={glassAccent}>
                     <div className="p-1 rounded-2xl bg-gradient-to-br border border-white/10">
                       <div className="p-6 rounded-xl">
                         <div className="flex items-center gap-4 mb-6">

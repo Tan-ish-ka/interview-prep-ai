@@ -3,6 +3,7 @@
   "platform": "codeforces",
   "current_rating": 3428,
   "max_rating": 4009,
+  "total_solved": 2988,
   "solved_problems": [
     {
       "problem_id": "2229H",
@@ -19317,166 +19318,6 @@
       "solved_at": "2019-05-28T14:40:21+00:00"
     },
     {
-      "problem_id": "1164U",
-      "title": "The Greatest Possible Value (3 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T10:03:50+00:00"
-    },
-    {
-      "problem_id": "1164T",
-      "title": "Compute the Product (3 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T09:47:23+00:00"
-    },
-    {
-      "problem_id": "1164L",
-      "title": "Queens (2 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T09:40:07+00:00"
-    },
-    {
-      "problem_id": "1164I",
-      "title": "Maximum Value (2 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T09:28:23+00:00"
-    },
-    {
-      "problem_id": "1164F",
-      "title": "Regular Polygon (1 point)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T09:22:40+00:00"
-    },
-    {
-      "problem_id": "1164M",
-      "title": "Seven Digit Number (2 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T09:12:57+00:00"
-    },
-    {
-      "problem_id": "1164B",
-      "title": "Triangle Area (1 point)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T09:10:23+00:00"
-    },
-    {
-      "problem_id": "1164D",
-      "title": "Multiple of 29 (1 point)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T09:07:27+00:00"
-    },
-    {
-      "problem_id": "1164C",
-      "title": "7-digit Number (1 point)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T09:03:58+00:00"
-    },
-    {
-      "problem_id": "1164S",
-      "title": "Find Distance (3 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T09:01:51+00:00"
-    },
-    {
-      "problem_id": "1164H",
-      "title": "Circle Radius (2 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T08:50:57+00:00"
-    },
-    {
-      "problem_id": "1164R",
-      "title": "Divisible by 83 (3 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T08:46:14+00:00"
-    },
-    {
-      "problem_id": "1164Q",
-      "title": "Surjective Functions (3 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T08:45:55+00:00"
-    },
-    {
-      "problem_id": "1164P",
-      "title": "Equilateral Triangles (2 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T08:45:44+00:00"
-    },
-    {
-      "problem_id": "1164O",
-      "title": "Greatest Prime Divisor (2 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T08:45:38+00:00"
-    },
-    {
-      "problem_id": "1164N",
-      "title": "All Streets (2 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T08:45:33+00:00"
-    },
-    {
-      "problem_id": "1164J",
-      "title": "Eleven Segments (2 points)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T08:44:19+00:00"
-    },
-    {
-      "problem_id": "1164G",
-      "title": "Find Number (1 point)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T08:43:42+00:00"
-    },
-    {
-      "problem_id": "1164E",
-      "title": "Least Possible Difference (1 point)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T08:43:36+00:00"
-    },
-    {
-      "problem_id": "1164A",
-      "title": "Three Friends (1 point)",
-      "tags": [
-        "math"
-      ],
-      "solved_at": "2019-05-05T08:43:02+00:00"
-    },
-    {
       "problem_id": "1146H",
       "title": "Satanic Panic",
       "tags": [
@@ -29631,7 +29472,98 @@
       "solved_at": "2010-02-25T17:13:34+00:00"
     }
   ],
-  "tag_stats": [],
+  "tag_stats": [
+    {
+      "tag": "*Broken",
+      "solved_count": 1,
+      "attempt_count": 0
+    },
+    {
+      "tag": "*Special",
+      "solved_count": 270,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Arrays / Strings",
+      "solved_count": 327,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Binary Search",
+      "solved_count": 339,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Bit Manipulation",
+      "solved_count": 217,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Constructive Algorithms",
+      "solved_count": 1067,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Data Structures",
+      "solved_count": 617,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Divide And Conquer",
+      "solved_count": 104,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Dynamic Programming",
+      "solved_count": 710,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Graphs",
+      "solved_count": 868,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Greedy",
+      "solved_count": 937,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Implementation",
+      "solved_count": 673,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Math",
+      "solved_count": 1462,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Shortest Paths",
+      "solved_count": 78,
+      "attempt_count": 0
+    },
+    {
+      "tag": "String Suffix Structures",
+      "solved_count": 27,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Strings",
+      "solved_count": 177,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Trees",
+      "solved_count": 278,
+      "attempt_count": 0
+    },
+    {
+      "tag": "Two Pointers",
+      "solved_count": 173,
+      "attempt_count": 0
+    }
+  ],
   "rating_history": {
     "status": "OK",
     "result": [

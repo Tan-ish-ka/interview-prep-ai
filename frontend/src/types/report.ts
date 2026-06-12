@@ -69,6 +69,15 @@ export interface Insights {
   skill_score: number;
   momentum_score: number;
   potential_efficiency: PotentialEfficiency;
+  ai_insight?: AiInsight;
+}
+
+export interface AiInsight {
+  summary: string;
+  strengths: string;
+  growth_opportunity: string;
+  recommendation: string;
+  readiness_score: number;
 }
 
 export interface PotentialEfficiency {

@@ -7,6 +7,7 @@ src/interview_prep_ai.egg-info/dependency_links.txt
 src/interview_prep_ai.egg-info/requires.txt
 src/interview_prep_ai.egg-info/top_level.txt
 src/interview_prep_ai/analytics/activity_analyzer.py
+src/interview_prep_ai/analytics/ai_insight.py
 src/interview_prep_ai/analytics/comparison_engine.py
 src/interview_prep_ai/analytics/contest_analyzer.py
 src/interview_prep_ai/analytics/insight_generator.py
@@ -17,6 +18,7 @@ src/interview_prep_ai/analytics/rating_analyzer.py
 src/interview_prep_ai/analytics/rating_trend_analyzer.py
 src/interview_prep_ai/analytics/strong_topic_analyzer.py
 src/interview_prep_ai/analytics/tag_analyzer.py
+src/interview_prep_ai/analytics/topic_normalizer.py
 src/interview_prep_ai/analytics/weak_topic_analyzer.py
 src/interview_prep_ai/api/codeforces_client.py
 src/interview_prep_ai/app/__init__.py
@@ -60,7 +62,9 @@ src/interview_prep_ai/repositories/profile_repository.py
 src/interview_prep_ai/services/interview_prep_service.py
 src/interview_prep_ai/services/profile_manager.py
 src/interview_prep_ai/services/profile_service.py
+src/interview_prep_ai/services/unified_profile_service.py
 tests/test_activity_analyzer.py
+tests/test_ai_insight.py
 tests/test_analyzer_factory.py
 tests/test_cli.py
 tests/test_codeforces_client.py

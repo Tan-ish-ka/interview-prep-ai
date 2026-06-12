@@ -58,8 +58,8 @@ def get_comparison(
     url_b = f"https://codeforces.com/profile/{handle_b}"
     
     # Get profiles
-    profile_a = manager.get_profile(url_a)
-    profile_b = manager.get_profile(url_b)
+    profile_a = manager.get_profile(url_a, refresh=True)
+    profile_b = manager.get_profile(url_b, refresh=True)
     
     # Compare
     return compare_profiles(profile_a, profile_b)
@@ -80,17 +80,17 @@ def get_platform_analysis(
     # Codeforces
     if codeforces_handle:
         url = f"https://codeforces.com/profile/{codeforces_handle}"
-        platform_profiles[Platform.CODEFORCES] = manager.get_profile(url)
+        platform_profiles[Platform.CODEFORCES] = manager.get_profile(url, refresh=True)
         
     # LeetCode
     if leetcode_handle:
         url = f"https://leetcode.com/u/{leetcode_handle}"
-        platform_profiles[Platform.LEETCODE] = manager.get_profile(url)
+        platform_profiles[Platform.LEETCODE] = manager.get_profile(url, refresh=True)
         
     # CodeChef
     if codechef_handle:
         url = f"https://www.codechef.com/users/{codechef_handle}"
-        platform_profiles[Platform.CODECHEF] = manager.get_profile(url)
+        platform_profiles[Platform.CODECHEF] = manager.get_profile(url, refresh=True)
         
     # Create unified profile
     unified_profile = unified_service.create_unified_profile(

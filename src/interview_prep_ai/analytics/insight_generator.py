@@ -16,7 +16,12 @@ from interview_prep_ai.analytics.potential_efficiency_analyzer import (
 )
 from interview_prep_ai.analytics.strong_topic_analyzer import StrongTopicAnalyzer
 from interview_prep_ai.analytics.tag_analyzer import TagAnalyzer
+from interview_prep_ai.analytics.topic_normalizer import (
+    normalize_tag_frequency,
+    normalize_topics,
+)
 from interview_prep_ai.analytics.weak_topic_analyzer import WeakTopicAnalyzer
+from interview_prep_ai.analytics.ai_insight import generate_ai_insight
 from interview_prep_ai.core.models.profile import UserProfile
 from interview_prep_ai.platforms.codeforces.solved_problems import (
     SOLVED_COUNT_DEFINITION,
@@ -48,13 +53,28 @@ class InsightGenerator:
     def generate(self, profile: UserProfile, rating_history: dict) -> dict:
         problems = profile.solved_problems
         tag_frequency = self._tag_analyzer.tag_frequency(problems)
-        top_tags = dict(list(tag_frequency.items())[:5])
 
         strong_topics = self._strong_topic_analyzer.strong_topics(profile.tag_stats)
+
+        # Fallback: ensure strong_topics isn't empty when tag frequency shows clear strengths
+        if not strong_topics and tag_frequency:
+            strong_from_freq = [t for t, _ in sorted(tag_frequency.items(), key=lambda x: -x[1]) if _ >= 10]
+            strong_topics = strong_from_freq[:3]
+
         weak_topics = self._weak_topic_analyzer.weak_topics(
             profile.tag_stats,
             exclude=set(strong_topics),
         )
+
+        # Fallback: ensure weak_topics isn't empty when tag frequency provides candidates
+        if not weak_topics and tag_frequency:
+            weak_from_freq = [t for t, _ in sorted(tag_frequency.items(), key=lambda x: (x[1], x[0])) if t not in set(strong_topics)]
+            weak_topics = weak_from_freq[:5]
+
+        tag_frequency = normalize_tag_frequency(tag_frequency)
+        top_tags = dict(list(tag_frequency.items())[:5])
+        strong_topics = normalize_topics(strong_topics)
+        weak_topics = normalize_topics(weak_topics)
 
         insights = {
             "current_rating": self._rating_analyzer.current_rating(rating_history),
@@ -74,6 +94,18 @@ class InsightGenerator:
             "weak_topics": weak_topics,
             "strong_topics": strong_topics,
         }
+        # Add deterministic AI-style insight summary (does not call external services)
+        try:
+            insights["ai_insight"] = generate_ai_insight(insights)
+        except Exception:
+            # Fail-safe: do not break insights if AI insight generation errors
+            insights["ai_insight"] = {
+                "summary": "",
+                "strengths": "",
+                "growth_opportunity": "",
+                "recommendation": "",
+                "readiness_score": 0,
+            }
         insights["skill_score"] = compute_skill_score(insights)
         insights["momentum_score"] = compute_momentum_score(insights)
         insights["potential_efficiency"] = compute_potential_efficiency(insights)

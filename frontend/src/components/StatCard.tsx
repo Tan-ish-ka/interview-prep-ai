@@ -14,23 +14,23 @@ interface StatCardProps {
 }
 
 const accentMap = {
-  default: { 
-    color: "#67e8f9", 
+  default: {
+    color: "#67e8f9",
     glow: "rgba(34, 211, 238, 0.15)",
     glass: "cyan" as const,
   },
-  success: { 
-    color: "#6ee7b7", 
+  success: {
+    color: "#6ee7b7",
     glow: "rgba(52, 211, 153, 0.15)",
     glass: "green" as const,
   },
-  warning: { 
-    color: "#fbbf24", 
+  warning: {
+    color: "#fbbf24",
     glow: "rgba(251, 191, 36, 0.15)",
     glass: "orange" as const,
   },
-  danger: { 
-    color: "#f87171", 
+  danger: {
+    color: "#f87171",
     glow: "rgba(248, 113, 113, 0.15)",
     glass: "purple" as const,
   },
@@ -50,20 +50,46 @@ export function StatCard({
 
   return (
     <GlassCard className="stat-card" delay={delay} accent={glass}>
-      <div className="stat-card__inner" style={{ background: glow }}>
-        <div className="stat-card__icon" style={{ color, borderColor: `${color}60` }}>
-          <Icon size={18} strokeWidth={2.25} />
+      <div
+        className="stat-card__inner"
+        style={{
+          background: `linear-gradient(135deg, ${glow}, transparent)`,
+        }}
+      >
+        <div
+          className="stat-card__icon"
+          style={{
+            color,
+            borderColor: `${color}60`,
+            boxShadow: `0 0 20px ${color}20`,
+          }}
+        >
+          <Icon size={20} strokeWidth={2.25} />
         </div>
-        <div>
+
+        <div className="stat-card__content">
           <div className="stat-card__label">{label}</div>
-          <div className="stat-card__value" style={{ color: numericValue !== undefined ? color : undefined }}>
+
+          <div
+            className="stat-card__value"
+            style={{
+              color:
+                numericValue !== undefined ? color : undefined,
+            }}
+          >
             {numericValue !== undefined ? (
-              <AnimatedCounter value={numericValue} decimals={decimals} />
+              <AnimatedCounter
+                value={numericValue}
+                decimals={decimals}
+              />
             ) : (
               value
             )}
           </div>
-          {hint ? <div className="stat-card__hint">{hint}</div> : null}
+
+          {hint ? (
+            <div className="stat-card__hint">{hint}</div>
+          ) : null}
         </div>
       </div>
     </GlassCard>

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import traceback
 from pathlib import Path
 
@@ -87,9 +88,14 @@ def create_app() -> FastAPI:
     )
 
 
+    frontend_url = os.environ.get("FRONTEND_URL", "").strip()
+    allow_origins = ["http://localhost:5173", "http://127.0.0.1:5173"]
+    if frontend_url:
+        allow_origins.append(frontend_url)
+
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+        allow_origins=allow_origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],

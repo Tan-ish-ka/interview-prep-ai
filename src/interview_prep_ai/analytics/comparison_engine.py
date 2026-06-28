@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from interview_prep_ai.core.models.profile import UserProfile
-from interview_prep_ai.analytics.insight_generator import InsightGenerator
-from interview_prep_ai.interview_preparation.interview_prep_engine import InterviewPrepEngine
+from interview_prep_ai.analytics.analyzers.codeforces_analyzer import CodeforcesAnalyzer
+from interview_prep_ai.interview_preparation.platform_prep_engines import CodeforcesPrepEngine
 
 
 def compare_profiles(
@@ -12,12 +12,12 @@ def compare_profiles(
     profile_b: UserProfile,
 ) -> dict:
     """Generate comparison insights between two profiles."""
-    generator = InsightGenerator()
+    generator = CodeforcesAnalyzer()
     insights_a = generator.generate(profile_a, profile_a.rating_history)
     insights_b = generator.generate(profile_b, profile_b.rating_history)
 
     # Interview prep
-    interview_engine = InterviewPrepEngine()
+    interview_engine = CodeforcesPrepEngine()
     interview_a = interview_engine.generate(insights_a)
     interview_b = interview_engine.generate(insights_b)
 

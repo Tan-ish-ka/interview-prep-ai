@@ -1,10 +1,46 @@
-import type { ReportResponse } from "../types/report";
+import type { ReportResponse, UnifiedProfileResponse } from "../types/report";
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
+async function authFetch(url: string, options: RequestInit = {}) {
+  const token = localStorage.getItem('access_token');
+  const headers = {
+    ...options.headers,
+    ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+  };
+  return fetch(url, { ...options, headers });
+}
+
+export async function fetchPlatformAnalysis(urls: string): Promise<UnifiedProfileResponse> {
+  const params = new URLSearchParams({ urls });
+  const response = await authFetch(`${API_BASE}/platforms/analysis?${params}`);
+
+  if (!response.ok) {
+    let message = `Request failed (${response.status})`;
+    try {
+      const body = (await response.json()) as { detail?: string | unknown[] };
+      if (typeof body.detail === "string") {
+        message = body.detail;
+      } else if (Array.isArray(body.detail)) {
+        message = body.detail.map((item) => JSON.stringify(item)).join("; ");
+      }
+    } catch {
+      // keep default message
+    }
+    throw new Error(message);
+  }
+
+  return response.json();
+}
+
 export async function fetchReport(profileUrl: string): Promise<ReportResponse> {
-  const params = new URLSearchParams({ url: profileUrl.trim() });
-  const response = await fetch(`${API_BASE}/report?${params}`);
+  const isMultiple = profileUrl.includes(',');
+  const params = new URLSearchParams(
+    isMultiple 
+      ? { urls: profileUrl }
+      : { url: profileUrl.trim() }
+  );
+  const response = await authFetch(`${API_BASE}/report?${params}`);
 
   if (!response.ok) {
     let message = `Request failed (${response.status})`;

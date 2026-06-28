@@ -8,12 +8,13 @@ from interview_prep_ai.api.codeforces_client import CodeforcesClient
 from interview_prep_ai.core.analyzer_factory import AnalyzerFactory
 from interview_prep_ai.core.enums import Platform, PlatformType
 from interview_prep_ai.core.interfaces.platform_analyzer import IPlatformAnalyzer
-from interview_prep_ai.core.models.profile import UserProfile
+from interview_prep_ai.core.models.profile import UserProfile, merge_profiles
 from interview_prep_ai.core.models.tag_stat import TagStat
 from interview_prep_ai.core.platform_detector import PlatformDetector
 from interview_prep_ai.platforms.codeforces.solved_problems import (
     count_unique_solved_submissions,
     solved_problems_from_submissions,
+    all_submissions_from_api,
 )
 from interview_prep_ai.analytics.topic_normalizer import normalize_tag_stats
 
@@ -41,18 +42,36 @@ class ProfileService:
         self._analyzer_factory = analyzer_factory
         self._codeforces_client = codeforces_client or CodeforcesClient()
 
-    def create_profile(self, url: str) -> UserProfile:
-        platform = self._platform_detector.detect(url)
-        if platform == PlatformType.UNKNOWN:
-            raise UnsupportedPlatformError(f"Unsupported platform for URL: {url}")
+    def create_profile(self, url_or_urls: str | list[str]) -> UserProfile:
+        urls = [url_or_urls] if isinstance(url_or_urls, str) else url_or_urls
+        profiles = []
+        
+        for url in urls:
+            if not url or not url.strip():
+                continue
+            platform = self._platform_detector.detect(url)
+            if platform == PlatformType.UNKNOWN:
+                raise UnsupportedPlatformError(f"Unsupported platform for URL: {url}")
 
-        analyzer = self._analyzer_factory.get_analyzer(
-            platform,
-            codeforces_client=self._codeforces_client,
-        )
-        if hasattr(analyzer, "_codeforces_client"):
-            analyzer._codeforces_client = self._codeforces_client
-        return analyzer.analyze(url)
+            analyzer = self._analyzer_factory.get_analyzer(
+                platform,
+                codeforces_client=self._codeforces_client,
+            )
+            if hasattr(analyzer, "_codeforces_client"):
+                analyzer._codeforces_client = self._codeforces_client
+            
+            try:
+                profiles.append(analyzer.analyze(url))
+            except Exception as e:
+                print(f"Error fetching {url}: {e}")
+                
+        if not profiles:
+            raise UnsupportedPlatformError("No valid platforms provided.")
+            
+        if len(profiles) == 1:
+            return profiles[0]
+            
+        return merge_profiles(profiles)
 
 
 def _extract_codeforces_handle(url: str) -> str:
@@ -63,7 +82,6 @@ def _extract_codeforces_handle(url: str) -> str:
     if len(parts) == 1 and parts[0]:
         return parts[0]
     raise ValueError(f"Cannot extract Codeforces handle from URL: {url}")
-
 
 def _build_codeforces_profile(
     handle: str,
@@ -76,14 +94,26 @@ def _build_codeforces_profile(
 
     current_rating = user.get("rating")
     max_rating = user.get("maxRating")
+
     if max_rating is None:
         history = rating_history.get("result") or []
         if history:
-            max_rating = max(entry.get("newRating", 0) for entry in history)
+            max_rating = max(
+                entry.get("newRating", 0)
+                for entry in history
+            )
 
     submission_rows = submissions.get("result") or []
     solved_problems = solved_problems_from_submissions(submission_rows)
     total_solved = count_unique_solved_submissions(submission_rows)
+
+    print("========== DEBUG ==========")
+    print("HANDLE:", handle)
+    print("SUBMISSIONS:", len(submission_rows))
+    print("TOTAL SOLVED:", total_solved)
+    print("===========================")
+
+    all_submissions = all_submissions_from_api(submission_rows)
 
     return UserProfile(
         username=user.get("handle", handle),
@@ -92,10 +122,12 @@ def _build_codeforces_profile(
         max_rating=max_rating,
         total_solved=total_solved,
         solved_problems=solved_problems,
-        tag_stats=normalize_tag_stats(_tag_stats_from_solved_problems(solved_problems)),
+        tag_stats=normalize_tag_stats(
+            _tag_stats_from_solved_problems(solved_problems)
+        ),
         rating_history=rating_history,
+        all_submissions=all_submissions,
     )
-
 
 def _tag_stats_from_solved_problems(
     solved_problems: list,

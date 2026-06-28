@@ -6,6 +6,10 @@ import {
   Building2,
   Users,
   Globe,
+  Bot,
+  Activity,
+  Microscope,
+  Settings,
 } from "lucide-react";
 
 export type DashboardTab =
@@ -14,7 +18,11 @@ export type DashboardTab =
   | "interview-prep"
   | "companies"
   | "compare"
-  | "platforms";
+  | "platforms"
+  | "coach"
+  | "replay"
+  | "solution"
+  | "settings";
 
 interface SectionTabsProps {
   active: DashboardTab;
@@ -55,6 +63,26 @@ const TABS: {
     id: "platforms",
     label: "Platforms",
     icon: Globe,
+  },
+  {
+    id: "coach",
+    label: "Interview Coach",
+    icon: Bot,
+  },
+  {
+    id: "replay",
+    label: "Contest Replay",
+    icon: Activity,
+  },
+  {
+    id: "solution",
+    label: "AI Code Review",
+    icon: Microscope,
+  },
+  {
+    id: "settings",
+    label: "Settings",
+    icon: Settings,
   },
 ];
 

@@ -1,23 +1,27 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Building2, ChevronRight } from "lucide-react";
-import type { CompanyReadiness } from "../types/report";
+import type { CompanyReadiness, ReportResponse } from "../types/report";
 import { CompanyBrowserModal } from "./CompanyBrowserModal";
 import { CompanyReadinessItem } from "./CompanyReadinessItem";
+import { CompanyDashboard } from "./CompanyDashboard";
 import { GlassCard } from "./GlassCard";
 
 interface CompanyReadinessCardProps {
   companies: CompanyReadiness[];
+  report: ReportResponse;
   delay?: number;
 }
 
 const DASHBOARD_PREVIEW_COUNT = 5;
 
 export function CompanyReadinessCard({
-  companies,
+  companies = [],
+  report,
   delay = 0.19,
 }: CompanyReadinessCardProps) {
   const [browserOpen, setBrowserOpen] = useState(false);
+  const [activeCompany, setActiveCompany] = useState<CompanyReadiness | null>(null);
   const topCompanies = companies.slice(0, DASHBOARD_PREVIEW_COUNT);
 
   return (
@@ -65,6 +69,7 @@ export function CompanyReadinessCard({
                 item={item}
                 index={index}
                 delay={delay}
+                onClick={() => setActiveCompany(item)}
               />
             ))}
           </ul>
@@ -86,9 +91,18 @@ export function CompanyReadinessCard({
 
       <CompanyBrowserModal
         companies={companies}
+        report={report}
         isOpen={browserOpen}
         onClose={() => setBrowserOpen(false)}
       />
+
+      {activeCompany && (
+        <CompanyDashboard
+          company={activeCompany}
+          report={report}
+          onClose={() => setActiveCompany(null)}
+        />
+      )}
     </>
   );
 }

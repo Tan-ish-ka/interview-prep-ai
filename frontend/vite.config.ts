@@ -23,6 +23,22 @@ export default defineConfig({
         target: "http://127.0.0.1:8000",
         changeOrigin: true,
       },
+      "/coach": {
+        target: "http://127.0.0.1:8000",
+        changeOrigin: true,
+      },
+      "/solution": {
+        target: "http://127.0.0.1:8000",
+        changeOrigin: true,
+      },
+      "/ai": {
+        target: "http://127.0.0.1:8000",
+        changeOrigin: true,
+      },
+      "/replay": {
+        target: "http://127.0.0.1:8000",
+        changeOrigin: true,
+      },
     },
   },
 });

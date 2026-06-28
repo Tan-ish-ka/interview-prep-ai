@@ -33,7 +33,7 @@ export function CommandBar({ url, loading, onUrlChange, onSubmit }: CommandBarPr
           <input
             id="profile-url"
             type="url"
-            placeholder="Paste Codeforces profile URL…"
+            placeholder="Paste a Codeforces, LeetCode, or CodeChef URL..."
             value={url}
             onChange={(e) => onUrlChange(e.target.value)}
             disabled={loading}

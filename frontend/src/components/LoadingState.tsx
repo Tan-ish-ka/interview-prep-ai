@@ -1,15 +1,19 @@
 import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 
-export function LoadingState() {
+import { forwardRef } from "react";
+
+export const LoadingState = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <motion.div
+      ref={ref}
       className="loading-banner glass-card"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       role="status"
       aria-live="polite"
+      {...props}
     >
       <Loader2 className="spin" size={22} />
       <span>Synthesizing your interview prep report…</span>
@@ -20,4 +24,4 @@ export function LoadingState() {
       </div>
     </motion.div>
   );
-}
+});

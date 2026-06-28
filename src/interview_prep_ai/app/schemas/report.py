@@ -66,14 +66,31 @@ class RoadmapItemSchema(BaseModel):
     description: str
 
 
+class PreviousQuestionSchema(BaseModel):
+    title: str
+    platform: str
+    difficulty: str
+    tags: list[str]
+    frequency: str
+    year: str
+
+
+class GapAnalysisItemSchema(BaseModel):
+    topic: str
+    current_coverage: int
+    target_coverage: int
+    recommendation: str
+
+
 class CompanyReadinessSchema(BaseModel):
     company: str
     category: str
-    score: int
+    overall_readiness: int
     level: str
-    reason: str
-    strong_topics: list[str] = Field(default_factory=list)
-    missing_topics: list[str] = Field(default_factory=list)
+    topic_radar: dict[str, int] = Field(default_factory=dict)
+    difficulty_distribution: dict[str, float] = Field(default_factory=dict)
+    previous_questions: list[PreviousQuestionSchema] = Field(default_factory=list)
+    gap_analysis: list[GapAnalysisItemSchema] = Field(default_factory=list)
 
 
 class InterviewPreparationSchema(BaseModel):
@@ -120,6 +137,75 @@ class InsightsSchema(BaseModel):
     potential_efficiency: PotentialEfficiencySchema = Field(
         default_factory=PotentialEfficiencySchema
     )
+    platform_specific: dict[str, Any] = Field(
+        description="Platform-specific analytics (e.g. stars, active days, etc).",
+        default_factory=dict
+    )
+
+
+class RootCauseSchema(BaseModel):
+    issue: str
+    inferred_cause: str
+    recommendation: str
+    confidence_score: float
+    data_points: list[str] = Field(default_factory=list)
+
+
+class FailureIntelligenceSchema(BaseModel):
+    total_submissions: int = 0
+    verdict_counts: dict[str, int] = Field(default_factory=dict)
+    verdict_rates: dict[str, float] = Field(default_factory=dict)
+    average_attempts_before_ac: float = 0.0
+    root_causes: list[RootCauseSchema] = Field(default_factory=list)
+
+
+class DNATraitSchema(BaseModel):
+    trait: str
+    description: str
+    type: str
+    confidence_score: float
+    reason: str
+
+
+class LearningDNASchema(BaseModel):
+    dna_traits: list[DNATraitSchema] = Field(default_factory=list)
+
+
+class HiddenPotentialSchema(BaseModel):
+    current_rating: int
+    potential_rating: int
+    gap: int
+    reasons: list[str] = Field(default_factory=list)
+    confidence_score: float
+
+
+class ContestTimelineEventSchema(BaseModel):
+    time_minutes: int
+    event: str
+    problem: str
+    description: str
+
+
+class ContestReplaySchema(BaseModel):
+    contest_id: str
+    problems_attempted: int
+    problems_solved: int
+    total_penalty_time: int
+    time_wasted_minutes: int
+    timeline: list[ContestTimelineEventSchema] = Field(default_factory=list)
+    date: str
+
+
+class MissedOpportunitySchema(BaseModel):
+    contest_id: str
+    problem_id: str
+    topic: str
+    reason: str
+    difficulty: int = 1700
+    tags: list[str] = Field(default_factory=list)
+    historical_solve_probability: float = 80.0
+    estimated_solve_time: int = 15
+    recommendation: str = ""
 
 
 class ReportResponse(BaseModel):
@@ -127,6 +213,14 @@ class ReportResponse(BaseModel):
     insights: InsightsSchema
     recommendations: list[str]
     interview_preparation: InterviewPreparationSchema
+    failure_intelligence: FailureIntelligenceSchema | None = None
+    learning_dna: LearningDNASchema | None = None
+    hidden_potential: HiddenPotentialSchema | None = None
+    contest_replays: list[ContestReplaySchema] = Field(default_factory=list)
+    missed_opportunities: list[MissedOpportunitySchema] = Field(default_factory=list)
+    contributions: dict[str, float] = Field(default_factory=dict)
+    activity_feed: list[dict] = Field(default_factory=list)
+    skill_matrix: dict[str, float] = Field(default_factory=dict)
 
 
 def report_response_from_dict(report: dict[str, Any]) -> ReportResponse:
@@ -139,4 +233,12 @@ def report_response_from_dict(report: dict[str, Any]) -> ReportResponse:
         interview_preparation=InterviewPreparationSchema.model_validate(
             report["interview_preparation"]
         ),
+        failure_intelligence=FailureIntelligenceSchema.model_validate(report["failure_intelligence"]) if "failure_intelligence" in report else None,
+        learning_dna=LearningDNASchema.model_validate(report["learning_dna"]) if "learning_dna" in report else None,
+        hidden_potential=HiddenPotentialSchema.model_validate(report["hidden_potential"]) if "hidden_potential" in report else None,
+        contest_replays=[ContestReplaySchema.model_validate(r) for r in report.get("contest_replays", [])],
+        missed_opportunities=[MissedOpportunitySchema.model_validate(m) for m in report.get("missed_opportunities", [])],
+        contributions=report.get("contributions", {}),
+        activity_feed=report.get("activity_feed", []),
+        skill_matrix=report.get("skill_matrix", {}),
     )

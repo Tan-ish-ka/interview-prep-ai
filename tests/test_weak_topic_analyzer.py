@@ -28,7 +28,7 @@ def test_zero_solve_count_excluded(analyzer: WeakTopicAnalyzer) -> None:
         TagStat(tag="graphs", solved_count=2),
     ]
 
-    assert analyzer.weak_topics(tag_stats) == ["graphs"]
+    assert analyzer.weak_topics(tag_stats) == ["Graphs"]
 
 
 def test_single_tag_at_or_above_floor_not_weak(analyzer: WeakTopicAnalyzer) -> None:
@@ -45,7 +45,7 @@ def test_returns_relative_weak_topics(analyzer: WeakTopicAnalyzer) -> None:
         TagStat(tag="math", solved_count=1),
     ]
 
-    assert analyzer.weak_topics(tag_stats) == ["math", "graphs"]
+    assert analyzer.weak_topics(tag_stats) == ["Math", "Graphs"]
 
 
 def test_sorted_by_solved_count_ascending(analyzer: WeakTopicAnalyzer) -> None:
@@ -56,7 +56,7 @@ def test_sorted_by_solved_count_ascending(analyzer: WeakTopicAnalyzer) -> None:
         TagStat(tag="math", solved_count=3),
     ]
 
-    assert analyzer.weak_topics(tag_stats) == ["graphs", "strings", "math"]
+    assert analyzer.weak_topics(tag_stats) == ["Graphs", "Strings", "Math"]
 
 
 def test_capped_at_five(analyzer: WeakTopicAnalyzer) -> None:
@@ -73,7 +73,7 @@ def test_excludes_strong_topics(analyzer: WeakTopicAnalyzer) -> None:
         TagStat(tag="borderline", solved_count=10),
     ]
 
-    assert analyzer.weak_topics(tag_stats, exclude={"borderline"}) == []
+    assert analyzer.weak_topics(tag_stats, exclude={"Borderline"}) == []
 
 
 def test_ties_sorted_by_tag_name(analyzer: WeakTopicAnalyzer) -> None:
@@ -84,4 +84,4 @@ def test_ties_sorted_by_tag_name(analyzer: WeakTopicAnalyzer) -> None:
         TagStat(tag="anchor", solved_count=20),
     ]
 
-    assert analyzer.weak_topics(tag_stats) == ["alpha", "middle", "zebra"]
+    assert analyzer.weak_topics(tag_stats) == ["Alpha", "Middle", "Zebra"]

@@ -1,55 +1,35 @@
-from urllib.parse import urlparse
-from datetime import datetime
+"""CodeChef profile analyzer."""
 
 from interview_prep_ai.core.interfaces.platform_analyzer import IPlatformAnalyzer
 from interview_prep_ai.core.models.profile import UserProfile
-from interview_prep_ai.core.models.problem import ProblemRecord
-from interview_prep_ai.core.models.tag_stat import TagStat
 from interview_prep_ai.core.enums import Platform
-
+from interview_prep_ai.api.codechef_client import CodeChefClient
+import re
 
 class CodeChefAnalyzer(IPlatformAnalyzer):
-    def analyze(self, url: str) -> UserProfile:
-        """Create a mock CodeChef profile."""
-        username = self._extract_username(url)
+    def __init__(self, codechef_client: CodeChefClient | None = None):
+        self._client = codechef_client or CodeChefClient()
+
+    def analyze(self, handle: str) -> UserProfile:
+        match = re.search(r"codechef\.com/users/([^/]+)", handle)
+        if match:
+            handle = match.group(1)
+
+        data = self._client.get_user_profile(handle)
         
-        # Mock data
-        mock_top_tags = [
-            "math", "ad-hoc", "dynamic programming", "graphs", 
-            "greedy", "data structures", "strings"
-        ]
-        
-        mock_tag_stats = [
-            TagStat(tag=tag, solved_count=8 + i*4, attempt_count=0)
-            for i, tag in enumerate(mock_top_tags)
-        ]
-        
-        mock_solved_problems = [
-            ProblemRecord(
-                problem_id=f"codechef-{i}",
-                title=f"CodeChef Problem {i}",
-                tags=mock_top_tags[:2],
-                solved_at=datetime.now()
-            )
-            for i in range(150)
-        ]
+        platform_specific = {
+            "highest_rating": data.get("highest_rating", 0),
+            "stars": data.get("stars", "1★"),
+            "global_rank": data.get("global_rank", "NA"),
+            "country_rank": data.get("country_rank", "NA")
+        }
         
         return UserProfile(
-            username=username,
+            username=handle,
             platform=Platform.CODECHEF,
-            current_rating=1800,
-            max_rating=2000,
-            total_solved=150,
-            solved_problems=mock_solved_problems,
-            tag_stats=mock_tag_stats,
-            rating_history={"status": "OK", "result": []}  # Mock rating history
+            current_rating=data.get("current_rating", 0),
+            max_rating=data.get("highest_rating", 0),
+            total_solved=data.get("total_solved", 0),
+            platform_specific=platform_specific,
+            tag_stats=[] # CodeChef public profile doesn't easily expose tags
         )
-        
-    def _extract_username(self, url: str) -> str:
-        path = urlparse(url).path.strip("/")
-        parts = path.split("/")
-        if len(parts) >= 2 and parts[0] == "users":
-            return parts[1]
-        if len(parts) == 1 and parts[0]:
-            return parts[0]
-        raise ValueError(f"Cannot extract CodeChef username from URL: {url}")

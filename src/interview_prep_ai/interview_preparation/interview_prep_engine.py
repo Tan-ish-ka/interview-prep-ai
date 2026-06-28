@@ -4,9 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from interview_prep_ai.interview_preparation.company_readiness_scorer import (
-    score_company_readiness,
-)
+from interview_prep_ai.analytics.company_matcher import calculate_company_readiness
 from interview_prep_ai.interview_preparation.readiness_analyzer import (
     determine_readiness_level,
 )
@@ -20,10 +18,7 @@ class InterviewPrepEngine:
         readiness_level = determine_readiness_level(insights, focus_areas)
         roadmap = build_roadmap(insights, focus_areas)
 
-        company_readiness = score_company_readiness(
-            insights,
-            interview_readiness_level=readiness_level,
-        )
+        company_readiness = calculate_company_readiness(insights)
 
         return {
             "interview_readiness_level": readiness_level,

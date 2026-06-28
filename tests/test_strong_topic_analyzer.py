@@ -28,7 +28,7 @@ def test_only_qualifying_tags_returned(analyzer: StrongTopicAnalyzer) -> None:
         TagStat(tag="graphs", solved_count=12),
     ]
 
-    assert analyzer.strong_topics(tag_stats) == ["graphs"]
+    assert analyzer.strong_topics(tag_stats) == ["Graphs"]
 
 
 def test_returns_top_three_qualifying_by_solved_count(analyzer: StrongTopicAnalyzer) -> None:
@@ -40,7 +40,7 @@ def test_returns_top_three_qualifying_by_solved_count(analyzer: StrongTopicAnaly
         TagStat(tag="strings", solved_count=11),
     ]
 
-    assert analyzer.strong_topics(tag_stats) == ["graphs", "math", "dp"]
+    assert analyzer.strong_topics(tag_stats) == ["Graphs", "Math", "Dynamic Programming"]
 
 
 def test_ties_sorted_by_tag_name(analyzer: StrongTopicAnalyzer) -> None:
@@ -51,4 +51,4 @@ def test_ties_sorted_by_tag_name(analyzer: StrongTopicAnalyzer) -> None:
         TagStat(tag="beta", solved_count=5),
     ]
 
-    assert analyzer.strong_topics(tag_stats) == ["alpha", "middle", "zebra"]
+    assert analyzer.strong_topics(tag_stats) == ["Alpha", "Middle", "Zebra"]

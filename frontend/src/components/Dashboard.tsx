@@ -4,6 +4,12 @@ import { staggerContainer, fadeUp } from "../lib/motion";
 import type { ReportResponse } from "../types/report";
 import { ActivityAnalytics } from "./ActivityAnalytics";
 import { AiSummaryCard } from "./AiSummaryCard";
+import { UnifiedProfileCard } from "./UnifiedProfileCard";
+import { SkillMatrix } from "./SkillMatrix";
+import { ActivityFeed } from "./ActivityFeed";
+import { DebugInspector } from "./DebugInspector";
+import { LeetCodeStatsCard } from "./LeetCodeStatsCard";
+import { CodeChefStatsCard } from "./CodeChefStatsCard";
 import { ContestAnalytics } from "./ContestAnalytics";
 import { InsightHeader } from "./InsightHeader";
 import { RatingAnalytics } from "./RatingAnalytics";
@@ -14,9 +20,16 @@ import { Recommendations } from "./Recommendations";
 import { TopicSection } from "./TopicSection";
 import { SectionTabs, DashboardTab } from "./SectionTabs";
 import { GlassCard } from "./GlassCard";
-import { StatCard } from "./StatCard";
+import { InterviewCoachTab } from "./InterviewCoachTab";
+import { FailureIntelligenceCard } from "./FailureIntelligenceCard";
+import { LearningDNACard } from "./LearningDNACard";
+import { HiddenPotentialCard } from "./HiddenPotentialCard";
+import { ContestReplayTab } from "./ContestReplayTab";
+import { SolutionIntelligenceTab } from "./SolutionIntelligenceTab";
+import { SettingsTab } from "./SettingsTab";
 import { Input } from "./Input";
-import { fetchComparison, type ComparisonResponse, fetchPlatformsAnalysis, type PlatformsResponse } from "../api/report";
+import { fetchComparison, type ComparisonResponse } from "../api/report";
+import { PlatformsManager } from "./PlatformsManager";
 import {
   Radar,
   RadarChart,
@@ -31,11 +44,6 @@ import {
   CartesianGrid,
   Tooltip as RechartsTooltip,
   Legend,
-  Cell,
-  PieChart,
-  Pie,
-  RadialBarChart,
-  RadialBar,
 } from "recharts";
 import {
   Zap,
@@ -48,7 +56,6 @@ import {
   Loader2,
   Code2,
   TrophyIcon,
-  Terminal,
   Layers,
   BarChart3,
   Star,
@@ -61,6 +68,8 @@ interface DashboardProps {
 
 function OverviewTab({ report }: { report: ReportResponse }) {
   const { profile, insights, recommendations } = report;
+  const isUnified = report.contributions && Object.keys(report.contributions).length > 1;
+
   return (
     <motion.div
       variants={staggerContainer}
@@ -69,18 +78,34 @@ function OverviewTab({ report }: { report: ReportResponse }) {
       exit="hidden"
     >
       <InsightHeader profile={profile} insights={insights} />
-      <AiSummaryCard
-        profile={profile}
-        insights={insights}
-        recommendationCount={recommendations.length}
-        delay={0.06}
-      />
+      {isUnified && <UnifiedProfileCard report={report} delay={0.04} />}
+      
+      {profile.platform === "leetcode" && <LeetCodeStatsCard report={report} delay={0.06} />}
+      {profile.platform === "codechef" && <CodeChefStatsCard report={report} delay={0.06} />}
+      
+      {(profile.platform === "codeforces" || profile.platform === "unified") && (
+        <AiSummaryCard
+          profile={profile}
+          insights={insights}
+          recommendationCount={recommendations.length}
+          delay={0.06}
+        />
+      )}
+      
+      {isUnified && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+          <SkillMatrix report={report} delay={0.08} />
+          <ActivityFeed report={report} delay={0.1} />
+        </div>
+      )}
     </motion.div>
   );
 }
 
 function AnalyticsTab({ report }: { report: ReportResponse }) {
   const { profile, insights } = report;
+  const isCodeforces = profile.platform === "codeforces" || profile.platform === "unified";
+
   return (
     <motion.div
       variants={staggerContainer}
@@ -88,15 +113,22 @@ function AnalyticsTab({ report }: { report: ReportResponse }) {
       animate="visible"
       exit="hidden"
     >
-      <RatingAnalytics profile={profile} insights={insights} delay={0.06} />
-      <div className="dashboard-grid dashboard-grid--two">
-        <ContestAnalytics stats={insights.contest_stats} delay={0.1} />
-        <ActivityAnalytics
-          stats={insights.activity_stats}
-          recentActivity={insights.recent_activity}
-          delay={0.12}
-        />
-      </div>
+      {isCodeforces && (
+        <>
+          <HiddenPotentialCard data={report.hidden_potential} delay={0.04} />
+          <LearningDNACard data={report.learning_dna} delay={0.06} />
+          <FailureIntelligenceCard data={report.failure_intelligence} />
+          <RatingAnalytics profile={profile} insights={insights} delay={0.1} />
+          <div className="dashboard-grid dashboard-grid--two">
+            <ContestAnalytics stats={insights.contest_stats} delay={0.1} />
+            <ActivityAnalytics
+              stats={insights.activity_stats}
+              recentActivity={insights.recent_activity}
+              delay={0.12}
+            />
+          </div>
+        </>
+      )}
       <TopicSection
         weakTopics={insights.weak_topics}
         strongTopics={insights.strong_topics}
@@ -123,7 +155,7 @@ function InterviewPrepTab({ report }: { report: ReportResponse }) {
 }
 
 function CompaniesTab({ report }: { report: ReportResponse }) {
-  const { interview_preparation } = report;
+  const companies = report.interview_preparation?.company_readiness || [];
   return (
     <motion.div
       variants={staggerContainer}
@@ -132,7 +164,8 @@ function CompaniesTab({ report }: { report: ReportResponse }) {
       exit="hidden"
     >
       <CompanyReadinessCard
-        companies={interview_preparation.company_readiness}
+        companies={companies}
+        report={report}
         delay={0.06}
       />
     </motion.div>
@@ -752,492 +785,6 @@ function CompareTab({ currentHandle }: { currentHandle: string }) {
   );
 }
 
-function PlatformsTab({ currentHandle }: { currentHandle: string }) {
-  const [leetcodeHandle, setLeetcodeHandle] = useState("");
-  const [codechefHandle, setCodechefHandle] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [platformsData, setPlatformsData] = useState<PlatformsResponse | null>(null);
-
-  const handleAnalyze = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const data = await fetchPlatformsAnalysis(
-        currentHandle,
-        leetcodeHandle,
-        codechefHandle
-      );
-      setPlatformsData(data);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to analyze platforms");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getComparisonChartData = () => {
-    if (!platformsData) return [];
-    return Object.entries(platformsData.platforms).map(([platform, data]) => ({
-      name: platform.charAt(0).toUpperCase() + platform.slice(1),
-      solved: data.profile.total_solved,
-    }));
-  };
-
-  const getPlatformPieData = () => {
-    if (!platformsData) return [];
-    const colors: Record<string, string> = { codeforces: "#22d3ee", leetcode: "#fb923c", codechef: "#f59e0b" };
-    return Object.entries(platformsData.platforms).map(([platform, data]) => ({
-      name: platform.charAt(0).toUpperCase() + platform.slice(1),
-      value: data.profile.total_solved,
-      fill: colors[platform] ?? "#818cf8",
-    }));
-  };
-
-  const getSkillRadialData = () => {
-    if (!platformsData) return [];
-    const colors: Record<string, string> = { codeforces: "#22d3ee", leetcode: "#fb923c", codechef: "#f59e0b" };
-    return Object.entries(platformsData.platforms).map(([platform, data]) => ({
-      name: platform.charAt(0).toUpperCase() + platform.slice(1),
-      value: Math.round((data.insights as any).skill_score || 0),
-      fill: colors[platform] ?? "#818cf8",
-    }));
-  };
-
-  const platformConfigs: Record<string, { border: string; grad: string; iconColor: string; accent: "cyan" | "orange" | "green"; glowColor: string; Icon: any }> = {
-    codeforces: { border: "border-cyan-500/25", grad: "from-cyan-500/15 to-blue-500/10", iconColor: "text-cyan-400", accent: "cyan", glowColor: "shadow-cyan-500/20", Icon: Code2 },
-    leetcode:   { border: "border-orange-500/25", grad: "from-orange-500/15 to-amber-500/10", iconColor: "text-orange-400", accent: "orange", glowColor: "shadow-orange-500/20", Icon: Terminal },
-    codechef:   { border: "border-amber-500/25", grad: "from-amber-500/15 to-yellow-500/10", iconColor: "text-amber-400", accent: "orange", glowColor: "shadow-amber-500/20", Icon: TrophyIcon },
-  };
-
-  return (
-    <motion.div
-      variants={staggerContainer}
-      initial="hidden"
-      animate="visible"
-      exit="hidden"
-      className="space-y-8"
-    >
-      {/* Page Header */}
-      <motion.div variants={fadeUp}>
-        <p className="text-xs font-semibold text-purple-400 uppercase tracking-widest mb-2">Multi-Platform</p>
-        <h1 className="text-4xl md:text-5xl font-black gradient-text mb-2">Platform Intelligence</h1>
-        <p className="text-base text-gray-400">Your competitive programming footprint across all major platforms</p>
-      </motion.div>
-
-      {/* Platform Input Cards + CTA */}
-      <GlassCard delay={0.04} className="p-8" accent="purple">
-        <div className="flex items-center gap-3 mb-7">
-          <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-400/20">
-            <Layers className="w-5 h-5 text-purple-400" />
-          </div>
-          <div>
-            <h2 className="text-lg font-black text-white">Connect Your Profiles</h2>
-            <p className="text-xs text-gray-500 mt-0.5">Codeforces is pre-loaded — optionally add LeetCode and CodeChef</p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-7">
-          {/* Codeforces — locked/connected */}
-          <div className="relative p-6 rounded-2xl bg-gradient-to-br from-cyan-500/8 to-blue-500/5 border border-cyan-400/20 ring-1 ring-cyan-400/10 overflow-hidden">
-            <div className="absolute top-3 right-3">
-              <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 text-[10px] font-black uppercase tracking-widest border border-emerald-400/25">
-                <CheckCircle2 className="w-2.5 h-2.5" /> Connected
-              </span>
-            </div>
-            <div className="flex items-center gap-3.5 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 flex items-center justify-center shadow-lg shadow-cyan-500/10">
-                <Code2 className="w-6 h-6 text-cyan-400" />
-              </div>
-              <div>
-                <h3 className="text-base font-black text-white">Codeforces</h3>
-                <p className="text-xs text-gray-500">Competitive Programming</p>
-              </div>
-            </div>
-            <div className="px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.07]">
-              <p className="text-sm font-bold text-cyan-400">@{currentHandle}</p>
-            </div>
-          </div>
-
-          {/* LeetCode */}
-          <div className="relative p-6 rounded-2xl bg-gradient-to-br from-orange-500/5 to-transparent border border-orange-500/15 hover:border-orange-400/30 transition-all group">
-            <div className="absolute top-3 right-3">
-              <span className="px-2 py-0.5 rounded-full bg-white/5 text-gray-500 text-[10px] font-bold uppercase tracking-widest border border-white/8">
-                Optional
-              </span>
-            </div>
-            <div className="flex items-center gap-3.5 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/15 to-amber-500/10 border border-orange-400/25 flex items-center justify-center shadow-lg shadow-orange-500/10 group-hover:shadow-orange-500/20 transition-shadow">
-                <Terminal className="w-6 h-6 text-orange-400" />
-              </div>
-              <div>
-                <h3 className="text-base font-black text-white">LeetCode</h3>
-                <p className="text-xs text-gray-500">Interview Focus</p>
-              </div>
-            </div>
-            <Input
-              value={leetcodeHandle}
-              onChange={(e) => setLeetcodeHandle(e.target.value)}
-              placeholder="Your LeetCode username…"
-            />
-          </div>
-
-          {/* CodeChef */}
-          <div className="relative p-6 rounded-2xl bg-gradient-to-br from-amber-500/5 to-transparent border border-amber-500/15 hover:border-amber-400/30 transition-all group">
-            <div className="absolute top-3 right-3">
-              <span className="px-2 py-0.5 rounded-full bg-white/5 text-gray-500 text-[10px] font-bold uppercase tracking-widest border border-white/8">
-                Optional
-              </span>
-            </div>
-            <div className="flex items-center gap-3.5 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/15 to-yellow-500/10 border border-amber-400/25 flex items-center justify-center shadow-lg shadow-amber-500/10 group-hover:shadow-amber-500/20 transition-shadow">
-                <TrophyIcon className="w-6 h-6 text-amber-400" />
-              </div>
-              <div>
-                <h3 className="text-base font-black text-white">CodeChef</h3>
-                <p className="text-xs text-gray-500">Competitive Ratings</p>
-              </div>
-            </div>
-            <Input
-              value={codechefHandle}
-              onChange={(e) => setCodechefHandle(e.target.value)}
-              placeholder="Your CodeChef username…"
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-col sm:flex-row items-center gap-4">
-          <motion.button
-            onClick={handleAnalyze}
-            disabled={loading}
-            className="btn-primary flex items-center gap-2.5 px-10 py-3.5 rounded-2xl font-black text-base disabled:opacity-40 disabled:cursor-not-allowed"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            {loading ? (
-              <><Loader2 className="w-5 h-5 spin" /> Analyzing…</>
-            ) : (
-              <><Sparkles className="w-5 h-5" /> Analyze All Platforms</>
-            )}
-          </motion.button>
-          {error && (
-            <div className="px-4 py-3 rounded-xl bg-red-500/10 border border-red-400/20 text-sm text-red-400">
-              {error}
-            </div>
-          )}
-        </div>
-      </GlassCard>
-
-      {/* Results */}
-      <AnimatePresence mode="wait">
-        {platformsData && (
-          <motion.div
-            key="platform-results"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-8"
-          >
-            {/* Summary Stat Cards */}
-            <div>
-              <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Overall Stats</p>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <StatCard icon={Trophy} label="Total Solved" value={platformsData.total_solved} accent="default" delay={0} />
-                <StatCard icon={Brain} label="Skill Score" numericValue={platformsData.skill_score} decimals={0} accent="default" delay={0.05} />
-                <StatCard icon={TrendingUp} label="Momentum" numericValue={platformsData.momentum_score} decimals={0} accent="success" delay={0.1} />
-                <StatCard icon={Target} label="Growth Potential" value={platformsData.growth_potential} accent="warning" delay={0.15} />
-              </div>
-            </div>
-
-            {/* Readiness + Interview badge */}
-            <GlassCard delay={0.16} className="p-7" accent="default">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div>
-                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Interview Readiness</p>
-                  <p className="text-3xl font-black text-white">{platformsData.interview_readiness}</p>
-                  <p className="text-sm text-gray-400 mt-1">Based on combined platform performance</p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-xs font-bold">
-                    {platformsData.strong_topics.length} Strong Topics
-                  </span>
-                  <span className="px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-400/25 text-rose-300 text-xs font-bold">
-                    {platformsData.weak_topics.length} Areas to Improve
-                  </span>
-                  <span className="px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-400/25 text-purple-300 text-xs font-bold">
-                    {Object.keys(platformsData.platforms).length} Platforms
-                  </span>
-                </div>
-              </div>
-            </GlassCard>
-
-            {/* Distribution Charts — Donut + Radial */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <GlassCard delay={0.18} className="p-8" accent="cyan">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-400/20">
-                    <Target className="w-5 h-5 text-cyan-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-black text-white">Problem Distribution</h3>
-                    <p className="text-xs text-gray-500 mt-0.5">Solved problems by platform</p>
-                  </div>
-                </div>
-                <div className="h-[240px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <defs>
-                        <filter id="pieShadow" x="-20%" y="-20%" width="140%" height="140%">
-                          <feDropShadow dx="0" dy="4" stdDeviation="6" floodOpacity="0.4" />
-                        </filter>
-                      </defs>
-                      <Pie
-                        data={getPlatformPieData()}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={55}
-                        outerRadius={90}
-                        paddingAngle={5}
-                        dataKey="value"
-                        strokeWidth={0}
-                      >
-                        {getPlatformPieData().map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.fill} opacity={0.9} />
-                        ))}
-                      </Pie>
-                      <RechartsTooltip contentStyle={{ backgroundColor: "#0f172a", border: "1px solid #1e293b", borderRadius: "12px", padding: "10px 14px", fontSize: "13px" }} />
-                      <Legend iconType="circle" wrapperStyle={{ paddingTop: "12px", fontSize: "12px", fontWeight: 600 }} />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-              </GlassCard>
-
-              <GlassCard delay={0.21} className="p-8" accent="purple">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-400/20">
-                    <Brain className="w-5 h-5 text-purple-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-black text-white">Skill Scores</h3>
-                    <p className="text-xs text-gray-500 mt-0.5">Per-platform skill assessment</p>
-                  </div>
-                </div>
-                <div className="h-[240px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <RadialBarChart
-                      cx="50%"
-                      cy="50%"
-                      innerRadius="25%"
-                      outerRadius="90%"
-                      data={getSkillRadialData()}
-                      startAngle={180}
-                      endAngle={-180}
-                    >
-                      <RadialBar
-                        dataKey="value"
-                        cornerRadius={10}
-                        label={{ fill: "#fff", fontSize: 11, fontWeight: 700, position: "insideStart" }}
-                      />
-                      <RechartsTooltip contentStyle={{ backgroundColor: "#0f172a", border: "1px solid #1e293b", borderRadius: "12px", padding: "10px 14px", fontSize: "13px" }} />
-                      <Legend iconType="circle" wrapperStyle={{ paddingTop: "12px", fontSize: "12px", fontWeight: 600 }} />
-                    </RadialBarChart>
-                  </ResponsiveContainer>
-                </div>
-              </GlassCard>
-            </div>
-
-            {/* Bar Chart */}
-            <GlassCard delay={0.2} className="p-8" accent="default">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-400/20">
-                  <BarChart3 className="w-5 h-5 text-indigo-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-black text-white">Problems Solved by Platform</h3>
-                  <p className="text-xs text-gray-500 mt-0.5">Across all connected accounts</p>
-                </div>
-              </div>
-              <div className="h-[300px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={getComparisonChartData()} margin={{ top: 10, right: 20, left: 0, bottom: 0 }} barSize={48}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                    <XAxis dataKey="name" tick={{ fill: "#64748b", fontSize: 13, fontWeight: 600 }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fill: "#64748b", fontSize: 13 }} axisLine={false} tickLine={false} />
-                    <RechartsTooltip
-                      contentStyle={{ backgroundColor: "#0f172a", border: "1px solid #1e293b", borderRadius: "14px", padding: "10px 16px", fontSize: "13px" }}
-                      cursor={{ fill: "rgba(255,255,255,0.03)" }}
-                    />
-                    <defs>
-                      <linearGradient id="platformBarGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#6366f1" stopOpacity={0.9} />
-                        <stop offset="100%" stopColor="#22d3ee" stopOpacity={0.7} />
-                      </linearGradient>
-                    </defs>
-                    <Bar dataKey="solved" fill="url(#platformBarGradient)" radius={[8, 8, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </GlassCard>
-
-            {/* Per-Platform Detail Cards */}
-            <div>
-              <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Platform Breakdown</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {Object.entries(platformsData.platforms).map(([platform, data], idx) => {
-                  const cfg = platformConfigs[platform] || platformConfigs.codeforces;
-                  const { Icon, grad, border, iconColor, accent, glowColor } = cfg;
-                  return (
-                    <GlassCard key={platform} delay={0.24 + idx * 0.06} className="p-7 group" accent={accent}>
-                      <div className="flex items-center justify-between mb-6">
-                        <div className="flex items-center gap-3.5">
-                          <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${grad} ${border} border flex items-center justify-center shadow-lg ${glowColor} group-hover:shadow-xl transition-shadow`}>
-                            <Icon className={`w-6 h-6 ${iconColor}`} />
-                          </div>
-                          <div>
-                            <h3 className="text-base font-black text-white capitalize">{platform}</h3>
-                            <p className="text-xs text-gray-500">@{data.profile.username}</p>
-                          </div>
-                        </div>
-                        <span className="flex items-center gap-1 text-[10px] font-black text-emerald-400 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-400/20">
-                          <CheckCircle2 className="w-2.5 h-2.5" /> Active
-                        </span>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-3 mb-4">
-                        <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/[0.07] text-center hover:bg-white/[0.07] transition-colors">
-                          <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5">Solved</p>
-                          <p className="text-2xl font-black text-white">{data.profile.total_solved}</p>
-                        </div>
-                        <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/[0.07] text-center hover:bg-white/[0.07] transition-colors">
-                          <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5">Skill</p>
-                          <p className="text-2xl font-black text-emerald-400">
-                            {data.insights.skill_score?.toFixed(0) ?? "—"}
-                          </p>
-                        </div>
-                      </div>
-
-                      {(data.profile.current_rating !== null || data.profile.max_rating !== null) && (
-                        <div className="grid grid-cols-2 gap-3">
-                          {data.profile.current_rating !== null && (
-                            <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.05] text-center">
-                              <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Rating</p>
-                              <p className={`text-lg font-black ${iconColor}`}>{data.profile.current_rating}</p>
-                            </div>
-                          )}
-                          {data.profile.max_rating !== null && (
-                            <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.05] text-center">
-                              <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Peak</p>
-                              <p className="text-lg font-black text-yellow-400">{data.profile.max_rating}</p>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </GlassCard>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Topics: Strong + Weak */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <GlassCard delay={0.3} className="p-7" accent="green">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-400/20">
-                    <TrendingUp className="w-5 h-5 text-emerald-400" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-black text-white">Strong Topics</h4>
-                    <p className="text-xs text-gray-500 mt-0.5">{platformsData.strong_topics.length} topics mastered</p>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {platformsData.strong_topics.map((topic, i) => (
-                    <span key={i} className="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-300 text-xs font-semibold border border-emerald-400/20 hover:bg-emerald-500/20 hover:border-emerald-400/40 transition-all cursor-default">
-                      {topic}
-                    </span>
-                  ))}
-                </div>
-              </GlassCard>
-
-              <GlassCard delay={0.33} className="p-7" accent="orange">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-400/20">
-                    <Target className="w-5 h-5 text-rose-400" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-black text-white">Weak Topics</h4>
-                    <p className="text-xs text-gray-500 mt-0.5">{platformsData.weak_topics.length} areas to improve</p>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {platformsData.weak_topics.map((topic, i) => (
-                    <span key={i} className="px-3 py-1.5 rounded-full bg-rose-500/10 text-rose-300 text-xs font-semibold border border-rose-400/20 hover:bg-rose-500/20 hover:border-rose-400/40 transition-all cursor-default">
-                      {topic}
-                    </span>
-                  ))}
-                </div>
-              </GlassCard>
-            </div>
-
-            {/* Premium Recommendations Card */}
-            <GlassCard delay={0.36} className="p-8" accent="purple">
-              <div className="flex items-center gap-3 mb-7">
-                <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-400/20">
-                  <Brain className="w-5 h-5 text-purple-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-black text-white">Recommendations for Growth</h3>
-                  <p className="text-xs text-gray-500 mt-0.5">Personalized actions based on your platform data</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {platformsData.strong_topics.length > 0 && (
-                  <div className="p-5 rounded-2xl bg-yellow-500/6 border border-yellow-400/15 hover:border-yellow-400/30 hover:bg-yellow-500/10 transition-all group">
-                    <div className="flex items-center gap-2.5 mb-3">
-                      <div className="p-2 rounded-lg bg-yellow-500/10 border border-yellow-400/20 group-hover:border-yellow-400/40 transition-colors">
-                        <Star className="w-4 h-4 text-yellow-400" />
-                      </div>
-                      <h4 className="font-black text-white text-sm">Leverage Strengths</h4>
-                    </div>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      Double down on <span className="text-yellow-300 font-semibold">{platformsData.strong_topics.slice(0, 2).join(", ")}</span> — these are your competitive edge
-                    </p>
-                  </div>
-                )}
-                {platformsData.weak_topics.length > 0 && (
-                  <div className="p-5 rounded-2xl bg-rose-500/6 border border-rose-400/15 hover:border-rose-400/30 hover:bg-rose-500/10 transition-all group">
-                    <div className="flex items-center gap-2.5 mb-3">
-                      <div className="p-2 rounded-lg bg-rose-500/10 border border-rose-400/20 group-hover:border-rose-400/40 transition-colors">
-                        <Target className="w-4 h-4 text-rose-400" />
-                      </div>
-                      <h4 className="font-black text-white text-sm">Close the Gaps</h4>
-                    </div>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      Prioritize <span className="text-rose-300 font-semibold">{platformsData.weak_topics.slice(0, 2).join(", ")}</span> — focused practice will move the needle fastest
-                    </p>
-                  </div>
-                )}
-                <div className="p-5 rounded-2xl bg-cyan-500/6 border border-cyan-400/15 hover:border-cyan-400/30 hover:bg-cyan-500/10 transition-all group">
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-400/20 group-hover:border-cyan-400/40 transition-colors">
-                      <Zap className="w-4 h-4 text-cyan-400" />
-                    </div>
-                    <h4 className="font-black text-white text-sm">Stay Consistent</h4>
-                  </div>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    Solve problems regularly across all platforms — momentum compounds over time and keeps your ranking stable
-                  </p>
-                </div>
-              </div>
-            </GlassCard>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-}
-
 export function Dashboard({ report }: DashboardProps) {
   const [activeTab, setActiveTab] = useState<DashboardTab>("overview");
 
@@ -1254,7 +801,15 @@ export function Dashboard({ report }: DashboardProps) {
       case "compare":
         return <CompareTab currentHandle={report.profile.username} />;
       case "platforms":
-        return <PlatformsTab currentHandle={report.profile.username} />;
+        return <PlatformsManager />;
+      case "coach":
+        return <InterviewCoachTab report={report} />;
+      case "replay":
+        return <ContestReplayTab report={report} />;
+      case "solution":
+        return <SolutionIntelligenceTab report={report} />;
+      case "settings":
+        return <SettingsTab />;
       default:
         return null;
     }
@@ -1276,6 +831,7 @@ export function Dashboard({ report }: DashboardProps) {
           </motion.div>
         </AnimatePresence>
       </div>
+      <DebugInspector report={report} />
     </div>
   );
 }

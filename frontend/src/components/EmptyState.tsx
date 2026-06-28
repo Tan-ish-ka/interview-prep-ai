@@ -15,8 +15,8 @@ export function EmptyState() {
       </div>
       <h2>Your analytics dashboard awaits</h2>
       <p>
-        Paste a competitive programming profile URL above and generate a full interview-prep
-        report with ratings, contests, activity, topics, and recommendations.
+        Paste a Codeforces, LeetCode, or CodeChef profile URL above to generate a full interview-prep
+        report. If you have connected multiple accounts in the Platforms tab, the report will be unified.
       </p>
       <div className="empty-state__chips">
         <span>Rating trends</span>

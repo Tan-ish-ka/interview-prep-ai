@@ -32,22 +32,36 @@ class ProfileManager:
         self._profile_repository = profile_repository
         self._platform_detector = platform_detector
 
-    def get_profile(self, url: str, *, refresh: bool = False) -> UserProfile:
-        platform_type = self._platform_detector.detect(url)
-        if platform_type == PlatformType.UNKNOWN:
-            raise UnsupportedPlatformError(f"Unsupported platform for URL: {url}")
+    def get_profile(self, url_or_urls: str | list[str], *, refresh: bool = False) -> UserProfile:
+        urls = [url_or_urls] if isinstance(url_or_urls, str) else url_or_urls
+        if len(urls) == 1:
+            url = urls[0]
+            platform_type = self._platform_detector.detect(url)
+            if platform_type == PlatformType.UNKNOWN:
+                raise UnsupportedPlatformError(f"Unsupported platform for URL: {url}")
 
-        platform = _PLATFORM_BY_TYPE[platform_type]
-        username = _extract_username(url, platform_type)
+            platform = _PLATFORM_BY_TYPE[platform_type]
+            username = _extract_username(url, platform_type)
 
-        if not refresh:
-            cached = self._profile_repository.load(username, platform)
-            if cached is not None:
-                return cached
+            if not refresh:
+                cached = self._profile_repository.load(username, platform)
+                if cached is not None:
+                    return cached
 
-        profile = self._profile_service.create_profile(url)
-        self._profile_repository.save(profile)
-        return profile
+            profile = self._profile_service.create_profile(url)
+            self._profile_repository.save(profile)
+            return profile
+
+        # Multiple URLs -> create unified
+        # We can cache unified profiles or just cache the underlying ones
+        from interview_prep_ai.core.models.profile import merge_profiles
+        profiles = []
+        for url in urls:
+            try:
+                profiles.append(self.get_profile(url, refresh=refresh))
+            except Exception as e:
+                print(f"Error loading {url}: {e}")
+        return merge_profiles(profiles)
 
 
 def _extract_username(url: str, platform_type: PlatformType) -> str:

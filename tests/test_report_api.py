@@ -2,17 +2,29 @@
 
 from __future__ import annotations
 
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, AsyncMock
 
 import pytest
 from fastapi.testclient import TestClient
 
 from interview_prep_ai.app.main import create_app
 from interview_prep_ai.app.routes.report import get_interview_prep_service
+from interview_prep_ai.app.auth_deps import get_current_user
+from interview_prep_ai.database import get_db
 from interview_prep_ai.core.enums import Platform
 from interview_prep_ai.core.models.profile import UserProfile
 from interview_prep_ai.services.interview_prep_service import InterviewPrepService
 from interview_prep_ai.services.profile_service import UnsupportedPlatformError
+from interview_prep_ai.repositories.user_repository import User
+
+def mock_get_current_user():
+    return User(
+        id="12345",
+        username="test_user",
+        email="test@example.com",
+        plan="free",
+        reports_generated=0
+    )
 
 
 @pytest.fixture
@@ -82,6 +94,7 @@ def service_report(profile: UserProfile) -> dict:
                 {
                     "company": "Amazon",
                     "category": "Big Tech",
+                    "overall_readiness": 74,
                     "score": 74,
                     "level": "Ready",
                     "reason": "Strong fit in Dynamic Programming with solid overall coverage.",
@@ -109,6 +122,13 @@ def client(mock_interview_prep_service: MagicMock) -> TestClient:
     app.dependency_overrides[get_interview_prep_service] = (
         lambda: mock_interview_prep_service
     )
+    
+    # Mock DB session so it doesn't fail on db.commit()
+    mock_db = MagicMock()
+    mock_db.commit = AsyncMock()
+    app.dependency_overrides[get_db] = lambda: mock_db
+    
+    app.dependency_overrides[get_current_user] = mock_get_current_user
     with TestClient(app) as test_client:
         yield test_client
     app.dependency_overrides.clear()
@@ -122,6 +142,7 @@ def test_get_report_returns_200_and_json_body(
 ) -> None:
     response = client.get("/report", params={"url": profile_url})
 
+    print(response.json())
     assert response.status_code == 200
     body = response.json()
     mock_interview_prep_service.generate_report.assert_called_once_with(profile_url)
@@ -153,7 +174,7 @@ def test_get_report_returns_200_and_json_body(
 def test_get_report_missing_url_returns_422(client: TestClient) -> None:
     response = client.get("/report")
 
-    assert response.status_code == 422
+    assert response.status_code == 400
     assert "detail" in response.json()
 
 

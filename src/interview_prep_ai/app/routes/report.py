@@ -33,16 +33,39 @@ def get_profile_manager() -> ProfileManager:
 
 
 def get_unified_profile_service() -> UnifiedProfileService:
-    return UnifiedProfileService()
+    from interview_prep_ai.analytics.analyzers.codeforces_analyzer import CodeforcesAnalyzer
+    from interview_prep_ai.interview_preparation.platform_prep_engines import CodeforcesPrepEngine
+    return UnifiedProfileService(
+        insight_generator=CodeforcesAnalyzer(),
+        interview_prep_engine=CodeforcesPrepEngine()
+    )
 
+
+from interview_prep_ai.app.auth_deps import get_current_user
+from interview_prep_ai.core.models.user import User
+from interview_prep_ai.database import get_db
+from sqlalchemy.ext.asyncio import AsyncSession
+import asyncio
 
 @router.get("/report", response_model=ReportResponse)
-def get_report(
+async def get_report(
     query: Annotated[ReportQueryParams, Query()],
     service: Annotated[InterviewPrepService, Depends(get_interview_prep_service)],
+    current_user: Annotated[User, Depends(get_current_user)],
+    db: Annotated[AsyncSession, Depends(get_db)]
 ) -> ReportResponse:
     """Generate an interview prep report for a competitive programming profile URL."""
-    report = service.generate_report(query.url)
+    if not query.url and not query.urls:
+        from fastapi import HTTPException
+        raise HTTPException(status_code=400, detail="Must provide url or urls")
+        
+    target_urls = [u.strip() for u in query.urls.split(",")] if query.urls else query.url
+    report = await asyncio.to_thread(service.generate_report, target_urls)
+    
+    current_user.reports_generated += 1
+    db.add(current_user)
+    await db.commit()
+    
     return report_response_from_dict(report)
 
 
@@ -66,37 +89,56 @@ def get_comparison(
 
 
 @router.get("/platforms/analysis")
-def get_platform_analysis(
-    codeforces_handle: Annotated[str, Query(description="Codeforces handle")],
+async def get_platform_analysis(
+    urls: Annotated[str, Query(description="Comma-separated profile URLs")] = "",
+    codeforces_handle: Annotated[str, Query(description="Codeforces handle")] = "",
     leetcode_handle: Annotated[str, Query(description="LeetCode handle")] = "",
     codechef_handle: Annotated[str, Query(description="CodeChef handle")] = "",
     *,
     manager: Annotated[ProfileManager, Depends(get_profile_manager)],
     unified_service: Annotated[UnifiedProfileService, Depends(get_unified_profile_service)],
+    current_user: Annotated[User, Depends(get_current_user)],
+    db: Annotated[AsyncSession, Depends(get_db)]
 ) -> dict:
     """Generate analysis for multiple platforms."""
     platform_profiles: Dict[Platform, any] = {}
     
-    # Codeforces
-    if codeforces_handle:
-        url = f"https://codeforces.com/profile/{codeforces_handle}"
-        platform_profiles[Platform.CODEFORCES] = manager.get_profile(url, refresh=True)
-        
-    # LeetCode
-    if leetcode_handle:
-        url = f"https://leetcode.com/u/{leetcode_handle}"
-        platform_profiles[Platform.LEETCODE] = manager.get_profile(url, refresh=True)
-        
-    # CodeChef
-    if codechef_handle:
-        url = f"https://www.codechef.com/users/{codechef_handle}"
-        platform_profiles[Platform.CODECHEF] = manager.get_profile(url, refresh=True)
+    if urls:
+        for url in urls.split(","):
+            url = url.strip()
+            if not url:
+                continue
+            prof = manager.get_profile(url, refresh=True)
+            platform_profiles[prof.platform] = prof
+    else:
+        # Codeforces
+        if codeforces_handle:
+            url = f"https://codeforces.com/profile/{codeforces_handle}"
+            platform_profiles[Platform.CODEFORCES] = manager.get_profile(url, refresh=True)
+            
+        # LeetCode
+        if leetcode_handle:
+            url = f"https://leetcode.com/u/{leetcode_handle}"
+            platform_profiles[Platform.LEETCODE] = manager.get_profile(url, refresh=True)
+            
+        # CodeChef
+        if codechef_handle:
+            url = f"https://www.codechef.com/users/{codechef_handle}"
+            platform_profiles[Platform.CODECHEF] = manager.get_profile(url, refresh=True)
+            
+    if not platform_profiles:
+        from fastapi import HTTPException
+        raise HTTPException(status_code=400, detail="No valid profiles provided")
         
     # Create unified profile
     unified_profile = unified_service.create_unified_profile(
         username=codeforces_handle or leetcode_handle or codechef_handle,
         platform_profiles=platform_profiles
     )
+    
+    current_user.reports_generated += 1
+    db.add(current_user)
+    await db.commit()
     
     return _convert_unified_profile_to_dict(unified_profile)
 
@@ -118,12 +160,57 @@ def _convert_unified_profile_to_dict(profile: UnifiedProfile) -> dict:
         
     return {
         "username": profile.username,
+        "summary": {
+            "totalSolved": profile.summary.totalSolved,
+            "uniqueSolved": profile.summary.uniqueSolved,
+            "contests": profile.summary.contests,
+            "interviewReadiness": profile.summary.interviewReadiness,
+            "skillScore": profile.summary.skillScore,
+            "momentumScore": profile.summary.momentumScore,
+            "activityScore": profile.summary.activityScore,
+            "strongestPlatform": profile.summary.strongestPlatform,
+            "weakestPlatform": profile.summary.weakestPlatform
+        },
         "platforms": platform_data,
-        "total_solved": profile.total_solved,
-        "skill_score": profile.skill_score,
-        "momentum_score": profile.momentum_score,
-        "interview_readiness": profile.interview_readiness,
-        "growth_potential": profile.growth_potential,
-        "strong_topics": profile.strong_topics,
-        "weak_topics": profile.weak_topics
+        "contributions": profile.contributions,
+        "topicBreakdown": profile.topicBreakdown,
+        "timeline": profile.timeline,
+        "aiInsights": {
+            "strongest_platform": profile.aiInsights.strongest_platform,
+            "weakest_platform": profile.aiInsights.weakest_platform,
+            "platform_recommendations": profile.aiInsights.platform_recommendations,
+            "topic_gaps": profile.aiInsights.topic_gaps,
+            "interview_readiness_explanation": profile.aiInsights.interview_readiness_explanation,
+            "activity_observations": profile.aiInsights.activity_observations
+        },
+        "companyReadiness": profile.companyReadiness
     }
+
+@router.post("/platforms/sync")
+def sync_platform(
+    platform: Annotated[str, Query(description="Platform name (codeforces, leetcode, codechef)")],
+    url: Annotated[str, Query(description="Profile URL or username")],
+    manager: Annotated[ProfileManager, Depends(get_profile_manager)],
+) -> dict:
+    """Sync a single platform and return connection metadata."""
+    target_url = url.strip()
+    
+    # Auto-format URL if just username was provided
+    if "://" not in target_url:
+        if platform == "codeforces":
+            target_url = f"https://codeforces.com/profile/{target_url}"
+        elif platform == "leetcode":
+            target_url = f"https://leetcode.com/u/{target_url}"
+        elif platform == "codechef":
+            target_url = f"https://www.codechef.com/users/{target_url}"
+            
+    try:
+        profile = manager.get_profile(target_url, refresh=True)
+        return {
+            "total_solved": profile.total_solved,
+            "total_contests": len(profile.rating_history) if profile.rating_history else 0,
+        }
+    except Exception as e:
+        from fastapi import HTTPException
+        raise HTTPException(status_code=400, detail=str(e))
+

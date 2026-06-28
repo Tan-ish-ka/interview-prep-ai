@@ -3,13 +3,21 @@
 from __future__ import annotations
 
 import traceback
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Load .env from the project root (3 levels above src/interview_prep_ai/app/main.py)
+_ENV_PATH = Path(__file__).resolve().parents[3] / ".env"
+load_dotenv(_ENV_PATH, override=True)
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from interview_prep_ai.api.codeforces_client import CodeforcesAPIError, CodeforcesClientError
-from interview_prep_ai.app.routes import report
+from interview_prep_ai.app.routes import report, coach, solution, ai_providers as ai_providers_route, problems as problems_route
+from interview_prep_ai.app.routes.replay import router as replay_router
 from interview_prep_ai.services.profile_service import UnsupportedPlatformError
 
 
@@ -81,13 +89,20 @@ def create_app() -> FastAPI:
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],  # temporary for testing
+        allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
     register_exception_handlers(app)
+    from interview_prep_ai.app.routes import auth
+    app.include_router(auth.router)
     app.include_router(report.router)
+    app.include_router(coach.router)
+    app.include_router(solution.router)
+    app.include_router(problems_route.router)
+    app.include_router(ai_providers_route.router)
+    app.include_router(replay_router)
     return app
 
 

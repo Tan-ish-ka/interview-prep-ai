@@ -60,9 +60,31 @@ def _profile_to_dict(profile: UserProfile) -> dict:
             }
             for stat in profile.tag_stats
         ],
+        "all_submissions": [
+            {
+                "id": sub.id,
+                "problem": {
+                    "problem_id": sub.problem.problem_id,
+                    "title": sub.problem.title,
+                    "tags": sub.problem.tags,
+                    "solved_at": sub.problem.solved_at.isoformat() if sub.problem.solved_at else None,
+                },
+                "verdict": sub.verdict,
+                "language": sub.language,
+                "time_consumed_millis": sub.time_consumed_millis,
+                "memory_consumed_bytes": sub.memory_consumed_bytes,
+                "passed_test_count": sub.passed_test_count,
+                "participant_type": sub.participant_type,
+                "relative_time_seconds": sub.relative_time_seconds,
+                "submitted_at": sub.submitted_at.isoformat() if sub.submitted_at else None,
+            }
+            for sub in profile.all_submissions
+        ],
         "rating_history": profile.rating_history,
     }
 
+
+from interview_prep_ai.core.models.submission import SubmissionRecord
 
 def _profile_from_dict(data: dict) -> UserProfile:
     solved_problems = [
@@ -78,6 +100,36 @@ def _profile_from_dict(data: dict) -> UserProfile:
             )
             for problem in data.get("solved_problems") or []
     ]
+    
+    all_submissions = [
+        SubmissionRecord(
+            id=sub["id"],
+            problem=ProblemRecord(
+                problem_id=sub["problem"]["problem_id"],
+                title=sub["problem"]["title"],
+                tags=list(sub["problem"].get("tags") or []),
+                solved_at=(
+                    datetime.fromisoformat(sub["problem"]["solved_at"])
+                    if sub["problem"].get("solved_at")
+                    else None
+                ),
+            ),
+            verdict=sub["verdict"],
+            language=sub["language"],
+            time_consumed_millis=sub["time_consumed_millis"],
+            memory_consumed_bytes=sub["memory_consumed_bytes"],
+            passed_test_count=sub["passed_test_count"],
+            participant_type=sub.get("participant_type", ""),
+            relative_time_seconds=sub.get("relative_time_seconds", 0),
+            submitted_at=(
+                datetime.fromisoformat(sub["submitted_at"])
+                if sub.get("submitted_at")
+                else None
+            ),
+        )
+        for sub in data.get("all_submissions") or []
+    ]
+    
     return UserProfile(
         username=data["username"],
         platform=Platform(data["platform"]),
@@ -93,5 +145,6 @@ def _profile_from_dict(data: dict) -> UserProfile:
             )
             for stat in data.get("tag_stats") or []
         ],
+        all_submissions=all_submissions,
         rating_history=data.get("rating_history") or {"status": "OK", "result": []},
     )

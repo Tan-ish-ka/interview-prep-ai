@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 
 from interview_prep_ai.core.models.problem import ProblemRecord
+from interview_prep_ai.core.models.submission import SubmissionRecord
 
 SOLVED_COUNT_DEFINITION = (
     "Unique Codeforces programming problems with at least one Accepted (OK) "
@@ -90,6 +91,47 @@ def solved_problems_from_submissions(submissions: list[dict]) -> list[ProblemRec
             )
         )
 
+    return records
+
+
+def all_submissions_from_api(submissions: list[dict]) -> list[SubmissionRecord]:
+    """Parse all submissions, regardless of verdict, into SubmissionRecords."""
+    records: list[SubmissionRecord] = []
+    
+    for submission in submissions:
+        problem = submission.get("problem") or {}
+        key = problem_key(problem)
+        creation_seconds = submission.get("creationTimeSeconds")
+        submitted_at = (
+            datetime.fromtimestamp(creation_seconds, tz=timezone.utc)
+            if creation_seconds is not None
+            else None
+        )
+        
+        problem_record = ProblemRecord(
+            problem_id=problem_id_from_key(key),
+            title=problem.get("name", problem_id_from_key(key)),
+            tags=list(problem.get("tags") or []),
+            solved_at=submitted_at,
+        )
+        
+        author = submission.get("author", {})
+        participant_type = author.get("participantType", "")
+        
+        records.append(
+            SubmissionRecord(
+                id=str(submission.get("id", "")),
+                problem=problem_record,
+                verdict=submission.get("verdict", "UNKNOWN"),
+                language=submission.get("programmingLanguage", ""),
+                time_consumed_millis=submission.get("timeConsumedMillis", 0),
+                memory_consumed_bytes=submission.get("memoryConsumedBytes", 0),
+                passed_test_count=submission.get("passedTestCount", 0),
+                participant_type=participant_type,
+                relative_time_seconds=submission.get("relativeTimeSeconds", 0),
+                submitted_at=submitted_at,
+            )
+        )
     return records
 
 

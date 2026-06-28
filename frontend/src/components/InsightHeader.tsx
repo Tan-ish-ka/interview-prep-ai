@@ -23,8 +23,16 @@ export function InsightHeader({ profile, insights }: InsightHeaderProps) {
             <User size={28} />
           </div>
           <div>
-            <p className="insight-header__eyebrow">{profile.platform}</p>
-            <h2 className="insight-header__name">@{profile.username}</h2>
+            <p className="insight-header__eyebrow">
+              {profile.platform === "unified" ? "Unified Profile" : profile.platform}
+            </p>
+            <h2 className="insight-header__name">
+              {profile.platform === "unified" 
+                ? profile.username.split(" + ").map((u, i) => (
+                    <span key={i} className="inline-block mr-2 text-sm px-2 py-1 bg-white/5 rounded-md border border-white/10">@{u}</span>
+                  ))
+                : `@${profile.username}`}
+            </h2>
             <div className="insight-header__meta">
               <TrendChip trend={insights.rating_trend} />
               <span
@@ -58,13 +66,17 @@ export function InsightHeader({ profile, insights }: InsightHeaderProps) {
       </div>
 
       <div className="insight-header__metrics">
-        <MetricBlock label="Current" value={insights.current_rating} />
-        <MetricBlock label="Peak" value={insights.max_rating} />
-        <MetricBlock label="Recent Δ" value={insights.recent_rating_delta} signed />
-        <MetricBlock
-          label="Contests (30d)"
-          value={insights.contest_stats.contests_last_30_days}
-        />
+        {(profile.platform === "codeforces" || profile.platform === "unified") && (
+          <>
+            <MetricBlock label="Current" value={insights.current_rating} />
+            <MetricBlock label="Peak" value={insights.max_rating} />
+            <MetricBlock label="Recent Δ" value={insights.recent_rating_delta} signed />
+            <MetricBlock
+              label="Contests (30d)"
+              value={insights.contest_stats?.contests_last_30_days ?? null}
+            />
+          </>
+        )}
       </div>
     </GlassCard>
   );

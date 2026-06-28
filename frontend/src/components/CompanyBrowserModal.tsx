@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { Search, X } from "lucide-react";
-import type { CompanyReadiness } from "../types/report";
+import type { CompanyReadiness, ReportResponse } from "../types/report";
 import { CompanyReadinessItem } from "./CompanyReadinessItem";
+import { CompanyDashboard } from "./CompanyDashboard";
 
 export const COMPANY_CATEGORIES = [
   "All",
@@ -15,17 +16,20 @@ type CategoryFilter = (typeof COMPANY_CATEGORIES)[number];
 
 interface CompanyBrowserModalProps {
   companies: CompanyReadiness[];
+  report: ReportResponse;
   isOpen: boolean;
   onClose: () => void;
 }
 
 export function CompanyBrowserModal({
   companies,
+  report,
   isOpen,
   onClose,
 }: CompanyBrowserModalProps) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState<CategoryFilter>("All");
+  const [activeCompany, setActiveCompany] = useState<CompanyReadiness | null>(null);
 
   const filtered = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -39,7 +43,7 @@ export function CompanyBrowserModal({
           company.category.toLowerCase().includes(query);
         return matchesCategory && matchesSearch;
       })
-      .sort((a, b) => b.score - a.score || a.company.localeCompare(b.company));
+      .sort((a, b) => b.overall_readiness - a.overall_readiness || a.company.localeCompare(b.company));
   }, [companies, search, category]);
 
   if (!isOpen) {
@@ -112,11 +116,20 @@ export function CompanyBrowserModal({
                 item={item}
                 index={index}
                 compact
+                onClick={() => setActiveCompany(item)}
               />
             ))}
           </ul>
         )}
       </div>
+
+      {activeCompany && (
+        <CompanyDashboard
+          company={activeCompany}
+          report={report}
+          onClose={() => setActiveCompany(null)}
+        />
+      )}
     </div>
   );
 }

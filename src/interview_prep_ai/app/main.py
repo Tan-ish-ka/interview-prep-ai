@@ -79,12 +79,23 @@ def register_exception_handlers(app: FastAPI) -> None:
             content={"detail": "Internal server error", "type": type(exc).__name__, "message": str(exc)},
         )
 
+from contextlib import asynccontextmanager
+from interview_prep_ai.database import init_db
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Initialize database tables on startup
+    await init_db()
+    yield
+    # Cleanup on shutdown (if any)
+
 def create_app() -> FastAPI:
     """Create and configure the FastAPI application."""
     app = FastAPI(
         title="Interview Prep AI",
         description="Generate interview preparation reports from competitive programming profiles.",
         version="0.1.0",
+        lifespan=lifespan,
     )
 
 

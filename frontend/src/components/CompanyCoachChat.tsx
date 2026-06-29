@@ -3,6 +3,7 @@ import { Send, Loader2, Bot, User } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { ReportResponse } from "../types/report";
+import { API_BASE } from "../api/config";
 
 interface CompanyCoachChatProps {
   company: string;
@@ -37,7 +38,7 @@ export function CompanyCoachChat({ company, report }: CompanyCoachChatProps) {
 
     try {
       const token = localStorage.getItem('access_token');
-      const response = await fetch("http://localhost:8000/coach/chat", {
+      const response = await fetch(`${API_BASE}/coach/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

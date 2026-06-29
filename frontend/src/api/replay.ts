@@ -28,7 +28,7 @@ export interface ReplayChatRequest extends ReplayAnalysisRequest {
   conversation: { role: string; content: string }[];
 }
 
-const API_BASE = import.meta.env.VITE_API_BASE ?? "";
+import { API_BASE } from "./config";
 
 // Stream the analysis (Contest Coach, Insights Dashboard, Decision Reviews)
 export async function streamReplayAnalysis(

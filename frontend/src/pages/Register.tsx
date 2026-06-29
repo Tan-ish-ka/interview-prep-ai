@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { API_BASE } from '../api/config';
 import { BrainCircuit } from 'lucide-react';
 
 export function Register() {
@@ -19,7 +20,7 @@ export function Register() {
     setLoading(true);
 
     try {
-      const res = await fetch('http://127.0.0.1:8000/auth/register', {
+      const res = await fetch(`${API_BASE}/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Target, TrendingUp, HelpCircle, Code2, AlertTriangle, MessageSquare } from "lucide-react";
 import type { CompanyReadiness, ReportResponse } from "../types/report";
+import { API_BASE } from "../api/config";
 import { useState } from "react";
 import { CompanyCoachChat } from "./CompanyCoachChat";
 
@@ -126,7 +127,7 @@ export function CompanyDashboard({ company, report, onClose }: CompanyDashboardP
                       <div className="q-tags">
                         {q.tags.map(t => <span key={t} className="q-tag">{t}</span>)}
                       </div>
-                      <button className="practice-similar-btn" onClick={() => window.open(`http://localhost:8000/problems/similar?tags=${q.tags.join(",")}&difficulty=${q.difficulty}`, "_blank")}>
+                      <button className="practice-similar-btn" onClick={() => window.open(`${API_BASE}/problems/similar?tags=${q.tags.join(",")}&difficulty=${q.difficulty}`, "_blank")}>
                         Find Similar Problems (JSON)
                       </button>
                     </div>

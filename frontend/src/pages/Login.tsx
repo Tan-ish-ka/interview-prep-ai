@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { API_BASE } from '../api/config';
 import { BrainCircuit } from 'lucide-react';
 
 export function Login() {
@@ -21,7 +22,7 @@ export function Login() {
       formData.append('username', username);
       formData.append('password', password);
 
-      const res = await fetch('http://127.0.0.1:8000/auth/login', {
+      const res = await fetch(`${API_BASE}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',

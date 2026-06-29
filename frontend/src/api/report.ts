@@ -1,6 +1,5 @@
 import type { ReportResponse, UnifiedProfileResponse } from "../types/report";
-
-const API_BASE = import.meta.env.VITE_API_BASE ?? "";
+import { API_BASE } from "./config";
 
 async function authFetch(url: string, options: RequestInit = {}) {
   const token = localStorage.getItem('access_token');

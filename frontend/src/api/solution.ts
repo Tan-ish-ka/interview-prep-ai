@@ -13,7 +13,7 @@ export interface SolutionAnalyzePayload {
   target_companies?: string[];
 }
 
-const API_BASE = import.meta.env.VITE_API_BASE ?? "";
+import { API_BASE } from "./config";
 
 export async function streamSolutionAnalysis(
   payload: SolutionAnalyzePayload,

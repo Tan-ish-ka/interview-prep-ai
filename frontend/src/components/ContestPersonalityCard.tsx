@@ -23,7 +23,7 @@ export function ContestPersonalityCard({ replays, username }: ContestPersonality
       setError(null);
       try {
         const token = localStorage.getItem('access_token');
-        const API_BASE = import.meta.env.VITE_API_BASE ?? "";
+        const { API_BASE } = await import("../api/config");
         const res = await fetch(`${API_BASE}/replay/personality`, {
           method: "POST",
           headers: {

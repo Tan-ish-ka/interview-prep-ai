@@ -12,7 +12,7 @@ import { fetchPlatformAnalysis } from "../api/report";
 import type { UnifiedProfileResponse } from "../types/report";
 import { PlatformStorage } from "../lib/PlatformStorage";
 
-const API_BASE = import.meta.env.VITE_API_BASE ?? "";
+import { API_BASE } from "../api/config";
 
 export function PlatformsManager() {
   const { connections } = usePlatforms();

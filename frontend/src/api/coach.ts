@@ -15,7 +15,7 @@ export interface CoachChatRequestPayload {
   conversation: ConversationMessage[];
 }
 
-const API_BASE = import.meta.env.VITE_API_BASE ?? "";
+import { API_BASE } from "./config";
 
 export async function streamCoachChat(
   payload: CoachChatRequestPayload,

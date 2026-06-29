@@ -21,7 +21,6 @@
       "title": "Revival",
       "tags": [
         "binary search",
-        "constructive algorithms",
         "data structures",
         "math",
         "two pointers"
@@ -42,7 +41,6 @@
       "problem_id": "2239A",
       "title": "Nim Game Is XOR Game",
       "tags": [
-        "bitmasks",
         "constructive algorithms",
         "games",
         "greedy",
@@ -29610,7 +29608,7 @@
     },
     {
       "tag": "Bit Manipulation",
-      "solved_count": 218,
+      "solved_count": 217,
       "attempt_count": 0
     },
     {
@@ -29620,7 +29618,7 @@
     },
     {
       "tag": "Constructive Algorithms",
-      "solved_count": 1072,
+      "solved_count": 1071,
       "attempt_count": 0
     },
     {
@@ -29714,7 +29712,6 @@
         "title": "Revival",
         "tags": [
           "binary search",
-          "constructive algorithms",
           "data structures",
           "math",
           "two pointers"
@@ -29757,7 +29754,6 @@
         "problem_id": "2239A",
         "title": "Nim Game Is XOR Game",
         "tags": [
-          "bitmasks",
           "constructive algorithms",
           "games",
           "greedy",

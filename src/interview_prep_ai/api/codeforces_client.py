@@ -25,6 +25,7 @@ class CodeforcesClient:
     ) -> None:
         self._base_url = base_url.rstrip("/")
         self._session = session or requests.Session()
+        self._session.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"})
         self._timeout = timeout
 
     def get_user_info(self, handle: str) -> dict:

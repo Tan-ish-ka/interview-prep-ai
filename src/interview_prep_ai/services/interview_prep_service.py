@@ -51,6 +51,9 @@ class InterviewPrepService:
             except Exception as e:
                 print(f"Error loading {single_url}: {e}")
                 
+        if not platform_profiles:
+            raise ValueError(f"Failed to load any valid profiles from {urls}")
+                
         # Generate unified profile to extract advanced stats
         from interview_prep_ai.services.unified_profile_service import UnifiedProfileService
         
